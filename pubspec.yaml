@@ -1,0 +1,45 @@
+##.title
+## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+##
+## Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
+## in root directory.
+##
+## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+##.title~
+
+name: df_screen
+description: A package for managing screens.
+version: 0.1.0
+repository: https://github.com/robmllze/df_screen
+publish_to: none
+
+## -----------------------------------------------------------------------------
+
+environment:
+  sdk: ">=3.0.0 < 4.0.0"
+
+## -----------------------------------------------------------------------------
+
+dependencies:
+  flutter:
+    sdk: flutter
+  after_layout: ^1.2.0
+  device_info_plus: ^10.1.2
+  df_debouncer: ^0.1.2
+  df_generate_dart_models_core: ">=0.2.1 <0.3.0"
+  df_log: ^0.1.2
+  df_pod: ^0.2.3
+  df_scalable: ^0.1.2
+  meta: ^1.15.0
+
+  df_screen_core:
+    git:
+      url: https://github.com/robmllze/df_screen_core
+      ref: main
+
+## -----------------------------------------------------------------------------
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
