@@ -11,3 +11,5 @@
 library;
 
 export 'src/_index.g.dart';
+
+export 'package:df_screen_core/df_screen_core.dart';
