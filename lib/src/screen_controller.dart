@@ -1,22 +1,21 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
-// in root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
+// source code is governed by an MIT-style license that can be found in the
+// LICENSE file.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
 import 'package:df_screen_core/df_screen_core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:df_pod/df_pod.dart';
 
 import '_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base class ScreenController<TModelScreenConfiguration extends ModelScreenConfiguration>
-    extends _ScreenController<TModelScreenConfiguration> with BindWithMixin {
+base class ScreenController<TModelScreenConfiguration extends ModelScreenConfiguration> {
   //
   //
   //
@@ -42,13 +41,11 @@ base class ScreenController<TModelScreenConfiguration extends ModelScreenConfigu
   @mustCallSuper
   @visibleForOverriding
   void initController() async {}
-}
 
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  //
+  //
+  //
 
-abstract class _ScreenController<TModelScreenConfiguration extends ModelScreenConfiguration>
-    implements Disposable {
-  @override
   @mustCallSuper
   @visibleForOverriding
   void dispose() {}

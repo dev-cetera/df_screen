@@ -1,8 +1,9 @@
 ##.title
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##
-## Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
-## in root directory.
+## Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
+## source code is governed by an MIT-style license that can be found in the
+## LICENSE file.
 ##
 ## ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ##.title~
@@ -16,7 +17,7 @@ publish_to: none
 ## -----------------------------------------------------------------------------
 
 environment:
-  sdk: ">=3.0.0 < 4.0.0"
+  sdk: ">=3.5.0 <4.0.0"
 
 ## -----------------------------------------------------------------------------
 
@@ -25,11 +26,11 @@ dependencies:
     sdk: flutter
   after_layout: ^1.2.0
   device_info_plus: ^10.1.2
-  df_debouncer: ^0.1.2
-  df_generate_dart_models_core: ">=0.2.1 <0.3.0"
-  df_log: ^0.1.2
-  df_pod: ^0.2.3
-  df_scalable: ^0.1.2
+  df_debouncer: ^0.2.1
+  df_generate_dart_models_core: ^0.3.0
+  df_log: ^0.2.1
+  df_pod: ^0.3.4
+  df_scalable: ^0.2.0
   meta: ^1.15.0
 
   df_screen_core:

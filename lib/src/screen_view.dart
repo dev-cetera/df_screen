@@ -1,8 +1,9 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. See LICENSE file
-// in root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
+// source code is governed by an MIT-style license that can be found in the
+// LICENSE file.
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -19,7 +20,6 @@ import 'package:meta/meta.dart';
 
 import 'package:df_debouncer/df_debouncer.dart';
 import 'package:df_log/df_log.dart';
-import 'package:df_pod/df_pod.dart';
 
 import '_hidden/_index.g.dart';
 
@@ -30,8 +30,8 @@ import '_index.g.dart';
 abstract base class ScreenView<
         TScreen extends Screen,
         TModelScreenConfiguration extends ModelScreenConfiguration,
-        TController extends ScreenController<TModelScreenConfiguration>>
-    extends BindWithMixinState<TScreen> with AfterLayoutMixin {
+        TController extends ScreenController<TModelScreenConfiguration>> extends State<TScreen>
+    with AfterLayoutMixin {
   //
   //
   //
