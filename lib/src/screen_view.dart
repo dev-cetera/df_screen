@@ -12,10 +12,12 @@
 
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:after_layout/after_layout.dart';
 import 'package:df_scalable/df_scalable.dart';
 import 'package:df_screen_core/df_screen_core.dart';
-import 'package:flutter/material.dart';
+import 'package:df_will_dispose/df_will_dispose.dart';
 import 'package:meta/meta.dart';
 
 import 'package:df_debouncer/df_debouncer.dart';
@@ -31,7 +33,7 @@ abstract base class ScreenView<
         TScreen extends Screen,
         TModelScreenConfiguration extends ModelScreenConfiguration,
         TController extends ScreenController<TModelScreenConfiguration>> extends State<TScreen>
-    with AfterLayoutMixin {
+    with DisposeMixin, WillDisposeMixin, AfterLayoutMixin {
   //
   //
   //

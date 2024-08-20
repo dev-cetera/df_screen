@@ -8,8 +8,10 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:df_screen_core/df_screen_core.dart';
 import 'package:flutter/widgets.dart' show State, StatefulWidget;
+
+import 'package:df_screen_core/df_screen_core.dart';
+import 'package:df_will_dispose/df_will_dispose.dart';
 
 import '_index.g.dart';
 
@@ -37,7 +39,7 @@ abstract base class ScreenPage extends StatefulWidget {
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 abstract base class ScreenPageView<T1 extends ScreenPage, T2 extends ModelScreenConfiguration,
-    T3 extends ScreenController<T2>> extends State<T1> {
+    T3 extends ScreenController<T2>> extends State<T1> with DisposeMixin, WillDisposeMixin {
   //
   //
   //

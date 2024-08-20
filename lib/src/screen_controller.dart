@@ -8,14 +8,17 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:df_screen_core/df_screen_core.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:df_screen_core/df_screen_core.dart';
+import 'package:df_will_dispose/df_will_dispose.dart';
 
 import '_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base class ScreenController<TModelScreenConfiguration extends ModelScreenConfiguration> {
+base class ScreenController<TModelScreenConfiguration extends ModelScreenConfiguration>
+    extends _Dispose with DisposeMixin, WillDisposeMixin {
   //
   //
   //
@@ -46,7 +49,14 @@ base class ScreenController<TModelScreenConfiguration extends ModelScreenConfigu
   //
   //
 
+  @override
   @mustCallSuper
   @visibleForOverriding
+  void dispose();
+}
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+class _Dispose {
   void dispose() {}
 }

@@ -30,6 +30,7 @@ dependencies:
   df_generate_dart_models_core: ^0.3.0
   df_log: ^0.2.1
   df_pod: ^0.9.1
+  df_will_dispose: ^0.4.0+1
   df_scalable: ^0.2.5
   meta: ^1.15.0
 
