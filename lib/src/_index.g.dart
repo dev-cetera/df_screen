@@ -13,6 +13,7 @@ export 'screen_controller.dart';
 export 'screen_view.dart';
 export 'transparent_page.dart';
 export 'app_layout.dart';
+export 'screen_route_manager.dart';
 export 'screen.dart';
 
 // --- PRIVATE FILES (EXCLUDED) ---
@@ -23,6 +24,7 @@ export 'screen.dart';
 // export '_hidden/image_painter.dart';
 // export '_hidden/current_platform.dart';
 // export '_hidden/screen_calculator.dart';
+// export '_hidden/_index.g.dart';
 
 // --- GENERATED FILES (EXCLUDED) ---
 // None found.
