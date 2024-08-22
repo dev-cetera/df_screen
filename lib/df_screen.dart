@@ -13,4 +13,11 @@ library;
 
 export 'src/_index.g.dart';
 
+// Supporting packages.
+export 'package:df_collection/df_collection.dart';
+export 'package:df_config/df_translate.dart';
+export 'package:df_scalable/df_scalable.dart';
 export 'package:df_screen_core/df_screen_core.dart';
+export 'package:df_type/df_type.dart';
+export 'package:df_will_dispose/df_will_dispose.dart';
+export 'package:go_router/go_router.dart';
