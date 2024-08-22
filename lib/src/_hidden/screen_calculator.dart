@@ -1,9 +1,11 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
-// source code is governed by an an MIT-style license that can be found in the
-// LICENSE file located in this project's root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// source code is governed by an MIT-style license described in the LICENSE
+// file located in this project's root directory.
+//
+// See: https://opensource.org/license/mit
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -15,45 +17,45 @@ class ScreenCalculator {
   //
 
   /// The longest side of the screen.
-  double get longest => this._longest;
+  double get longest => _longest;
   late double _longest;
 
   /// The shortest side of the screen.
-  double get shortest => this._shortest;
+  double get shortest => _shortest;
   late double _shortest;
 
   /// The size of the screen.
-  ScreenSize get size => this._size;
+  ScreenSize get size => _size;
   late ScreenSize _size;
 
   /// The width of the screen.
-  double get width => this._size.width;
+  double get width => _size.width;
 
   /// The height of the screen.
-  double get height => this._size.height;
+  double get height => _size.height;
 
   /// The size of the screen with the longest side as the width.
-  ScreenSize get sizeVerticalBias => this._sizeVerticalBias;
+  ScreenSize get sizeVerticalBias => _sizeVerticalBias;
   late ScreenSize _sizeVerticalBias;
 
   /// The size of the screen with the shortest side as the width.
-  ScreenSize get sizeHorizontalBias => this._sizeHorizontalBias;
+  ScreenSize get sizeHorizontalBias => _sizeHorizontalBias;
   late ScreenSize _sizeHorizontalBias;
 
   /// Whether the screen is horizontal.
-  bool get isHorizontal => this._isHorizontal;
+  bool get isHorizontal => _isHorizontal;
   late bool _isHorizontal;
 
   /// Whether the screen is vertical.
-  bool get isVertical => this._isVertical;
+  bool get isVertical => _isVertical;
   late bool _isVertical;
 
   /// Whether the screen is neither horizontal nor vertical, i.e. a square.
-  bool get isNeitherHorizontalNorVertical => this._isNeitherHorizontalNorVertical;
+  bool get isNeitherHorizontalNorVertical => _isNeitherHorizontalNorVertical;
   late bool _isNeitherHorizontalNorVertical;
 
   /// Whether the aspect ratio of the screen is that of a mobile phone.
-  bool get isAspectRatioMobile => this.sizeVerticalBias.aspectRatio > MIN_MOBILE_ASPECT_RATIO;
+  bool get isAspectRatioMobile => sizeVerticalBias.aspectRatio > MIN_MOBILE_ASPECT_RATIO;
 
   //
   //
@@ -63,20 +65,20 @@ class ScreenCalculator {
     double maxWidth,
     double maxHeight,
   ) {
-    this._longest = maxWidth >= maxHeight ? maxWidth : maxHeight;
-    this._shortest = maxWidth <= maxHeight ? maxWidth : maxHeight;
-    this._size = ScreenSize(maxWidth, maxHeight);
-    this._sizeVerticalBias = ScreenSize(
-      this._longest,
-      this._shortest,
+    _longest = maxWidth >= maxHeight ? maxWidth : maxHeight;
+    _shortest = maxWidth <= maxHeight ? maxWidth : maxHeight;
+    _size = ScreenSize(maxWidth, maxHeight);
+    _sizeVerticalBias = ScreenSize(
+      _longest,
+      _shortest,
     );
-    this._sizeHorizontalBias = ScreenSize(
-      this._shortest,
-      this._longest,
+    _sizeHorizontalBias = ScreenSize(
+      _shortest,
+      _longest,
     );
-    this._isHorizontal = this._size.aspectRatio > 1.0;
-    this._isVertical = this._size.aspectRatio < 1.0;
-    this._isNeitherHorizontalNorVertical = this._size.aspectRatio == 1.0;
+    _isHorizontal = _size.aspectRatio > 1.0;
+    _isVertical = _size.aspectRatio < 1.0;
+    _isNeitherHorizontalNorVertical = _size.aspectRatio == 1.0;
   }
 }
 
@@ -129,5 +131,5 @@ double get minMobileAspectRatio => {
 
 extension CalculatorOnScreenSizeExtension on ScreenSize {
   /// The calculator for the screen size.
-  ScreenCalculator get calculator => ScreenCalculator(this.width, this.height);
+  ScreenCalculator get calculator => ScreenCalculator(width, height);
 }

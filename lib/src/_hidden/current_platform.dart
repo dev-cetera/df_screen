@@ -1,9 +1,11 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
-// source code is governed by an an MIT-style license that can be found in the
-// LICENSE file located in this project's root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// source code is governed by an MIT-style license described in the LICENSE
+// file located in this project's root directory.
+//
+// See: https://opensource.org/license/mit
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -22,7 +24,7 @@ class CurrentPlatform {
 
   final _deviceInfoPlugin = device_info_plus.DeviceInfoPlugin();
   String _name = 'UNKNOWN';
-  String get name => this._name;
+  String get name => _name;
 
   //
   //
@@ -52,7 +54,7 @@ class CurrentPlatform {
         'CHROME ON MACOS',
         'CHROME ON WINDOWS',
         'CHROME ON ANDROID',
-      ].contains(this.name);
+      ].contains(name);
     }
     return true;
   }
@@ -64,7 +66,7 @@ class CurrentPlatform {
   /// NOTE: Only supports Android, iOS, MacOS, Windows, Web.
   Future<String> getName() async {
     if (kIsWeb) {
-      final info = await this._deviceInfoPlugin.webBrowserInfo;
+      final info = await _deviceInfoPlugin.webBrowserInfo;
       final browserName = info.browserName.name.toUpperCase();
       if (isOsMacOs) {
         return '$browserName ON MACOS';
@@ -80,11 +82,11 @@ class CurrentPlatform {
       }
     } else {
       if (isOsAndroid) {
-        final info = await this._deviceInfoPlugin.androidInfo;
+        final info = await _deviceInfoPlugin.androidInfo;
         return info.model;
       }
       if (isOsIos) {
-        final info = await this._deviceInfoPlugin.iosInfo;
+        final info = await _deviceInfoPlugin.iosInfo;
         return info.model;
       }
     }

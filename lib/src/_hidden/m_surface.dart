@@ -1,9 +1,11 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
-// source code is governed by an an MIT-style license that can be found in the
-// LICENSE file located in this project's root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// source code is governed by an MIT-style license described in the LICENSE
+// file located in this project's root directory.
+//
+// See: https://opensource.org/license/mit
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -49,9 +51,9 @@ class MSurface extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final $color =
-        this.decoration?.color ?? this.color ?? Theme.of(context).colorScheme.surfaceContainer;
-    final $borderRadius = this.decoration?.borderRadius ?? borderRadius;
-    final $decoration = this.decoration?.copyWith(
+        decoration?.color ?? color ?? Theme.of(context).colorScheme.surfaceContainer;
+    final $borderRadius = decoration?.borderRadius ?? borderRadius;
+    final $decoration = decoration?.copyWith(
               color: $color,
               borderRadius: $borderRadius,
             ) ??
@@ -64,9 +66,9 @@ class MSurface extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        constraints: this.constraints,
+        constraints: constraints,
         decoration: $decoration,
-        padding: this.padding ?? EdgeInsets.zero,
+        padding: padding ?? EdgeInsets.zero,
         child: child,
       ),
     );

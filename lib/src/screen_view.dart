@@ -1,9 +1,11 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
-// source code is governed by an an MIT-style license that can be found in the
-// LICENSE file located in this project's root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// source code is governed by an MIT-style license described in the LICENSE
+// file located in this project's root directory.
+//
+// See: https://opensource.org/license/mit
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -51,7 +53,7 @@ abstract base class ScreenView<
   }
 
   void _initController() {
-    final key = this.widget.key;
+    final key = widget.key;
     // If the key is null, just create a new current controller.
     if (key == null) {
       this.c = this._createController();
@@ -61,7 +63,7 @@ abstract base class ScreenView<
     {
       // If no controller already exist in the cache, set one up.
       if (_controllerCache[key] == null) {
-        final controllerTimeout = this.widget.controllerCacheTimeout;
+        final controllerTimeout = widget.controllerCacheTimeout;
         _controllerCache[key] = _ControllerCache(
           controller: this._createController(),
           // If a timeout is specified, set up a debouncer to dispose of the
@@ -71,7 +73,7 @@ abstract base class ScreenView<
                   delay: controllerTimeout,
                   onWaited: () {
                     this.c.dispose();
-                    _controllerCache.remove(this.widget.key);
+                    _controllerCache.remove(widget.key);
                   },
                 )
               : null,
@@ -88,7 +90,7 @@ abstract base class ScreenView<
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (this.widget.createController(this.widget, this)..initController()) as TController;
+    return (widget.createController(widget, this)..initController()) as TController;
   }
 
   /// Stores all active controllers.
@@ -99,7 +101,7 @@ abstract base class ScreenView<
   void dispose() async {
     // Call the debouncer to trigger the disposal of the controller after the
     // timeout.
-    final key = this.widget.key;
+    final key = widget.key;
     if (key != null) {
       _controllerCache[key]?.debouncer?.call();
     }
@@ -145,7 +147,7 @@ abstract base class ScreenView<
 
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
-    this.setState(() {
+    setState(() {
       this._assignSideInsets();
       this._didCalculateSideInsets = true;
     });

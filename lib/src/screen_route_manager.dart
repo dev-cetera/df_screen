@@ -41,7 +41,8 @@ final class ScreenRouteManager extends _ScreenRouteManager {
   //
 
   ScreenRouteManager({
-    super.authServiceSchema,
+    required super.isLoggedIn,
+    required super.isVerified,
     required super.findScreen,
     required super.generatedScreenRoutes,
     super.defaultOnLoginScreenConfiguration,
@@ -210,13 +211,15 @@ abstract base class _ScreenRouteManager {
   //
   //
 
-  final AuthServiceSchema? authServiceSchema;
+  final bool Function() isLoggedIn;
+  final bool Function() isVerified;
   final List<GoRoute> generatedScreenRoutes;
   final ModelScreenConfiguration? defaultOnLoginScreenConfiguration;
   final ModelScreenConfiguration defaultOnLogoutScreenConfiguration;
   final Screen? Function({
     required ModelScreenConfiguration configuration,
-    required AuthServiceSchema? authServiceSchema,
+    required bool loggedIn,
+    required bool verified,
   }) findScreen;
 
   //
@@ -224,7 +227,8 @@ abstract base class _ScreenRouteManager {
   //
 
   _ScreenRouteManager({
-    required this.authServiceSchema,
+    required this.isLoggedIn,
+    required this.isVerified,
     required this.generatedScreenRoutes,
     required this.defaultOnLoginScreenConfiguration,
     required this.defaultOnLogoutScreenConfiguration,
@@ -242,7 +246,7 @@ abstract base class _ScreenRouteManager {
   //
   //
 
-  ModelScreenConfiguration get defaultConfiguration => authServiceSchema?.isLoggedIn() == true
+  ModelScreenConfiguration get defaultConfiguration => isLoggedIn()
       ? defaultOnLoginScreenConfiguration ?? defaultOnLogoutScreenConfiguration
       : defaultOnLogoutScreenConfiguration;
 
@@ -287,12 +291,11 @@ abstract base class _ScreenRouteManager {
       if (_isInitialPage && configuration.isRedirectable == false) {
         return false;
       }
-      if (authServiceSchema?.isLoggedIn() != true &&
-          configuration.isAccessibleOnlyIfLoggedIn == true) {
+      final loggedIn = isLoggedIn();
+      if (!loggedIn && configuration.isAccessibleOnlyIfLoggedIn == true) {
         return false;
       }
-      if (authServiceSchema?.isLoggedIn() == true &&
-          configuration.isAccessibleOnlyIfLoggedOut == true) {
+      if (loggedIn && configuration.isAccessibleOnlyIfLoggedOut == true) {
         return false;
       }
       return true;
@@ -325,7 +328,8 @@ abstract base class _ScreenRouteManager {
       _isInitialPage = false;
       final targetScreen = findScreen(
         configuration: requestedConfiguration,
-        authServiceSchema: authServiceSchema,
+        loggedIn: isLoggedIn(),
+        verified: isVerified(),
       );
       final targetConfiguration = targetScreen?.configuration;
       if (targetConfiguration != null) {
@@ -409,12 +413,3 @@ abstract base class _ScreenRouteManager {
     if (kIsWeb) {}
   }
 }
-
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-typedef AuthServiceSchema = ({
-  bool Function() isLoggedIn,
-  bool Function() isVerified,
-  Future<void> Function(String username, String password) logIn,
-  Future<void> Function() logOut,
-});

@@ -1,9 +1,11 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. Use of this
-// source code is governed by an an MIT-style license that can be found in the
-// LICENSE file located in this project's root directory.
+// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// source code is governed by an MIT-style license described in the LICENSE
+// file located in this project's root directory.
+//
+// See: https://opensource.org/license/mit
 //
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
@@ -69,7 +71,7 @@ class _State extends State<ViewInsetsBuilder> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    this._staticChild = this.widget.child;
+    _staticChild = widget.child;
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -80,7 +82,7 @@ class _State extends State<ViewInsetsBuilder> with WidgetsBindingObserver {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    this._updateViewInsets();
+    _updateViewInsets();
   }
 
   //
@@ -90,7 +92,7 @@ class _State extends State<ViewInsetsBuilder> with WidgetsBindingObserver {
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
-    this._updateViewInsets();
+    _updateViewInsets();
   }
 
   //
@@ -108,10 +110,10 @@ class _State extends State<ViewInsetsBuilder> with WidgetsBindingObserver {
         viewInsets.left == 0 &&
         viewInsets.right == 0;
     if ((reachedMax && !_hasReachedMax) || (reachedMin && !_hasReachedMin)) {
-      this.setState(() {
-        this._viewInsets = viewInsets;
-        this._hasReachedMax = reachedMax;
-        this._hasReachedMin = reachedMin;
+      setState(() {
+        _viewInsets = viewInsets;
+        _hasReachedMax = reachedMax;
+        _hasReachedMin = reachedMin;
       });
     }
   }
@@ -124,10 +126,10 @@ class _State extends State<ViewInsetsBuilder> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     final params = ViewInsetsBuilderParams._(
       context: context,
-      child: this._staticChild,
-      viewInsets: this._viewInsets,
+      child: _staticChild,
+      viewInsets: _viewInsets,
     );
-    return this.widget.builder(params);
+    return widget.builder(params);
   }
 
   //
