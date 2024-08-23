@@ -77,6 +77,12 @@ final class ScreenRouteManager extends _ScreenRouteManager {
       );
     },
     redirect: (context, state) async {
+      final extra = state.extra;
+      if (extra is ModelScreenConfiguration && _pScreenBreadcrumbs.value.lastOrNull != extra) {
+        _pScreenBreadcrumbs.update((e) {
+          return (e..add(extra)).reversed.take(4).toList().reversed.toList();
+        });
+      }
       await ScreenView.captureScreen(context);
       debugPrint('[RouteManager] Redirecting ${state.fullPath}');
       return null;
@@ -85,12 +91,6 @@ final class ScreenRouteManager extends _ScreenRouteManager {
     routes: [
       ShellRoute(
         builder: (context, state, child) {
-          final extra = state.extra;
-          if (extra is ModelScreenConfiguration && _pScreenBreadcrumbs.value.lastOrNull != extra) {
-            _pScreenBreadcrumbs.update((e) {
-              return (e..add(extra)).reversed.take(4).toList().reversed.toList();
-            });
-          }
           return child;
         },
         navigatorKey: _navigatorKey,
