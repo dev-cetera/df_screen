@@ -77,12 +77,6 @@ final class ScreenRouteManager extends _ScreenRouteManager {
       );
     },
     redirect: (context, state) async {
-      final extra = state.extra;
-      if (extra is ModelScreenConfiguration && _pScreenBreadcrumbs.value.lastOrNull != extra) {
-        _pScreenBreadcrumbs.update((e) {
-          return (e..add(extra)).reversed.take(4).toList().reversed.toList();
-        });
-      }
       await ScreenView.captureScreen(context);
       debugPrint('[RouteManager] Redirecting ${state.fullPath}');
       return null;
@@ -105,6 +99,7 @@ final class ScreenRouteManager extends _ScreenRouteManager {
                   return GoRoute(
                     path: path,
                     pageBuilder: (context, state) {
+                      _updateBreadcrumbs(state);
                       return commonPageBuilder(
                         context,
                         state,
@@ -120,6 +115,15 @@ final class ScreenRouteManager extends _ScreenRouteManager {
       ),
     ],
   );
+
+  void _updateBreadcrumbs(GoRouterState state) {
+    final extra = state.extra;
+    if (extra is ModelScreenConfiguration && _pScreenBreadcrumbs.value.lastOrNull != extra) {
+      _pScreenBreadcrumbs.update((e) {
+        return (e..add(extra)).reversed.take(4).toList().reversed.toList();
+      });
+    }
+  }
 
   //
   //
