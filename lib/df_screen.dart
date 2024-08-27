@@ -23,3 +23,4 @@ export 'package:df_screen_core/df_screen_core.dart';
 export 'package:df_type/df_type.dart';
 export 'package:df_will_dispose/df_will_dispose.dart';
 export 'package:go_router/go_router.dart';
+export 'package:df_generate_dart_models_core/df_generate_dart_models_core.dart';

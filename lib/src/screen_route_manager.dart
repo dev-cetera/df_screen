@@ -99,7 +99,6 @@ final class ScreenRouteManager extends _ScreenRouteManager {
                   return GoRoute(
                     path: path,
                     pageBuilder: (context, state) {
-                      _updateBreadcrumbs(state);
                       return commonPageBuilder(
                         context,
                         state,
@@ -115,15 +114,6 @@ final class ScreenRouteManager extends _ScreenRouteManager {
       ),
     ],
   );
-
-  void _updateBreadcrumbs(GoRouterState state) {
-    final extra = state.extra;
-    if (extra is ModelScreenConfiguration && _pScreenBreadcrumbs.value.lastOrNull != extra) {
-      _pScreenBreadcrumbs.update((e) {
-        return (e..add(extra)).reversed.take(4).toList().reversed.toList();
-      });
-    }
-  }
 
   //
   //
@@ -335,21 +325,31 @@ abstract base class _ScreenRouteManager {
         loggedIn: isLoggedIn(),
         verified: isVerified(),
       );
-      final targetConfiguration = targetScreen?.configuration;
+      var targetConfiguration = targetScreen?.configuration;
       if (targetConfiguration != null) {
-        final title = requestedScreen?.configuration?.title;
-        if (title != null && title.isNotEmpty) {
-          _setHtmlTitle(title);
-        }
         result = requestedPage!;
       } else {
-        final newConfiguration = defaultConfiguration;
+        targetConfiguration = defaultConfiguration;
         Future.microtask(() {
-          go(newConfiguration);
+          go(targetConfiguration!);
         });
       }
+      _addBreadcrumb(targetConfiguration);
     }
     return result;
+  }
+
+  //
+  //
+  //
+
+  void _addBreadcrumb(ModelScreenConfiguration configuration) {
+    if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
+      _pScreenBreadcrumbs.update((oldValue) {
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
+        return newValue;
+      });
+    }
   }
 
   //
