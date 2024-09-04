@@ -13,7 +13,7 @@
 import 'package:flutter/widgets.dart' show State, StatefulWidget;
 
 import 'package:df_screen_core/df_screen_core.dart';
-import 'package:df_will_dispose/df_will_dispose.dart';
+import 'package:df_cleanup/df_cleanup.dart';
 
 import '_index.g.dart';
 

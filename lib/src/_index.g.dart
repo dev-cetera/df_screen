@@ -13,7 +13,7 @@ export 'screen_controller.dart';
 export 'screen_view.dart';
 export 'transparent_page.dart';
 export 'app_layout.dart';
-export 'screen_route_manager.dart';
+export 'screen_route_service.dart';
 export 'screen.dart';
 
 // --- PRIVATE FILES (EXCLUDED) ---

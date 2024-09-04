@@ -21,6 +21,6 @@ export 'package:df_config/df_translate.dart';
 export 'package:df_scalable/df_scalable.dart';
 export 'package:df_screen_core/df_screen_core.dart';
 export 'package:df_type/df_type.dart';
-export 'package:df_will_dispose/df_will_dispose.dart';
+export 'package:df_cleanup/df_cleanup.dart';
 export 'package:go_router/go_router.dart';
 export 'package:df_generate_dart_models_core/df_generate_dart_models_core.dart';

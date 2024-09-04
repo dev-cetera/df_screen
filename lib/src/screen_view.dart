@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:df_scalable/df_scalable.dart';
 import 'package:df_screen_core/df_screen_core.dart';
-import 'package:df_will_dispose/df_will_dispose.dart';
+import 'package:df_cleanup/df_cleanup.dart';
 import 'package:meta/meta.dart';
 
 import 'package:df_debouncer/df_debouncer.dart';

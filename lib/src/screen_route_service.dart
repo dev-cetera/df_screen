@@ -10,7 +10,7 @@
 
 // Flutter.
 import 'package:flutter/widgets.dart';
-import 'package:flutter/foundation.dart' show kIsWeb, nonVirtual, protected;
+import 'package:flutter/foundation.dart' show nonVirtual, protected;
 import 'package:flutter/cupertino.dart' show CupertinoPage;
 import 'package:flutter/material.dart' show MaterialPage;
 
@@ -28,7 +28,7 @@ import 'screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class ScreenRouteManager extends _ScreenRouteManager {
+final class ScreenRouteService extends _ScreenScreenRouteService {
   //
   //
   //
@@ -40,7 +40,7 @@ final class ScreenRouteManager extends _ScreenRouteManager {
   //
   //
 
-  ScreenRouteManager({
+  ScreenRouteService({
     required super.isLoggedIn,
     required super.isVerified,
     required super.findScreen,
@@ -78,7 +78,7 @@ final class ScreenRouteManager extends _ScreenRouteManager {
     },
     redirect: (context, state) async {
       await ScreenView.captureScreen(context);
-      debugPrint('[RouteManager] Redirecting ${state.fullPath}');
+      debugPrint('[ScreenRouteService] Redirecting ${state.fullPath}');
       return null;
     },
     initialLocation: super.defaultConfiguration.path,
@@ -200,7 +200,7 @@ final class ScreenRouteManager extends _ScreenRouteManager {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class _ScreenRouteManager {
+abstract base class _ScreenScreenRouteService {
   //
   //
   //
@@ -220,7 +220,7 @@ abstract base class _ScreenRouteManager {
   //
   //
 
-  _ScreenRouteManager({
+  _ScreenScreenRouteService({
     required this.isLoggedIn,
     required this.isVerified,
     required this.generatedScreenRoutes,
@@ -233,7 +233,7 @@ abstract base class _ScreenRouteManager {
   //
   //
 
-  final _pScreenBreadcrumbs = GlobalPod<List<ModelScreenConfiguration>>([]);
+  final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
   PodListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
@@ -390,13 +390,13 @@ abstract base class _ScreenRouteManager {
       try {
         screen = (page as dynamic).child as Widget;
       } catch (e) {
-        debugPrint('[RouteManager] Error: "page" has no "child" widget');
+        debugPrint('[ScreenRouteService] Error: "page" has no "child" widget');
       }
     }
     if (screen is Screen) {
       return screen;
     } else {
-      debugPrint('[RouteManager] Error: "screen" is not of type "Screen"');
+      debugPrint('[ScreenRouteService] Error: "screen" is not of type "Screen"');
     }
     return null;
   }
@@ -407,13 +407,5 @@ abstract base class _ScreenRouteManager {
 
   Page<dynamic> _emptyPage() {
     return const NoTransitionPage(child: SizedBox.shrink());
-  }
-
-  //
-  //
-  //
-
-  void _setHtmlTitle(String newTitle) {
-    if (kIsWeb) {}
   }
 }
