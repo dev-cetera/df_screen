@@ -28,7 +28,7 @@ import 'screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-final class ScreenRouteService extends _ScreenScreenRouteService {
+final class ScreenRouteManger extends _ScreenRouteManger {
   //
   //
   //
@@ -40,7 +40,7 @@ final class ScreenRouteService extends _ScreenScreenRouteService {
   //
   //
 
-  ScreenRouteService({
+  ScreenRouteManger({
     required super.isLoggedIn,
     required super.isVerified,
     required super.findScreen,
@@ -200,7 +200,7 @@ final class ScreenRouteService extends _ScreenScreenRouteService {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class _ScreenScreenRouteService {
+abstract base class _ScreenRouteManger {
   //
   //
   //
@@ -220,7 +220,7 @@ abstract base class _ScreenScreenRouteService {
   //
   //
 
-  _ScreenScreenRouteService({
+  _ScreenRouteManger({
     required this.isLoggedIn,
     required this.isVerified,
     required this.generatedScreenRoutes,
