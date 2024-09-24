@@ -78,7 +78,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
     },
     redirect: (context, state) async {
       await ScreenView.captureScreen(context);
-      debugPrint('[ScreenRouteService] Redirecting ${state.fullPath}');
+      debugPrint('[$ScreenRouteManger] Redirecting ${state.fullPath}');
       return null;
     },
     initialLocation: super.defaultConfiguration.path,
@@ -134,12 +134,12 @@ final class ScreenRouteManger extends _ScreenRouteManger {
   //
   //
 
-  Future<void> goFromFront(int index) async {
+  void goFromFront(int index) async {
     final chunk = super.pScreenBreadcrumbs.value.toList();
     final i = index;
     if (i >= 0 && i < chunk.length) {
       chunk.removeRange(i, chunk.length);
-      await _pScreenBreadcrumbs.set(chunk);
+      _pScreenBreadcrumbs.set(chunk);
       final to = chunk.last;
       go(to);
     }
@@ -149,12 +149,12 @@ final class ScreenRouteManger extends _ScreenRouteManger {
   //
   //
 
-  Future<void> goFromBack(int index) async {
+  void goFromBack(int index) async {
     final chunk = super.pScreenBreadcrumbs.value.toList();
     final i = chunk.length - index;
     if (i >= 0 && i < chunk.length) {
       chunk.removeRange(i, chunk.length);
-      await _pScreenBreadcrumbs.set(chunk);
+      _pScreenBreadcrumbs.set(chunk);
       final to = chunk.last;
       go(to);
     }
@@ -164,10 +164,10 @@ final class ScreenRouteManger extends _ScreenRouteManger {
   //
   //
 
-  Future<void> goBack() async {
+  void goBack() async {
     final screenBreadcrumbs = super.pScreenBreadcrumbs.value;
     if (screenBreadcrumbs.length > 1) {
-      await _pScreenBreadcrumbs.update((e) => e..removeLast());
+      _pScreenBreadcrumbs.update((e) => e..removeLast());
       final lastConfiguration = screenBreadcrumbs.lastOrNull;
       if (lastConfiguration != null) {
         go(lastConfiguration);
@@ -181,7 +181,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
   //
   //
 
-  Future<void> goBackTo(ModelScreenConfiguration untilConfiguration) async {
+  void goBackTo(ModelScreenConfiguration untilConfiguration) {
     final chunk = super.pScreenBreadcrumbs.value.toList();
     final screenBreadcrumbs = super.pScreenBreadcrumbs.value.toList().reversed;
     for (final breadcrumb in screenBreadcrumbs) {
@@ -190,7 +190,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
       }
       chunk.removeLast();
     }
-    await super._pScreenBreadcrumbs.set(chunk);
+    super._pScreenBreadcrumbs.set(chunk);
     final to = chunk.lastOrNull;
     if (to != null) {
       go(to);
@@ -390,13 +390,13 @@ abstract base class _ScreenRouteManger {
       try {
         screen = (page as dynamic).child as Widget;
       } catch (e) {
-        debugPrint('[ScreenRouteService] Error: "page" has no "child" widget');
+        debugPrint('[$ScreenRouteManger] Error: "page" has no "child" widget');
       }
     }
     if (screen is Screen) {
       return screen;
     } else {
-      debugPrint('[ScreenRouteService] Error: "screen" is not of type "Screen"');
+      debugPrint('[$ScreenRouteManger] Error: "screen" is not of type "Screen"');
     }
     return null;
   }

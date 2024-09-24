@@ -31,7 +31,7 @@ dependencies:
   df_config: ^0.4.0
   df_generate_dart_models_core: ^0.3.2
   df_log: ^0.2.1
-  df_pod: ^0.11.9
+  df_pod: ^0.11.23
   df_scalable: ^0.2.7
   df_type: ^0.5.13
   df_cleanup: ^0.2.2
