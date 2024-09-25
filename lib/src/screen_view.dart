@@ -16,7 +16,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:after_layout/after_layout.dart';
 import 'package:df_scalable/df_scalable.dart';
 import 'package:df_screen_core/df_screen_core.dart';
 import 'package:df_cleanup/df_cleanup.dart';
@@ -35,7 +34,7 @@ abstract base class ScreenView<
         TScreen extends Screen,
         TModelScreenConfiguration extends ModelScreenConfiguration,
         TController extends ScreenController<TModelScreenConfiguration>> extends State<TScreen>
-    with DisposeMixin, WillDisposeMixin, AfterLayoutMixin {
+    with DisposeMixin, WillDisposeMixin {
   //
   //
   //
@@ -49,6 +48,7 @@ abstract base class ScreenView<
   void initState() {
     this._initController();
     this._initScreenCapture();
+    this._scheduleSideInsetsCalculation();
     super.initState();
   }
 
@@ -122,13 +122,22 @@ abstract base class ScreenView<
 
   /// Captures the current screen and stores it in [bodyCapture].
   static Future<void> captureScreen(BuildContext context) async {
-    try {
+    if (_staticBody3CaptureKey != null) {
       _bodyCapture = await captureWidget(_staticBody3CaptureKey!, context);
-    } catch (_) {}
+    }
   }
 
   void _initScreenCapture() {
     _staticBody3CaptureKey = this._bodyCaptureKey;
+  }
+
+  void _scheduleSideInsetsCalculation() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        this._assignSideInsets();
+        this._didCalculateSideInsets = true;
+      });
+    });
   }
 
   // ---------------------------------------------------------------------------
@@ -144,14 +153,6 @@ abstract base class ScreenView<
   final _bottomSideKey = GlobalKey();
   final _leftSideKey = GlobalKey();
   final _rightSideKey = GlobalKey();
-
-  @override
-  FutureOr<void> afterFirstLayout(BuildContext context) {
-    setState(() {
-      this._assignSideInsets();
-      this._didCalculateSideInsets = true;
-    });
-  }
 
   void _assignSideInsets() {
     var top = 0.0;
