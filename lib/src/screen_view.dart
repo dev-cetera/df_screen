@@ -33,8 +33,8 @@ import '_index.g.dart';
 abstract base class ScreenView<
         TScreen extends Screen,
         TModelScreenConfiguration extends ModelScreenConfiguration,
-        TController extends ScreenController<TModelScreenConfiguration>> extends State<TScreen>
-    with DisposeMixin, WillDisposeMixin {
+        TController extends ScreenController<TModelScreenConfiguration>>
+    extends State<TScreen> with DisposeMixin, WillDisposeMixin {
   //
   //
   //
@@ -90,7 +90,8 @@ abstract base class ScreenView<
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (widget.createController(widget, this)..initController()) as TController;
+    return (widget.createController(widget, this)..initController())
+        as TController;
   }
 
   /// Stores all active controllers.
@@ -160,25 +161,29 @@ abstract base class ScreenView<
     var left = 0.0;
     var right = 0.0;
     try {
-      final box = this._topSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._topSideKey.currentContext?.findRenderObject() as RenderBox?;
       top = box?.size.height ?? 0.0;
     } catch (_) {
       debugLogAlert('Failed to calculate top insets.');
     }
     try {
-      final box = this._bottomSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._bottomSideKey.currentContext?.findRenderObject() as RenderBox?;
       bottom = box?.size.height ?? 0.0;
     } catch (_) {
       debugLogAlert('Failed to calculate bottom insets.');
     }
     try {
-      final box = this._leftSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._leftSideKey.currentContext?.findRenderObject() as RenderBox?;
       left = box?.size.width ?? 0.0;
     } catch (_) {
       debugLogAlert('Failed to calculate left insets.');
     }
     try {
-      final box = this._rightSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._rightSideKey.currentContext?.findRenderObject() as RenderBox?;
       right = box?.size.width ?? 0.0;
     } catch (_) {
       debugLogAlert('Failed to calculate right insets.');
@@ -205,7 +210,8 @@ abstract base class ScreenView<
       maintainBottomViewPadding: true,
       child: () {
         final screenSize = MediaQuery.of(context).size;
-        final calculator = ScreenCalculator(screenSize.width, screenSize.height);
+        final calculator =
+            ScreenCalculator(screenSize.width, screenSize.height);
         final appLayout = AppLayout.fromScreenCalculator(calculator);
         switch (appLayout) {
           case AppLayout.MOBILE:
@@ -607,7 +613,9 @@ abstract base class ScreenView<
                         child: leftSide,
                       ),
                       Expanded(
-                        child: !this._didCalculateSideInsets ? body2 : const SizedBox(),
+                        child: !this._didCalculateSideInsets
+                            ? body2
+                            : const SizedBox(),
                       ),
                       SizedBox(
                         key: this._rightSideKey,

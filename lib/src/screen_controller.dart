@@ -19,7 +19,8 @@ import '_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base class ScreenController<TModelScreenConfiguration extends ModelScreenConfiguration>
+base class ScreenController<
+        TModelScreenConfiguration extends ModelScreenConfiguration>
     extends _Dispose with DisposeMixin, WillDisposeMixin {
   //
   //

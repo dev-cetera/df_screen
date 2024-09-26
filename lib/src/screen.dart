@@ -18,7 +18,8 @@ import '_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class Screen<TModelScreenConfiguration extends Model> extends StatefulWidget {
+abstract base class Screen<TModelScreenConfiguration extends Model>
+    extends StatefulWidget {
   //
   //
   //

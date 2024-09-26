@@ -35,8 +35,8 @@ Future<CustomPaint?> captureWidget(
   final imageCompleter = Completer<ui.Image?>();
   WidgetsBinding.instance.addPostFrameCallback((_) async {
     ui.Image? image;
-    final boundary =
-        letAsOrNull<RenderRepaintBoundary>(captureKey.currentContext?.findRenderObject());
+    final boundary = letAsOrNull<RenderRepaintBoundary>(
+        captureKey.currentContext?.findRenderObject(),);
     if (boundary != null) {
       image = await boundary.toImage(pixelRatio: pixelRatio);
     }
