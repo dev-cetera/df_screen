@@ -12,7 +12,6 @@
 
 import 'dart:async' show Completer;
 import 'dart:ui' as ui show Image;
-import 'dart:ui';
 
 import 'package:df_type/df_type.dart' show letAsOrNull;
 import 'package:flutter/rendering.dart' show RenderRepaintBoundary;
