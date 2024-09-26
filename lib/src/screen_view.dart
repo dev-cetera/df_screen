@@ -228,11 +228,6 @@ abstract base class ScreenView<
             final body5 = this._final(context, body0);
             final layout = this.wideLayout(context, body5);
             return layout;
-          default:
-            final body0 = this.body(context);
-            final body5 = this._final(context, body0);
-            final layout = this.layout(context, body5);
-            return layout;
         }
       }(),
     );
