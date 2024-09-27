@@ -404,7 +404,8 @@ abstract base class _ScreenRouteManger {
       return screen;
     } else {
       debugPrint(
-          '[$ScreenRouteManger] Error: "screen" is not of type "Screen"',);
+        '[$ScreenRouteManger] Error: "screen" is not of type "Screen"',
+      );
     }
     return null;
   }
