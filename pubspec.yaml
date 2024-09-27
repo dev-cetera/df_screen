@@ -12,7 +12,7 @@
 
 name: df_screen
 description: A package that provides a useful Screen widget.
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/robmllze/df_screen
 
 ## -----------------------------------------------------------------------------
@@ -33,7 +33,7 @@ dependencies:
   df_generate_dart_models_core: ^0.3.2
   df_log: ^0.2.1
   df_pod: ^0.13.0
-  df_scalable: ^0.3.0
+  df_scalable: ^0.4.0
   df_screen_core: ^0.1.0
   df_type: ^0.5.18
 
