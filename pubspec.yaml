@@ -14,6 +14,14 @@ name: df_screen
 description: A package that provides a useful Screen widget.
 version: 0.1.2
 repository: https://github.com/robmllze/df_screen
+funding:
+  - https://www.buymeacoffee.com/robmllze
+# topics:
+#   - 1
+#   - 2
+#   - 3
+#   - 4
+#   - 5
 
 ## -----------------------------------------------------------------------------
 
