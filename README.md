@@ -11,13 +11,13 @@ Dart & Flutter Packages by DevCetra.com & contributors.
 
 ## Summary
 
-Coming soon.
+Unavailable. Please check in later.
 
 For a full feature set, please refer to the [API reference](https://pub.dev/documentation/df_screen/).
 
 ## Usage Example
 
-Coming soon.
+Unavailable. Please check in later.
 
 ## Installation
 
