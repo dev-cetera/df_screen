@@ -11,7 +11,7 @@ Dart & Flutter Packages by DevCetra.com & contributors.
 
 ## Summary
 
-Unavailable. Please check in later.
+A package that provides a useful screen widget and controller for Flutter apps.
 
 For a full feature set, please refer to the [API reference](https://pub.dev/documentation/df_screen/).
 
