@@ -165,28 +165,28 @@ abstract base class ScreenView<
           this._topSideKey.currentContext?.findRenderObject() as RenderBox?;
       top = box?.size.height ?? 0.0;
     } catch (_) {
-      debugLogAlert('Failed to calculate top insets.');
+      printYellow('Failed to calculate top insets.');
     }
     try {
       final box =
           this._bottomSideKey.currentContext?.findRenderObject() as RenderBox?;
       bottom = box?.size.height ?? 0.0;
     } catch (_) {
-      debugLogAlert('Failed to calculate bottom insets.');
+      printYellow('Failed to calculate bottom insets.');
     }
     try {
       final box =
           this._leftSideKey.currentContext?.findRenderObject() as RenderBox?;
       left = box?.size.width ?? 0.0;
     } catch (_) {
-      debugLogAlert('Failed to calculate left insets.');
+      printYellow('Failed to calculate left insets.');
     }
     try {
       final box =
           this._rightSideKey.currentContext?.findRenderObject() as RenderBox?;
       right = box?.size.width ?? 0.0;
     } catch (_) {
-      debugLogAlert('Failed to calculate right insets.');
+      printYellow('Failed to calculate right insets.');
     }
     this._sideInsets = EdgeInsets.only(
       top: top,
