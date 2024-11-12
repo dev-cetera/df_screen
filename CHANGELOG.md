@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.1]
+
+- Released @ 11/2024 (UTC)
+- feat: Add sideInsets function that can be overwritten to add fixed side insets
+
 ## [0.3.0]
 
 - Released @ 11/2024 (UTC)
