@@ -14,3 +14,4 @@ export 'transparent_page.dart';
 export 'app_layout.dart';
 export 'screen_route_manager.dart';
 export 'screen.dart';
+export 'screen_views/adaptive_screen_view.dart';

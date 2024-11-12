@@ -25,7 +25,7 @@ import 'package:df_pod/df_pod.dart';
 import 'package:go_router/go_router.dart';
 
 // Local.
-import 'screen_view.dart';
+import 'screen_views/adaptive_screen_view.dart';
 import 'screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -79,7 +79,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
       );
     },
     redirect: (context, state) async {
-      await ScreenView.captureScreen(context);
+      await AdaptiveScreenView.captureScreen(context);
       debugPrint('[$ScreenRouteManger] Redirecting ${state.fullPath}');
       return null;
     },
@@ -236,8 +236,7 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
-      _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
   //
@@ -321,8 +320,7 @@ abstract base class _ScreenRouteManger {
     );
     final requestedScreen = _getScreenFromPage(requestedPage);
     final requestedConfiguration = requestedScreen?.configuration;
-    if (requestedConfiguration != null &&
-        hasPermissionsToGoTo(requestedConfiguration)) {
+    if (requestedConfiguration != null && hasPermissionsToGoTo(requestedConfiguration)) {
       _isInitialPage = false;
       final targetScreen = findScreen(
         configuration: requestedConfiguration,
@@ -350,12 +348,7 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue = (oldValue + [configuration])
-            .reversed
-            .take(4)
-            .toList()
-            .reversed
-            .toList();
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
         return newValue;
       });
     }
