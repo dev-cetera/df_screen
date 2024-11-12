@@ -61,7 +61,11 @@ abstract base class AdaptiveScreenView<
   /// Captures the current screen and stores it in [bodyCapture].
   static Future<void> captureScreen(BuildContext context) async {
     if (context.mounted && _staticBody3CaptureKey != null) {
-      _bodyCapture = await captureWidget(_staticBody3CaptureKey!, context);
+      try {
+        _bodyCapture = await captureWidget(_staticBody3CaptureKey!, context);
+      } catch (_) {
+        // Do nothing.
+      }
     }
   }
 
