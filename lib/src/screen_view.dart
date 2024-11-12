@@ -26,8 +26,8 @@ import '_index.g.dart';
 abstract base class ScreenView<
         TScreen extends Screen,
         TModelScreenConfiguration extends ModelScreenConfiguration,
-        TController extends ScreenController<TModelScreenConfiguration>> extends State<TScreen>
-    with DisposeMixin, WillDisposeMixin {
+        TController extends ScreenController<TModelScreenConfiguration>>
+    extends State<TScreen> with DisposeMixin, WillDisposeMixin {
   //
   //
   //
@@ -81,7 +81,8 @@ abstract base class ScreenView<
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (widget.createController(widget, this)..initController()) as TController;
+    return (widget.createController(widget, this)..initController())
+        as TController;
   }
 
   /// Stores all active controllers.

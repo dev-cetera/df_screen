@@ -103,25 +103,29 @@ abstract base class AdaptiveScreenView<
     var left = 0.0;
     var right = 0.0;
     try {
-      final box = this._topSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._topSideKey.currentContext?.findRenderObject() as RenderBox?;
       top = box?.size.height ?? 0.0;
     } catch (_) {
       printYellow('Failed to calculate top insets.');
     }
     try {
-      final box = this._bottomSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._bottomSideKey.currentContext?.findRenderObject() as RenderBox?;
       bottom = box?.size.height ?? 0.0;
     } catch (_) {
       printYellow('Failed to calculate bottom insets.');
     }
     try {
-      final box = this._leftSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._leftSideKey.currentContext?.findRenderObject() as RenderBox?;
       left = box?.size.width ?? 0.0;
     } catch (_) {
       printYellow('Failed to calculate left insets.');
     }
     try {
-      final box = this._rightSideKey.currentContext?.findRenderObject() as RenderBox?;
+      final box =
+          this._rightSideKey.currentContext?.findRenderObject() as RenderBox?;
       right = box?.size.width ?? 0.0;
     } catch (_) {
       printYellow('Failed to calculate right insets.');
@@ -148,7 +152,8 @@ abstract base class AdaptiveScreenView<
       maintainBottomViewPadding: true,
       child: () {
         final screenSize = MediaQuery.of(context).size;
-        final calculator = ScreenCalculator(screenSize.width, screenSize.height);
+        final calculator =
+            ScreenCalculator(screenSize.width, screenSize.height);
         final appLayout = AppLayout.fromScreenCalculator(calculator);
         switch (appLayout) {
           case AppLayout.MOBILE:
@@ -550,7 +555,9 @@ abstract base class AdaptiveScreenView<
                         child: leftSide,
                       ),
                       Expanded(
-                        child: !this._didCalculateSideInsets ? body2 : const SizedBox(),
+                        child: !this._didCalculateSideInsets
+                            ? body2
+                            : const SizedBox(),
                       ),
                       SizedBox(
                         key: this._rightSideKey,
