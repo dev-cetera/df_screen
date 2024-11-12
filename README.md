@@ -49,7 +49,7 @@ No matter how you choose to contribute, your involvement is greatly appreciated 
 
 ### Join GitHub Discussions:
 
-💬 https://github.com/robmllze/df_screen/discussions/
+💬 https://github.com/DevCetra/df_screen/discussions/
 
 ### Chief Maintainer:
 

@@ -148,7 +148,12 @@ abstract base class ScreenView<
 
   bool _didCalculateSideInsets = false;
 
-  EdgeInsets _sideInsets = EdgeInsets.zero;
+  EdgeInsets _calculatedSideInsets = EdgeInsets.zero;
+
+  /// Override to specify the side insets.
+  EdgeInsets sideInsets(EdgeInsets calculatedSideInsets) {
+    return calculatedSideInsets;
+  }
 
   final _topSideKey = GlobalKey();
   final _bottomSideKey = GlobalKey();
@@ -188,7 +193,7 @@ abstract base class ScreenView<
     } catch (_) {
       printYellow('Failed to calculate right insets.');
     }
-    this._sideInsets = EdgeInsets.only(
+    this._calculatedSideInsets = EdgeInsets.only(
       top: top,
       bottom: bottom,
       left: left,
@@ -586,7 +591,7 @@ abstract base class ScreenView<
         final body2 = this.align(
           context,
           body1,
-          this._sideInsets,
+          this.sideInsets(this._calculatedSideInsets),
         );
         final body3 = Stack(
           alignment: AlignmentDirectional.center,
