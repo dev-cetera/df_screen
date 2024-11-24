@@ -211,7 +211,7 @@ abstract base class _ScreenRouteManger {
   final List<GoRoute> generatedScreenRoutes;
   final ModelScreenConfiguration? defaultOnLoginScreenConfiguration;
   final ModelScreenConfiguration defaultOnLogoutScreenConfiguration;
-  final Screen<ModelScreenConfiguration>? Function({
+  final Screen? Function({
     required ModelScreenConfiguration configuration,
     required bool loggedIn,
     required bool verified,
@@ -235,8 +235,7 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
-      _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
   //
@@ -329,12 +328,12 @@ abstract base class _ScreenRouteManger {
         verified: isVerified(),
       );
       var targetConfiguration = targetScreen?.extra;
-      if (targetConfiguration != null) {
+      if (targetConfiguration is ModelScreenConfiguration) {
         result = requestedPage!;
       } else {
         targetConfiguration = defaultConfiguration;
         Future.microtask(() {
-          go(targetConfiguration!);
+          go(targetConfiguration as ModelScreenConfiguration);
         });
       }
       _addBreadcrumb(targetConfiguration);
@@ -349,12 +348,7 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue = (oldValue + [configuration])
-            .reversed
-            .take(4)
-            .toList()
-            .reversed
-            .toList();
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
         return newValue;
       });
     }
