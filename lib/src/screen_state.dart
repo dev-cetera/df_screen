@@ -77,7 +77,8 @@ abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
 
   /// Creates a new instance of [TConductor] from the current widget.
   TConductor _createConductor() {
-    return (widget.createConductor(widget, this)..initConductor()) as TConductor;
+    return (widget.createConductor(widget, this)..initConductor())
+        as TConductor;
   }
 
   /// Stores all active Conductors.

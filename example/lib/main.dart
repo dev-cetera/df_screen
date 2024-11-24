@@ -39,8 +39,8 @@ final class ExampleScreenConductor extends ScreenConductor {
   ExampleScreenConductor(super.screen, super.state);
 }
 
-final class ExampleScreenState
-    extends AdaptiveScreenState<ExampleScreen, Object?, ExampleScreenConductor> {
+final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
+    Object?, ExampleScreenConductor> {
   @override
   Widget wideBody(BuildContext context) {
     return Container(

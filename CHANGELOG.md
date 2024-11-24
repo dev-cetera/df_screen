@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.0]
+
+- Released @ 11/2024 (UTC)
+- breaking: Add improvements, and make the code more versatile
+
 ## [0.4.2]
 
 - Released @ 11/2024 (UTC)
