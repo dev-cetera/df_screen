@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.6.1]
+
+- Released @ 11/2024 (UTC)
+- refactor: Rename ScreenPageView to ScreenPageState
+
 ## [0.6.0]
 
 - Released @ 11/2024 (UTC)
