@@ -47,7 +47,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
     required super.findScreen,
     required super.generatedScreenRoutes,
     super.defaultOnLoginScreenConfiguration,
-    required super.defaultOnLogouTExtra,
+    required super.defaultOnLogoutScreenConfiguration,
     this.errorPath = '/error',
     this.rootPathWidget,
   });
@@ -210,7 +210,7 @@ abstract base class _ScreenRouteManger {
   final bool Function() isVerified;
   final List<GoRoute> generatedScreenRoutes;
   final ModelScreenConfiguration? defaultOnLoginScreenConfiguration;
-  final ModelScreenConfiguration defaultOnLogouTExtra;
+  final ModelScreenConfiguration defaultOnLogoutScreenConfiguration;
   final Screen<ModelScreenConfiguration>? Function({
     required ModelScreenConfiguration configuration,
     required bool loggedIn,
@@ -226,7 +226,7 @@ abstract base class _ScreenRouteManger {
     required this.isVerified,
     required this.generatedScreenRoutes,
     required this.defaultOnLoginScreenConfiguration,
-    required this.defaultOnLogouTExtra,
+    required this.defaultOnLogoutScreenConfiguration,
     required this.findScreen,
   });
 
@@ -235,16 +235,15 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
-      _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
   //
   //
 
   ModelScreenConfiguration get defaultConfiguration => isLoggedIn()
-      ? defaultOnLoginScreenConfiguration ?? defaultOnLogouTExtra
-      : defaultOnLogouTExtra;
+      ? defaultOnLoginScreenConfiguration ?? defaultOnLogoutScreenConfiguration
+      : defaultOnLogoutScreenConfiguration;
 
   //
   //
@@ -349,12 +348,7 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue = (oldValue + [configuration])
-            .reversed
-            .take(4)
-            .toList()
-            .reversed
-            .toList();
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
         return newValue;
       });
     }
