@@ -8,10 +8,11 @@
 //.title~
 
 export 'screen_page.dart';
-export 'screen_controller.dart';
-export 'screen_view.dart';
+export 'screen_conductor.dart';
+export 'screen_state.dart';
 export 'transparent_page.dart';
 export 'app_layout.dart';
 export 'screen_route_manager.dart';
 export 'screen.dart';
-export 'screen_views/adaptive_screen_view.dart';
+export 'screen_states/adaptive_screen_state.dart';
+export 'OLD/adaptive_screen_view.dart.old';

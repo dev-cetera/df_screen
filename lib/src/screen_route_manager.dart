@@ -25,7 +25,6 @@ import 'package:df_pod/df_pod.dart';
 import 'package:go_router/go_router.dart';
 
 // Local.
-import 'screen_views/adaptive_screen_view.dart';
 import 'screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -48,7 +47,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
     required super.findScreen,
     required super.generatedScreenRoutes,
     super.defaultOnLoginScreenConfiguration,
-    required super.defaultOnLogoutScreenConfiguration,
+    required super.defaultOnLogouTExtra,
     this.errorPath = '/error',
     this.rootPathWidget,
   });
@@ -79,7 +78,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
       );
     },
     redirect: (context, state) async {
-      await AdaptiveScreenView.captureScreen(context);
+      //await AdaptiveScreenView.captureScreen(context);
       debugPrint('[$ScreenRouteManger] Redirecting ${state.fullPath}');
       return null;
     },
@@ -211,8 +210,8 @@ abstract base class _ScreenRouteManger {
   final bool Function() isVerified;
   final List<GoRoute> generatedScreenRoutes;
   final ModelScreenConfiguration? defaultOnLoginScreenConfiguration;
-  final ModelScreenConfiguration defaultOnLogoutScreenConfiguration;
-  final Screen? Function({
+  final ModelScreenConfiguration defaultOnLogouTExtra;
+  final Screen<ModelScreenConfiguration>? Function({
     required ModelScreenConfiguration configuration,
     required bool loggedIn,
     required bool verified,
@@ -227,7 +226,7 @@ abstract base class _ScreenRouteManger {
     required this.isVerified,
     required this.generatedScreenRoutes,
     required this.defaultOnLoginScreenConfiguration,
-    required this.defaultOnLogoutScreenConfiguration,
+    required this.defaultOnLogouTExtra,
     required this.findScreen,
   });
 
@@ -236,16 +235,15 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
-      _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
   //
   //
 
   ModelScreenConfiguration get defaultConfiguration => isLoggedIn()
-      ? defaultOnLoginScreenConfiguration ?? defaultOnLogoutScreenConfiguration
-      : defaultOnLogoutScreenConfiguration;
+      ? defaultOnLoginScreenConfiguration ?? defaultOnLogouTExtra
+      : defaultOnLogouTExtra;
 
   //
   //
@@ -320,8 +318,8 @@ abstract base class _ScreenRouteManger {
       _getRegisteredRouteByPath(requestedPath),
     );
     final requestedScreen = _getScreenFromPage(requestedPage);
-    final requestedConfiguration = requestedScreen?.configuration;
-    if (requestedConfiguration != null &&
+    final requestedConfiguration = requestedScreen?.extra;
+    if (requestedConfiguration is ModelScreenConfiguration &&
         hasPermissionsToGoTo(requestedConfiguration)) {
       _isInitialPage = false;
       final targetScreen = findScreen(
@@ -329,7 +327,7 @@ abstract base class _ScreenRouteManger {
         loggedIn: isLoggedIn(),
         verified: isVerified(),
       );
-      var targetConfiguration = targetScreen?.configuration;
+      var targetConfiguration = targetScreen?.extra;
       if (targetConfiguration != null) {
         result = requestedPage!;
       } else {
@@ -350,12 +348,7 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue = (oldValue + [configuration])
-            .reversed
-            .take(4)
-            .toList()
-            .reversed
-            .toList();
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
         return newValue;
       });
     }

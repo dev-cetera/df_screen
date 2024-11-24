@@ -12,22 +12,18 @@
 
 // ignore_for_file: invalid_use_of_visible_for_overriding_member
 
+import 'package:df_pod/df_pod.dart';
 import 'package:flutter/material.dart';
 
-import 'package:df_screen_core/df_screen_core.dart';
-import 'package:df_cleanup/df_cleanup.dart';
-
 import 'package:df_debouncer/df_debouncer.dart';
+import 'package:meta/meta.dart';
 
-import '_index.g.dart';
+import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenView<
-        TScreen extends Screen,
-        TModelScreenConfiguration extends ModelScreenConfiguration,
-        TController extends ScreenController<TModelScreenConfiguration>>
-    extends State<TScreen> with DisposeMixin, WillDisposeMixin {
+abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
+    TConductor extends ScreenConductor<TExtra>> extends State<TScreen> {
   //
   //
   //
@@ -35,67 +31,84 @@ abstract base class ScreenView<
   // ---------------------------------------------------------------------------
 
   /// The current ontroller associated with this screen.
-  late final TController c;
+  late final TConductor c;
 
   @override
   void initState() {
-    this._initController();
+    this._initConductor();
     super.initState();
   }
 
-  void _initController() {
+  void _initConductor() {
     final key = widget.key;
-    // If the key is null, just create a new current controller.
+    // If the key is null, just create a new current Conductor.
     if (key == null) {
-      this.c = this._createController();
+      this.c = this._createConductor();
     } else
-    // If the key is not null, only create a new controller if one for the key
+    // If the key is not null, only create a new Conductor if one for the key
     //  does not already exist.
     {
-      // If no controller already exist in the cache, set one up.
-      if (_controllerCache[key] == null) {
-        final controllerTimeout = widget.controllerCacheTimeout;
-        _controllerCache[key] = _ControllerCache(
-          controller: this._createController(),
+      // If no Conductor already exist in the cache, set one up.
+      if (_conductorCache[key] == null) {
+        final ConductorTimeout = widget.conductorTimeout;
+        _conductorCache[key] = _ConductorCache(
+          Conductor: this._createConductor(),
           // If a timeout is specified, set up a debouncer to dispose of the
-          //controller once the screen is disposed and after the timeout.
-          debouncer: controllerTimeout != null
+          //Conductor once the screen is disposed and after the timeout.
+          debouncer: ConductorTimeout != null
               ? Debouncer(
-                  delay: controllerTimeout,
+                  delay: ConductorTimeout,
                   onWaited: () {
                     this.c.dispose();
-                    _controllerCache.remove(widget.key);
+                    _conductorCache.remove(widget.key);
                   },
                 )
               : null,
         );
       } else {
-        // Reset the debouncer so that the controller will again only time out
+        // Reset the debouncer so that the Conductor will again only time out
         // after the screen is disposed and after the timeout.
-        _controllerCache[key]?.debouncer?.cancel();
+        _conductorCache[key]?.debouncer?.cancel();
       }
-      // Assign the current controller from the cache.
-      this.c = _controllerCache[key]?.controller as TController;
+      // Assign the current Conductor from the cache.
+      this.c = _conductorCache[key]?.Conductor as TConductor;
     }
   }
 
-  /// Creates a new instance of [TController] from the current widget.
-  TController _createController() {
-    return (widget.createController(widget, this)..initController())
-        as TController;
+  /// Creates a new instance of [TConductor] from the current widget.
+  TConductor _createConductor() {
+    return (widget.createConductor(widget, this)..initConductor()) as TConductor;
   }
 
-  /// Stores all active controllers.
-  static final _controllerCache = <Key, _ControllerCache>{};
+  /// Stores all active Conductors.
+  static final _conductorCache = <Key, _ConductorCache>{};
+
+  @protected
+  @nonVirtual
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: false,
+      maintainBottomViewPadding: true,
+      child: c.pExtra != null
+          ? PodBuilder(
+              pod: c.pExtra!,
+              builder: (context, snapshot) => buildScreen(context),
+            )
+          : buildScreen(context),
+    );
+  }
+
+  Widget buildScreen(BuildContext context);
 
   @mustCallSuper
   @override
   void dispose() async {
-    // Call the debouncer to trigger the disposal of the controller after the
+    // Call the debouncer to trigger the disposal of the Conductor after the
     // timeout.
     final key = widget.key;
     if (key != null) {
-      _controllerCache[key]?.debouncer?.call();
+      _conductorCache[key]?.debouncer?.call();
     }
     super.dispose();
   }
@@ -103,20 +116,20 @@ abstract base class ScreenView<
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class _ControllerCache {
+class _ConductorCache {
   //
   //
   //
 
-  final ScreenController controller;
+  final ScreenConductor Conductor;
   final Debouncer? debouncer;
 
   //
   //
   //
 
-  const _ControllerCache({
-    required this.controller,
+  const _ConductorCache({
+    required this.Conductor,
     required this.debouncer,
   });
 }

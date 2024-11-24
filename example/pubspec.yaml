@@ -1,0 +1,21 @@
+name: adaptive_screen_example
+publish_to: 'none'
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  df_screen:
+    path: ../
+  df_widgets:
+    path: ../../df_widgets
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0

@@ -10,35 +10,31 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'package:df_pod/df_pod.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:df_screen_core/df_screen_core.dart';
-import 'package:df_cleanup/df_cleanup.dart';
-
-import '_index.g.dart';
+import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base class ScreenController<
-        TModelScreenConfiguration extends ModelScreenConfiguration>
-    extends _Dispose with DisposeMixin, WillDisposeMixin {
+base class ScreenConductor<TExtra extends Object?> {
   //
   //
   //
 
   final Screen? superScreen;
-  final ScreenView? superState;
-  final TModelScreenConfiguration? internalConfiguration;
+  final ScreenState? superState;
+  final RootPod<TExtra>? pExtra;
 
   //
   //
   //
 
-  ScreenController(
+  ScreenConductor(
     this.superScreen,
     this.superState, [
-    this.internalConfiguration,
-  ]);
+    TExtra? extra,
+  ]) : pExtra = extra != null ? RootPod(extra) : null;
 
   //
   //
@@ -46,20 +42,15 @@ base class ScreenController<
 
   @mustCallSuper
   @visibleForOverriding
-  void initController() async {}
+  void initConductor() async {}
 
   //
   //
   //
 
-  @override
   @mustCallSuper
   @visibleForOverriding
-  void dispose();
-}
-
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-class _Dispose {
-  void dispose() {}
+  void dispose() {
+    pExtra?.dispose();
+  }
 }
