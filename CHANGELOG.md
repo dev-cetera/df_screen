@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.6.0]
+
+- Released @ 11/2024 (UTC)
+- breaking: Rename Conductor back to Controller
+
 ## [0.5.1]
 
 - Released @ 11/2024 (UTC)
