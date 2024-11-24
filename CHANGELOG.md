@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.6.3]
+
+- Released @ 11/2024 (UTC)
+- chore: Make code more generic
+
 ## [0.6.2]
 
 - Released @ 11/2024 (UTC)
