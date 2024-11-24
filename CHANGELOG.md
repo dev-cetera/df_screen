@@ -4,6 +4,7 @@
 
 - Released @ 11/2024 (UTC)
 - breaking: Add improvements, and make the code more versatile
+- chore: Update dependencies
 
 ## [0.4.2]
 
