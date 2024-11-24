@@ -8,7 +8,7 @@
 //.title~
 
 export 'screen_page.dart';
-export 'screen_conductor.dart';
+export 'screen_controller.dart';
 export 'screen_state.dart';
 export 'transparent_page.dart';
 export 'app_layout.dart';

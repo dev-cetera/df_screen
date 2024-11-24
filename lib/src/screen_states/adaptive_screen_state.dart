@@ -21,9 +21,9 @@ import '../_hidden/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<TScreen extends Screen,
-        TExtra extends Object?, TConductor extends ScreenConductor<TExtra>>
-    extends ScreenState<TScreen, TExtra, TConductor> {
+abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
+    extends ScreenState<TScreen, TExtra, TController> {
   //
   //
   //
@@ -405,14 +405,12 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ConstrainedBox(
-                        constraints:
-                            BoxConstraints.loose(leftSide.preferredSize),
+                        constraints: BoxConstraints.loose(leftSide.preferredSize),
                         child: leftSide,
                       ),
                       const Spacer(),
                       ConstrainedBox(
-                        constraints:
-                            BoxConstraints.loose(rightSide.preferredSize),
+                        constraints: BoxConstraints.loose(rightSide.preferredSize),
                         child: rightSide,
                       ),
                     ],

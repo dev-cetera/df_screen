@@ -39,14 +39,12 @@ abstract base class ScreenPage extends StatefulWidget {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenPageView<
-    T1 extends ScreenPage,
-    T2 extends ModelScreenConfiguration,
-    T3 extends ScreenConductor<T2>> extends State<T1> {
+abstract base class ScreenPageView<T1 extends ScreenPage, T2 extends ModelScreenConfiguration,
+    T3 extends ScreenController<T2>> extends State<T1> {
   //
   //
   //
 
   late T3 c = widget.screenState.c as T3;
-  T3 get screenConductor => this.c;
+  T3 get screenController => this.c;
 }

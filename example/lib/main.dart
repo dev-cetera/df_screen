@@ -25,22 +25,22 @@ base class ExampleScreen extends Screen {
   State createState() => ExampleScreenState();
 
   @override
-  ScreenConductor createConductor(
+  ScreenController createController(
     Screen screen,
     ScreenState state,
   ) {
-    return ExampleScreenConductor(screen, state);
+    return ExampleScreenController(screen, state);
   }
 }
 
-// A conductor is like a controller and should hold the business logic
+// A controller is like a controller and should hold the business logic
 // that is exclusive to the screen.
-final class ExampleScreenConductor extends ScreenConductor {
-  ExampleScreenConductor(super.screen, super.state);
+final class ExampleScreenController extends ScreenController {
+  ExampleScreenController(super.screen, super.state);
 }
 
-final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
-    Object?, ExampleScreenConductor> {
+final class ExampleScreenState
+    extends AdaptiveScreenState<ExampleScreen, Object?, ExampleScreenController> {
   @override
   Widget wideBody(BuildContext context) {
     return Container(

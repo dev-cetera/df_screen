@@ -22,7 +22,7 @@ abstract base class Screen<TExtra extends Object?> extends StatefulWidget {
   //
 
   final TExtra? extra;
-  final Duration? conductorTimeout;
+  final Duration? controllerTimeout;
 
   //
   //
@@ -31,17 +31,17 @@ abstract base class Screen<TExtra extends Object?> extends StatefulWidget {
   const Screen({
     super.key,
     this.extra,
-    this.conductorTimeout = Duration.zero,
+    this.controllerTimeout = Duration.zero,
   });
 
   //
   //
   //
 
-  ScreenConductor createConductor(
+  ScreenController createController(
     Screen screen,
     ScreenState state,
   ) {
-    return ScreenConductor(screen, state);
+    return ScreenController(screen, state);
   }
 }

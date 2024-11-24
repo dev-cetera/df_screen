@@ -11,8 +11,8 @@
 ##.title~
 
 name: df_screen
-description: A package that provides a useful screen widget and Conductor for Flutter apps.
-version: 0.5.1
+description: A package that provides a useful screen widget and controller for Flutter apps.
+version: 0.6.0
 repository: https://github.com/DevCetra/df_screen
 funding:
   - https://www.buymeacoffee.com/robmllze

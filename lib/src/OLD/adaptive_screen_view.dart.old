@@ -31,8 +31,8 @@
 // abstract base class AdaptiveScreenViewOld<
 //         TScreen extends Screen,
 //         TExtra extends ModelScreenConfiguration,
-//         TConductor extends ScreenConductor<TExtra>>
-//     extends ScreenView<TScreen, TExtra, TConductor> {
+//         TController extends ScreenController<TExtra>>
+//     extends ScreenView<TScreen, TExtra, TController> {
 //   //
 //   //
 //   //

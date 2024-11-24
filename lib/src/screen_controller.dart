@@ -17,7 +17,7 @@ import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base class ScreenConductor<TExtra extends Object?> {
+base class ScreenController<TExtra extends Object?> {
   //
   //
   //
@@ -30,7 +30,7 @@ base class ScreenConductor<TExtra extends Object?> {
   //
   //
 
-  ScreenConductor(
+  ScreenController(
     this.superScreen,
     this.superState, [
     TExtra? extra,
@@ -42,7 +42,7 @@ base class ScreenConductor<TExtra extends Object?> {
 
   @mustCallSuper
   @visibleForOverriding
-  void initConductor() async {}
+  void initController() async {}
 
   //
   //
