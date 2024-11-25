@@ -21,8 +21,8 @@ import '../_hidden/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<TScreen extends Screen,
-        TExtra extends Object?, TController extends ScreenController<TExtra>>
+abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
     extends ScreenState<TScreen, TExtra, TController> {
   //
   //
@@ -251,41 +251,29 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
   /// Override to customize the top area of your screen.
   ///
   /// Tip: Ideal for placing elements like headers.
-  PreferredSizeWidget topSide(BuildContext context, double topInsets) {
-    return const PreferredSize(
-      preferredSize: Size.zero,
-      child: SizedBox.shrink(),
-    );
+  Widget topSide(BuildContext context, double topInsets) {
+    return const SizedBox.shrink();
   }
 
   /// Override to customize the bottom area of your screen.
   ///
   /// Tip: Ideal for placing elements like navigation controls.
-  PreferredSizeWidget bottomSide(BuildContext context, double bottomInsets) {
-    return const PreferredSize(
-      preferredSize: Size.zero,
-      child: SizedBox.shrink(),
-    );
+  Widget bottomSide(BuildContext context, double bottomInsets) {
+    return const SizedBox.shrink();
   }
 
   //// Override to customize the left area of your screen.
   ///
   /// Tip: Ideal for placing elements like menus and side panels.
-  PreferredSizeWidget leftSide(BuildContext context, double leftInsets) {
-    return const PreferredSize(
-      preferredSize: Size.zero,
-      child: SizedBox.shrink(),
-    );
+  Widget leftSide(BuildContext context, double leftInsets) {
+    return const SizedBox.shrink();
   }
 
   //// Override to customize the right area of your screen.
   ///
   /// Tip: Ideal for placing elements like menus and side panels.
-  PreferredSizeWidget rightSide(BuildContext context, double rightInsets) {
-    return const PreferredSize(
-      preferredSize: Size.zero,
-      child: SizedBox.shrink(),
-    );
+  Widget rightSide(BuildContext context, double rightInsets) {
+    return const SizedBox.shrink();
   }
 
   //
@@ -375,10 +363,10 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
           body1,
           sideInsets(
             EdgeInsets.only(
-              left: leftSide.preferredSize.width,
-              right: rightSide.preferredSize.width,
-              top: topSide.preferredSize.height,
-              bottom: bottomSide.preferredSize.height,
+              left: letAsOrNull<PreferredSizeWidget>(leftSide)?.preferredSize.width ?? 0.0,
+              right: letAsOrNull<PreferredSizeWidget>(rightSide)?.preferredSize.width ?? 0.0,
+              top: letAsOrNull<PreferredSizeWidget>(topSide)?.preferredSize.height ?? 0.0,
+              bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)?.preferredSize.height ?? 0.0,
             ),
           ),
         );
@@ -392,36 +380,47 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ConstrainedBox(
-                  constraints: BoxConstraints.loose(
-                    topSide.preferredSize,
-                  ),
-                  child: topSide,
-                ),
+                topSide is PreferredSizeWidget
+                    ? ConstrainedBox(
+                        constraints: BoxConstraints.loose(
+                          topSide.preferredSize,
+                        ),
+                        child: topSide,
+                      )
+                    : topSide,
                 Expanded(
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ConstrainedBox(
-                        constraints:
-                            BoxConstraints.loose(leftSide.preferredSize),
-                        child: leftSide,
-                      ),
-                      const Spacer(),
-                      ConstrainedBox(
-                        constraints:
-                            BoxConstraints.loose(rightSide.preferredSize),
-                        child: rightSide,
-                      ),
+                      leftSide is PreferredSizeWidget
+                          ? ConstrainedBox(
+                              constraints: BoxConstraints.loose(
+                                leftSide.preferredSize,
+                              ),
+                              child: leftSide,
+                            )
+                          : leftSide,
+                      rightSide is PreferredSizeWidget
+                          ? ConstrainedBox(
+                              constraints: BoxConstraints.loose(
+                                rightSide.preferredSize,
+                              ),
+                              child: rightSide,
+                            )
+                          : rightSide,
                     ],
                   ),
                 ),
-                ConstrainedBox(
-                  constraints: BoxConstraints.loose(bottomSide.preferredSize),
-                  child: bottomSide,
-                ),
+                bottomSide is PreferredSizeWidget
+                    ? ConstrainedBox(
+                        constraints: BoxConstraints.loose(
+                          bottomSide.preferredSize,
+                        ),
+                        child: bottomSide,
+                      )
+                    : bottomSide,
               ],
             ),
           ],
