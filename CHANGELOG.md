@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.6.4]
+
+- Released @ 11/2024 (UTC)
+- chore: Flexibility improvements
+
 ## [0.6.3]
 
 - Released @ 11/2024 (UTC)
