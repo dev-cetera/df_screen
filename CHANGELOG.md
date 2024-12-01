@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.6.6]
+## [0.6.5]
 
 - Released @ 12/2024 (UTC)
 - chore: Update default padding
