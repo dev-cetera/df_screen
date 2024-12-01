@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.6.7]
+
+- Released @ 12/2024 (UTC)
+- feat: Update padding mechanism for AdaptiveScreenState
+
 ## [0.6.6]
 
 - Released @ 12/2024 (UTC)
