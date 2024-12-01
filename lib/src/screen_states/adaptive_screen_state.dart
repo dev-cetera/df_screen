@@ -211,10 +211,10 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
   /// Override to specify the padding for the body.
   EdgeInsets padding() {
     return EdgeInsets.only(
-      top: 40.sc,
-      left: 24.sc,
-      right: 24.sc,
-      bottom: 160.sc,
+      top: 28.sc,
+      left: 28.sc,
+      right: 28.sc,
+      bottom: 112.sc,
     );
   }
 
