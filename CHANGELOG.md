@@ -3,7 +3,7 @@
 ## [0.6.6]
 
 - Released @ 12/2024 (UTC)
-- chore: Tweak paddings
+- feat: Add ScreenBreadCumbBar
 
 ## [0.6.5]
 
