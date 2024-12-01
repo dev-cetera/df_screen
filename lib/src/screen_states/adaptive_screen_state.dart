@@ -21,8 +21,8 @@ import '../_hidden/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<TScreen extends Screen,
-        TExtra extends Object?, TController extends ScreenController<TExtra>>
+abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
     extends ScreenState<TScreen, TExtra, TController> {
   //
   //
@@ -210,7 +210,12 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
 
   /// Override to specify the padding for the body.
   EdgeInsets padding() {
-    return EdgeInsets.all(28.sc).copyWith(bottom: 80.sc);
+    return EdgeInsets.only(
+      top: 40.sc,
+      left: 24.sc,
+      right: 24.sc,
+      bottom: 160.sc,
+    );
   }
 
   /// Override to specify the side insets for the body. Side insets are
@@ -363,22 +368,10 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
           body1,
           sideInsets(
             EdgeInsets.only(
-              left: letAsOrNull<PreferredSizeWidget>(leftSide)
-                      ?.preferredSize
-                      .width ??
-                  0.0,
-              right: letAsOrNull<PreferredSizeWidget>(rightSide)
-                      ?.preferredSize
-                      .width ??
-                  0.0,
-              top: letAsOrNull<PreferredSizeWidget>(topSide)
-                      ?.preferredSize
-                      .height ??
-                  0.0,
-              bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)
-                      ?.preferredSize
-                      .height ??
-                  0.0,
+              left: letAsOrNull<PreferredSizeWidget>(leftSide)?.preferredSize.width ?? 0.0,
+              right: letAsOrNull<PreferredSizeWidget>(rightSide)?.preferredSize.width ?? 0.0,
+              top: letAsOrNull<PreferredSizeWidget>(topSide)?.preferredSize.height ?? 0.0,
+              bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)?.preferredSize.height ?? 0.0,
             ),
           ),
         );
