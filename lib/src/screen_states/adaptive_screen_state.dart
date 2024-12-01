@@ -21,8 +21,8 @@ import '../_hidden/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<TScreen extends Screen,
-        TExtra extends Object?, TController extends ScreenController<TExtra>>
+abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
     extends ScreenState<TScreen, TExtra, TController> {
   //
   //
@@ -209,12 +209,15 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
   //
 
   /// Override to specify the padding for the body.
-  EdgeInsets padding() {
-    return EdgeInsets.only(
-      top: 28.sc,
-      left: 28.sc,
-      right: 28.sc,
-      bottom: 112.sc,
+  Widget padding(Widget child) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 28.sc,
+        left: 28.sc,
+        right: 28.sc,
+        bottom: 112.sc,
+      ),
+      child: child,
     );
   }
 
@@ -359,31 +362,16 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
         final bottomSide = this.bottomSide(context, params.viewInsets.bottom);
         final leftSide = this.leftSide(context, params.viewInsets.left);
         final rightSide = this.rightSide(context, params.viewInsets.right);
-        final body1 = Padding(
-          padding: this.padding(),
-          child: body0,
-        );
+        final body1 = this.padding(body0);
         final body2 = this.align(
           context,
           body1,
           sideInsets(
             EdgeInsets.only(
-              left: letAsOrNull<PreferredSizeWidget>(leftSide)
-                      ?.preferredSize
-                      .width ??
-                  0.0,
-              right: letAsOrNull<PreferredSizeWidget>(rightSide)
-                      ?.preferredSize
-                      .width ??
-                  0.0,
-              top: letAsOrNull<PreferredSizeWidget>(topSide)
-                      ?.preferredSize
-                      .height ??
-                  0.0,
-              bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)
-                      ?.preferredSize
-                      .height ??
-                  0.0,
+              left: letAsOrNull<PreferredSizeWidget>(leftSide)?.preferredSize.width ?? 0.0,
+              right: letAsOrNull<PreferredSizeWidget>(rightSide)?.preferredSize.width ?? 0.0,
+              top: letAsOrNull<PreferredSizeWidget>(topSide)?.preferredSize.height ?? 0.0,
+              bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)?.preferredSize.height ?? 0.0,
             ),
           ),
         );
