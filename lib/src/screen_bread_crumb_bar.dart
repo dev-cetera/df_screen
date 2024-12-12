@@ -62,12 +62,20 @@ class ScreenBreadCrumbBar extends StatelessWidget {
                     return Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        onTap: !last ? () => routeService.goFromFront(n + 1) : null,
+                        onTap: !last
+                            ? () => routeService.goFromFront(n + 1)
+                            : null,
                         child: Text(
                           path,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
                                 color: last
-                                    ? Theme.of(context).colorScheme.onSurface.withAlpha(125)
+                                    ? Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withAlpha(125)
                                     : Theme.of(context).colorScheme.onSurface,
                               ),
                         ),

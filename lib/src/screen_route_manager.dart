@@ -236,7 +236,8 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
+      _pScreenBreadcrumbs;
 
   //
   //
@@ -349,7 +350,12 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
+        final newValue = (oldValue + [configuration])
+            .reversed
+            .take(4)
+            .toList()
+            .reversed
+            .toList();
         return newValue;
       });
     }

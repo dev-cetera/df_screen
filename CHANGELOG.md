@@ -4,6 +4,7 @@
 
 - Released @ 12/2024 (UTC)
 - feat: Update padding mechanism for AdaptiveScreenState
+- chore: Update dependencies
 
 ## [0.6.6]
 
