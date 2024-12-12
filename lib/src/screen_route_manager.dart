@@ -78,8 +78,9 @@ final class ScreenRouteManger extends _ScreenRouteManger {
       );
     },
     redirect: (context, state) async {
-      //await AdaptiveScreenView.captureScreen(context);
-      debugPrint('[$ScreenRouteManger] Redirecting ${state.fullPath}');
+      debugPrint(
+        '[$ScreenRouteManger] Redirecting ${state.fullPath}',
+      );
       return null;
     },
     initialLocation: super.defaultConfiguration.path,
@@ -235,8 +236,7 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
-      _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
   //
@@ -349,12 +349,7 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue = (oldValue + [configuration])
-            .reversed
-            .take(4)
-            .toList()
-            .reversed
-            .toList();
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
         return newValue;
       });
     }
@@ -398,7 +393,9 @@ abstract base class _ScreenRouteManger {
       try {
         screen = (page as dynamic).child as Widget;
       } catch (e) {
-        debugPrint('[$ScreenRouteManger] Error: "page" has no "child" widget');
+        debugPrint(
+          '[$ScreenRouteManger] Error: "page" has no "child" widget',
+        );
       }
     }
     if (screen is Screen) {
