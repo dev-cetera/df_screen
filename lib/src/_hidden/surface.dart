@@ -50,7 +50,9 @@ class Surface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final $color = decoration?.color ?? color ?? Theme.of(context).colorScheme.surfaceContainer;
+    final $color = decoration?.color ??
+        color ??
+        Theme.of(context).colorScheme.surfaceContainer;
     final $borderRadius = decoration?.borderRadius ?? borderRadius;
     final $decoration = decoration?.copyWith(
           color: $color,

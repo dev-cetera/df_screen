@@ -54,7 +54,10 @@ class ScreenBreadCrumbBar extends StatelessWidget {
               reverse: true,
               child: Row(
                 children: [
-                  ...?screenBreadcrumbs?.nonNulls.map((e) => e.path).nonNulls.mapIndexed((n, path) {
+                  ...?screenBreadcrumbs?.nonNulls
+                      .map((e) => e.path)
+                      .nonNulls
+                      .mapIndexed((n, path) {
                     final last = n == screenBreadcrumbs.nonNulls.length - 1;
                     return Material(
                       color: Colors.transparent,
