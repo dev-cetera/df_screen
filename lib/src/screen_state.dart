@@ -1,7 +1,7 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// Dart/Flutter (DF) Packages by dev-cetera.com & contributors. The use of this
 // source code is governed by an MIT-style license described in the LICENSE
 // file located in this project's root directory.
 //
@@ -77,8 +77,7 @@ abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (widget.createController(widget, this)..initController())
-        as TController;
+    return (widget.createController(widget, this)..initController()) as TController;
   }
 
   /// Stores all activecontrollers.
@@ -94,13 +93,14 @@ abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
       child: c.pExtra != null
           ? PodBuilder(
               pod: c.pExtra!,
-              builder: (context, snapshot) => buildScreen(context),
+              builder: (context, snapshot) => buildWidget(context),
             )
-          : buildScreen(context),
+          : buildWidget(context),
     );
   }
 
-  Widget buildScreen(BuildContext context);
+  @visibleForOverriding
+  Widget buildWidget(BuildContext context) => const SizedBox();
 
   @mustCallSuper
   @override

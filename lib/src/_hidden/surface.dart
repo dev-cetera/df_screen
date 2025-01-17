@@ -1,7 +1,7 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// Dart/Flutter (DF) Packages by dev-cetera.com & contributors. The use of this
 // source code is governed by an MIT-style license described in the LICENSE
 // file located in this project's root directory.
 //
@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-class MSurface extends StatelessWidget {
+class Surface extends StatelessWidget {
   //
   //
   //
@@ -32,7 +32,7 @@ class MSurface extends StatelessWidget {
   //
   //
 
-  const MSurface({
+  const Surface({
     super.key,
     this.child,
     this.borderRadius = BorderRadius.zero,
@@ -50,9 +50,7 @@ class MSurface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final $color = decoration?.color ??
-        color ??
-        Theme.of(context).colorScheme.surfaceContainer;
+    final $color = decoration?.color ?? color ?? Theme.of(context).colorScheme.surfaceContainer;
     final $borderRadius = decoration?.borderRadius ?? borderRadius;
     final $decoration = decoration?.copyWith(
           color: $color,

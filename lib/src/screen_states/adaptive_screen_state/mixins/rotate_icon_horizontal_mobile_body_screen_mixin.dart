@@ -10,41 +10,26 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:flutter/widgets.dart' show State, StatefulWidget;
+import 'package:df_scalable/df_scalable.dart';
+import 'package:flutter/material.dart';
 
-import 'package:df_screen_core/df_screen_core.dart';
+import '../_adaptive_screen_state_interface.dart';
 
-import '_index.g.dart';
-
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-abstract base class ScreenPage extends StatefulWidget {
-  //
-  //
-  //
-
-  final String? title;
-  final ScreenState screenState;
-
-  //
-  //
-  //
-
-  const ScreenPage({
-    super.key,
-    this.title,
-    required this.screenState,
-  });
-}
+import '/src/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenPageState<T1 extends ScreenPage, T2 extends ModelScreenConfiguration,
-    T3 extends ScreenController<T2>> extends State<T1> {
-  //
-  //
-  //
-
-  late T3 c = widget.screenState.c as T3;
-  T3 get screenController => this.c;
+base mixin RotateIconHorizontalMobileBodyScreenMixin<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
+    on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
+  @override
+  Widget horizontalMobileBody(BuildContext context) {
+    return Center(
+      child: Icon(
+        Icons.rotate_90_degrees_ccw,
+        size: 48.sc,
+        color: Theme.of(context).colorScheme.onSurface,
+      ),
+    );
+  }
 }

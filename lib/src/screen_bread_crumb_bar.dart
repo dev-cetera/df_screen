@@ -1,7 +1,7 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by DevCetra.com & contributors. The use of this
+// Dart/Flutter (DF) Packages by dev-cetera.com & contributors. The use of this
 // source code is governed by an MIT-style license described in the LICENSE
 // file located in this project's root directory.
 //
@@ -54,10 +54,7 @@ class ScreenBreadCrumbBar extends StatelessWidget {
               reverse: true,
               child: Row(
                 children: [
-                  ...?screenBreadcrumbs?.nonNulls
-                      .map((e) => e.path)
-                      .nonNulls
-                      .mapIndexed((n, path) {
+                  ...?screenBreadcrumbs?.nonNulls.map((e) => e.path).nonNulls.mapIndexed((n, path) {
                     final last = n == screenBreadcrumbs.nonNulls.length - 1;
                     return Material(
                       color: Colors.transparent,

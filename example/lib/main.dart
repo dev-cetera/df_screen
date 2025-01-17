@@ -39,8 +39,8 @@ final class ExampleScreenController extends ScreenController {
   ExampleScreenController(super.screen, super.state);
 }
 
-final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
-    Object?, ExampleScreenController> {
+final class ExampleScreenState
+    extends AdaptiveScreenState<ExampleScreen, Object?, ExampleScreenController> {
   @override
   Widget wideBody(BuildContext context) {
     return Container(
@@ -85,7 +85,7 @@ final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
         double.infinity,
       ),
       child: Container(
-        color: Colors.orange.withOpacity(0.5),
+        color: Colors.orange.withAlpha(128),
       ),
     );
   }
@@ -98,7 +98,7 @@ final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
         double.infinity,
       ),
       child: Container(
-        color: Colors.green.withOpacity(0.5),
+        color: Colors.green.withAlpha(128),
       ),
     );
   }
@@ -111,7 +111,7 @@ final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
         topInsets + 80,
       ),
       child: Container(
-        color: Colors.yellow.withOpacity(0.5),
+        color: Colors.yellow.withAlpha(128),
       ),
     );
   }
@@ -124,7 +124,7 @@ final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
         bottomInsets + 80,
       ),
       child: Container(
-        color: Colors.blue.withOpacity(0.5),
+        color: Colors.blue.withAlpha(128),
       ),
     );
   }
