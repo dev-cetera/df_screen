@@ -54,4 +54,4 @@ https://www.buymeacoffee.com/dev_cetera
 
 ## License
 
-This project is released under the MIT License. See [LICENSE](https://raw.githubusercontent.com/dev-cetera/df_type/main/LICENSE) for more information.
+This project is released under the MIT License. See [LICENSE](https://raw.githubusercontent.com/dev-cetera/df_screen/main/LICENSE) for more information.
