@@ -19,11 +19,11 @@ import '/src/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin RotateIconHorizontalMobileBodyScreenMixin<TScreen extends Screen,
+base mixin RotateIconHorizontalMobileLayoutScreenMixin<TScreen extends Screen,
         TExtra extends Object?, TController extends ScreenController<TExtra>>
     on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
   @override
-  Widget horizontalMobileBody(BuildContext context) {
+  Widget horizontalMobileLayout(BuildContext context, Widget _) {
     return Center(
       child: Icon(
         Icons.rotate_90_degrees_ccw,

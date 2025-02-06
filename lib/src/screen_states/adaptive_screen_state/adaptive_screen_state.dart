@@ -22,14 +22,14 @@ import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<TScreen extends Screen,
-        TExtra extends Object?, TController extends ScreenController<TExtra>>
+abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
     extends AdaptiveScreenStateInterface<TScreen, TExtra, TController>
     with
         MobileFrameWideLayoutScreenMixin,
         DefaultScrollableAlignScreenMixin,
         DefaultPaddingScreenMixin,
-        RotateIconHorizontalMobileBodyScreenMixin {
+        RotateIconHorizontalMobileLayoutScreenMixin {
   /// Do not override. This method invokes the necessary builders and organizes
   /// the screen layout based on the current device.
   @protected
@@ -77,22 +77,10 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
           body1,
           sideInsets(
             EdgeInsets.only(
-              left: letAsOrNull<PreferredSizeWidget>(leftSide)
-                      ?.preferredSize
-                      .width ??
-                  0.0,
-              right: letAsOrNull<PreferredSizeWidget>(rightSide)
-                      ?.preferredSize
-                      .width ??
-                  0.0,
-              top: letAsOrNull<PreferredSizeWidget>(topSide)
-                      ?.preferredSize
-                      .height ??
-                  0.0,
-              bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)
-                      ?.preferredSize
-                      .height ??
-                  0.0,
+              left: letAsOrNull<PreferredSizeWidget>(leftSide)?.preferredSize.width ?? 0.0,
+              right: letAsOrNull<PreferredSizeWidget>(rightSide)?.preferredSize.width ?? 0.0,
+              top: letAsOrNull<PreferredSizeWidget>(topSide)?.preferredSize.height ?? 0.0,
+              bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)?.preferredSize.height ?? 0.0,
             ),
           ),
         );
