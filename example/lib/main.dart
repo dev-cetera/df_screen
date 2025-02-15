@@ -11,10 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Adaptive Screen',
-      home: ExampleScreen(),
-    );
+    return const MaterialApp(title: 'Adaptive Screen', home: ExampleScreen());
   }
 }
 
@@ -25,10 +22,7 @@ base class ExampleScreen extends Screen {
   State createState() => ExampleScreenState();
 
   @override
-  ScreenController createController(
-    Screen screen,
-    ScreenState state,
-  ) {
+  ScreenController createController(Screen screen, ScreenState state) {
     return ExampleScreenController(screen, state);
   }
 }
@@ -39,8 +33,9 @@ final class ExampleScreenController extends ScreenController {
   ExampleScreenController(super.screen, super.state);
 }
 
-final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
-    Object?, ExampleScreenController> {
+final class ExampleScreenState
+    extends
+        AdaptiveScreenState<ExampleScreen, Object?, ExampleScreenController> {
   @override
   Widget wideBody(BuildContext context) {
     return Container(
@@ -49,9 +44,7 @@ final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
       color: Colors.grey,
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('WIDE BODY!!!'),
-        ],
+        children: [Text('WIDE BODY!!!')],
       ),
     );
   }
@@ -64,9 +57,7 @@ final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
       color: Colors.grey,
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('NARROW BODY!!!'),
-        ],
+        children: [Text('NARROW BODY!!!')],
       ),
     );
   }
@@ -80,52 +71,32 @@ final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
   @override
   PreferredSizeWidget leftSide(BuildContext context, double leftInsets) {
     return PreferredSize(
-      preferredSize: Size(
-        leftInsets + 80,
-        double.infinity,
-      ),
-      child: Container(
-        color: Colors.orange.withAlpha(128),
-      ),
+      preferredSize: Size(leftInsets + 80, double.infinity),
+      child: Container(color: Colors.orange.withAlpha(128)),
     );
   }
 
   @override
   PreferredSizeWidget rightSide(BuildContext context, double rightInsets) {
     return PreferredSize(
-      preferredSize: Size(
-        rightInsets + 80,
-        double.infinity,
-      ),
-      child: Container(
-        color: Colors.green.withAlpha(128),
-      ),
+      preferredSize: Size(rightInsets + 80, double.infinity),
+      child: Container(color: Colors.green.withAlpha(128)),
     );
   }
 
   @override
   PreferredSizeWidget topSide(BuildContext context, double topInsets) {
     return PreferredSize(
-      preferredSize: Size(
-        double.infinity,
-        topInsets + 80,
-      ),
-      child: Container(
-        color: Colors.yellow.withAlpha(128),
-      ),
+      preferredSize: Size(double.infinity, topInsets + 80),
+      child: Container(color: Colors.yellow.withAlpha(128)),
     );
   }
 
   @override
   PreferredSizeWidget bottomSide(BuildContext context, double bottomInsets) {
     return PreferredSize(
-      preferredSize: Size(
-        double.infinity,
-        bottomInsets + 80,
-      ),
-      child: Container(
-        color: Colors.blue.withAlpha(128),
-      ),
+      preferredSize: Size(double.infinity, bottomInsets + 80),
+      child: Container(color: Colors.blue.withAlpha(128)),
     );
   }
 }

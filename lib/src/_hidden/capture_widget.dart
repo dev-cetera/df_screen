@@ -47,10 +47,7 @@ Future<CustomPaint?> captureWidget(
   if (image != null) {
     final result = CustomPaint(
       painter: ImagePainter(image),
-      size: Size(
-        image.width.toDouble(),
-        image.height.toDouble(),
-      ),
+      size: Size(image.width.toDouble(), image.height.toDouble()),
     );
     return result;
   }

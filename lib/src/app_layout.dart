@@ -63,8 +63,5 @@ ScreenCalculator getCurrentScreenCalculator() {
   final displaySize = firstDisplay.size;
   final displayPixelRatio = firstDisplay.devicePixelRatio;
   final screenSize = displaySize / displayPixelRatio;
-  return ScreenCalculator(
-    screenSize.width,
-    screenSize.height,
-  );
+  return ScreenCalculator(screenSize.width, screenSize.height);
 }

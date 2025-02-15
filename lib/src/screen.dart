@@ -28,20 +28,13 @@ abstract base class Screen<TExtra extends Object?> extends StatefulWidget {
   //
   //
 
-  const Screen({
-    super.key,
-    this.extra,
-    this.controllerTimeout = Duration.zero,
-  });
+  const Screen({super.key, this.extra, this.controllerTimeout = Duration.zero});
 
   //
   //
   //
 
-  ScreenController createController(
-    Screen screen,
-    ScreenState state,
-  ) {
+  ScreenController createController(Screen screen, ScreenState state) {
     return ScreenController(screen, state);
   }
 }

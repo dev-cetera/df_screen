@@ -30,19 +30,17 @@ abstract base class ScreenPage extends StatefulWidget {
   //
   //
 
-  const ScreenPage({
-    super.key,
-    this.title,
-    required this.screenState,
-  });
+  const ScreenPage({super.key, this.title, required this.screenState});
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 abstract base class ScreenPageState<
-    T1 extends ScreenPage,
-    T2 extends ModelScreenConfiguration,
-    T3 extends ScreenController<T2>> extends State<T1> {
+  T1 extends ScreenPage,
+  T2 extends ModelScreenConfiguration,
+  T3 extends ScreenController<T2>
+>
+    extends State<T1> {
   //
   //
   //

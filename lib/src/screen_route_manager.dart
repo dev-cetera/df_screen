@@ -71,16 +71,10 @@ final class ScreenRouteManger extends _ScreenRouteManger {
 
   late final _router = GoRouter(
     errorPageBuilder: (context, state) {
-      return super.commonPageBuilder(
-        context,
-        state,
-        errorPath,
-      );
+      return super.commonPageBuilder(context, state, errorPath);
     },
     redirect: (context, state) async {
-      debugPrint(
-        '[$ScreenRouteManger] Redirecting ${state.fullPath}',
-      );
+      debugPrint('[$ScreenRouteManger] Redirecting ${state.fullPath}');
       return null;
     },
     initialLocation: super.defaultConfiguration.path,
@@ -95,21 +89,15 @@ final class ScreenRouteManger extends _ScreenRouteManger {
             path: '/',
             builder: (context, state) => rootPathWidget ?? const SizedBox(),
             routes: [
-              ...super.generatedScreenRoutes.map(
-                (route) {
-                  final path = route.path;
-                  return GoRoute(
-                    path: path,
-                    pageBuilder: (context, state) {
-                      return commonPageBuilder(
-                        context,
-                        state,
-                        path,
-                      );
-                    },
-                  );
-                },
-              ),
+              ...super.generatedScreenRoutes.map((route) {
+                final path = route.path;
+                return GoRoute(
+                  path: path,
+                  pageBuilder: (context, state) {
+                    return commonPageBuilder(context, state, path);
+                  },
+                );
+              }),
             ],
           ),
         ],
@@ -216,7 +204,8 @@ abstract base class _ScreenRouteManger {
     required ModelScreenConfiguration configuration,
     required bool loggedIn,
     required bool verified,
-  }) findScreen;
+  })
+  findScreen;
 
   //
   //
@@ -243,9 +232,11 @@ abstract base class _ScreenRouteManger {
   //
   //
 
-  ModelScreenConfiguration get defaultConfiguration => isLoggedIn()
-      ? defaultOnLoginScreenConfiguration ?? defaultOnLogoutScreenConfiguration
-      : defaultOnLogoutScreenConfiguration;
+  ModelScreenConfiguration get defaultConfiguration =>
+      isLoggedIn()
+          ? defaultOnLoginScreenConfiguration ??
+              defaultOnLogoutScreenConfiguration
+          : defaultOnLogoutScreenConfiguration;
 
   //
   //
@@ -259,12 +250,11 @@ abstract base class _ScreenRouteManger {
   //
 
   void go(ModelScreenConfiguration configuration) {
-    final queryParameters = configuration.args
+    final queryParameters =
+        configuration.args
             ?.map(
-              (k, v) => MapEntry(
-                k is String ? k : null,
-                v is String ? v : null,
-              ),
+              (k, v) =>
+                  MapEntry(k is String ? k : null, v is String ? v : null),
             )
             .nonNulls
             .nullIfEmpty ??
@@ -350,12 +340,12 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue = (oldValue + [configuration])
-            .reversed
-            .take(4)
-            .toList()
-            .reversed
-            .toList();
+        final newValue =
+            (oldValue + [configuration]).reversed
+                .take(4)
+                .toList()
+                .reversed
+                .toList();
         return newValue;
       });
     }
@@ -399,9 +389,7 @@ abstract base class _ScreenRouteManger {
       try {
         screen = (page as dynamic).child as Widget;
       } catch (e) {
-        debugPrint(
-          '[$ScreenRouteManger] Error: "page" has no "child" widget',
-        );
+        debugPrint('[$ScreenRouteManger] Error: "page" has no "child" widget');
       }
     }
     if (screen is Screen) {

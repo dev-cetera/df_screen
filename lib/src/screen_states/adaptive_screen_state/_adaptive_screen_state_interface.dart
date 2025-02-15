@@ -18,8 +18,11 @@ import '/src/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
-        TExtra extends Object?, TController extends ScreenController<TExtra>>
+abstract base class AdaptiveScreenStateInterface<
+  TScreen extends Screen,
+  TExtra extends Object?,
+  TController extends ScreenController<TExtra>
+>
     extends ScreenState<TScreen, TExtra, TController> {
   /// Activates for mobile device screen sizes. Override to customize the
   /// layout for these sizes. The [body] includes the widget returned by
@@ -99,11 +102,7 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
   /// for implementing scroll views. The [sideInsets] are set to correspond
   /// with the dimensions of widgets returned by [topSide], [bottomSide],
   /// [leftSide], and [rightSide].
-  Widget align(
-    BuildContext context,
-    Widget body,
-    EdgeInsets sideInsets,
-  );
+  Widget align(BuildContext context, Widget body, EdgeInsets sideInsets);
 
   /// Override to specify the padding for the body.
   Widget padding(Widget child);
@@ -163,11 +162,7 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
     return Stack(
       alignment: AlignmentDirectional.center,
       fit: StackFit.expand,
-      children: [
-        background,
-        body,
-        foreground,
-      ],
+      children: [background, body, foreground],
     );
   }
 
@@ -196,9 +191,7 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
   /// Tip: Use an [IgnorePointer] when creating non-interactive overlays.
   @pragma('vm:prefer-inline')
   Widget foreground(BuildContext context) {
-    return const IgnorePointer(
-      child: SizedBox.expand(),
-    );
+    return const IgnorePointer(child: SizedBox.expand());
   }
 
   /// Override to customize the top area of your screen.
