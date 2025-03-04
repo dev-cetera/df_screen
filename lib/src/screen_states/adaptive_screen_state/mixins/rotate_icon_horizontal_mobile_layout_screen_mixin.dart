@@ -26,7 +26,7 @@ base mixin RotateIconHorizontalMobileLayoutScreenMixin<
 >
     on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
   @override
-  Widget horizontalMobileLayout(BuildContext context, Widget _) {
+  Widget horizontalMobileLayout(BuildContext context, Widget body) {
     return Center(
       child: Icon(
         Icons.rotate_90_degrees_ccw,
