@@ -19,11 +19,8 @@ import '/src/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin RotateIconHorizontalMobileLayoutScreenMixin<
-  TScreen extends Screen,
-  TExtra extends Object?,
-  TController extends ScreenController<TExtra>
->
+base mixin RotateIconHorizontalMobileLayoutScreenMixin<TScreen extends Screen,
+        TExtra extends Object?, TController extends ScreenController<TExtra>>
     on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
   @override
   Widget horizontalMobileLayout(BuildContext context, Widget body) {

@@ -204,8 +204,7 @@ abstract base class _ScreenRouteManger {
     required ModelScreenConfiguration configuration,
     required bool loggedIn,
     required bool verified,
-  })
-  findScreen;
+  }) findScreen;
 
   //
   //
@@ -225,18 +224,15 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
-      _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
   //
   //
 
-  ModelScreenConfiguration get defaultConfiguration =>
-      isLoggedIn()
-          ? defaultOnLoginScreenConfiguration ??
-              defaultOnLogoutScreenConfiguration
-          : defaultOnLogoutScreenConfiguration;
+  ModelScreenConfiguration get defaultConfiguration => isLoggedIn()
+      ? defaultOnLoginScreenConfiguration ?? defaultOnLogoutScreenConfiguration
+      : defaultOnLogoutScreenConfiguration;
 
   //
   //
@@ -250,11 +246,9 @@ abstract base class _ScreenRouteManger {
   //
 
   void go(ModelScreenConfiguration configuration) {
-    final queryParameters =
-        configuration.args
+    final queryParameters = configuration.args
             ?.map(
-              (k, v) =>
-                  MapEntry(k is String ? k : null, v is String ? v : null),
+              (k, v) => MapEntry(k is String ? k : null, v is String ? v : null),
             )
             .nonNulls
             .nullIfEmpty ??
@@ -340,12 +334,7 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue =
-            (oldValue + [configuration]).reversed
-                .take(4)
-                .toList()
-                .reversed
-                .toList();
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
         return newValue;
       });
     }
