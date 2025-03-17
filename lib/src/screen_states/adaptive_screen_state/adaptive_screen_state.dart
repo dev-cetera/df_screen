@@ -22,11 +22,8 @@ import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<
-  TScreen extends Screen,
-  TExtra extends Object?,
-  TController extends ScreenController<TExtra>
->
+abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
     extends AdaptiveScreenStateInterface<TScreen, TExtra, TController>
     with
         MobileFrameWideLayoutScreenMixin,
@@ -80,23 +77,19 @@ abstract base class AdaptiveScreenState<
           body1,
           sideInsets(
             EdgeInsets.only(
-              left:
-                  letAsOrNull<PreferredSizeWidget>(
+              left: letAsOrNull<PreferredSizeWidget>(
                     leftSide,
                   )?.preferredSize.width ??
                   0.0,
-              right:
-                  letAsOrNull<PreferredSizeWidget>(
+              right: letAsOrNull<PreferredSizeWidget>(
                     rightSide,
                   )?.preferredSize.width ??
                   0.0,
-              top:
-                  letAsOrNull<PreferredSizeWidget>(
+              top: letAsOrNull<PreferredSizeWidget>(
                     topSide,
                   )?.preferredSize.height ??
                   0.0,
-              bottom:
-                  letAsOrNull<PreferredSizeWidget>(
+              bottom: letAsOrNull<PreferredSizeWidget>(
                     bottomSide,
                   )?.preferredSize.height ??
                   0.0,
@@ -115,9 +108,9 @@ abstract base class AdaptiveScreenState<
               children: [
                 topSide is PreferredSizeWidget
                     ? ConstrainedBox(
-                      constraints: BoxConstraints.loose(topSide.preferredSize),
-                      child: topSide,
-                    )
+                        constraints: BoxConstraints.loose(topSide.preferredSize),
+                        child: topSide,
+                      )
                     : topSide,
                 Expanded(
                   child: Row(
@@ -127,30 +120,30 @@ abstract base class AdaptiveScreenState<
                     children: [
                       leftSide is PreferredSizeWidget
                           ? ConstrainedBox(
-                            constraints: BoxConstraints.loose(
-                              leftSide.preferredSize,
-                            ),
-                            child: leftSide,
-                          )
+                              constraints: BoxConstraints.loose(
+                                leftSide.preferredSize,
+                              ),
+                              child: leftSide,
+                            )
                           : leftSide,
                       rightSide is PreferredSizeWidget
                           ? ConstrainedBox(
-                            constraints: BoxConstraints.loose(
-                              rightSide.preferredSize,
-                            ),
-                            child: rightSide,
-                          )
+                              constraints: BoxConstraints.loose(
+                                rightSide.preferredSize,
+                              ),
+                              child: rightSide,
+                            )
                           : rightSide,
                     ],
                   ),
                 ),
                 bottomSide is PreferredSizeWidget
                     ? ConstrainedBox(
-                      constraints: BoxConstraints.loose(
-                        bottomSide.preferredSize,
-                      ),
-                      child: bottomSide,
-                    )
+                        constraints: BoxConstraints.loose(
+                          bottomSide.preferredSize,
+                        ),
+                        child: bottomSide,
+                      )
                     : bottomSide,
               ],
             ),

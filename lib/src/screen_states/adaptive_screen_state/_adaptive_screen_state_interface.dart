@@ -18,11 +18,8 @@ import '/src/_index.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenStateInterface<
-  TScreen extends Screen,
-  TExtra extends Object?,
-  TController extends ScreenController<TExtra>
->
+abstract base class AdaptiveScreenStateInterface<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
     extends ScreenState<TScreen, TExtra, TController> {
   /// Activates for mobile device screen sizes. Override to customize the
   /// layout for these sizes. The [body] includes the widget returned by
@@ -162,7 +159,14 @@ abstract base class AdaptiveScreenStateInterface<
     return Stack(
       alignment: AlignmentDirectional.center,
       fit: StackFit.expand,
-      children: [background, body, foreground],
+      children: [
+        background,
+        Padding(
+          padding: MediaQuery.viewInsetsOf(context),
+          child: body,
+        ),
+        foreground,
+      ],
     );
   }
 

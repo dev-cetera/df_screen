@@ -22,12 +22,8 @@ import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenState<
-  TScreen extends Screen,
-  TExtra extends Object?,
-  TController extends ScreenController<TExtra>
->
-    extends State<TScreen> {
+abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
+    TController extends ScreenController<TExtra>> extends State<TScreen> {
   //
   //
   //
@@ -59,16 +55,15 @@ abstract base class ScreenState<
           controller: this._createController(),
           // If a timeout is specified, set up a debouncer to dispose of the
           //Controller once the screen is disposed and after the timeout.
-          debouncer:
-              controllerTimeout != null
-                  ? Debouncer(
-                    delay: controllerTimeout,
-                    onWaited: () {
-                      this.c.dispose();
-                      _controllerCache.remove(widget.key);
-                    },
-                  )
-                  : null,
+          debouncer: controllerTimeout != null
+              ? Debouncer(
+                  delay: controllerTimeout,
+                  onWaited: () {
+                    this.c.dispose();
+                    _controllerCache.remove(widget.key);
+                  },
+                )
+              : null,
         );
       } else {
         // Reset the debouncer so that thecontroller will again only time out
@@ -82,8 +77,7 @@ abstract base class ScreenState<
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (widget.createController(widget, this)..initController())
-        as TController;
+    return (widget.createController(widget, this)..initController()) as TController;
   }
 
   /// Stores all activecontrollers.
@@ -94,15 +88,15 @@ abstract base class ScreenState<
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      // TODO: DO I really need this? Test it!
       top: false,
       maintainBottomViewPadding: true,
-      child:
-          c.pExtra != null
-              ? PodBuilder(
-                pod: c.pExtra!,
-                builder: (context, snapshot) => buildWidget(context),
-              )
-              : buildWidget(context),
+      child: c.pExtra != null
+          ? PodBuilder(
+              pod: c.pExtra!,
+              builder: (context, snapshot) => buildWidget(context),
+            )
+          : buildWidget(context),
     );
   }
 
