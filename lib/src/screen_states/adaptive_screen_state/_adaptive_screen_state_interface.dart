@@ -161,6 +161,10 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen, TExtra 
       fit: StackFit.expand,
       children: [
         background,
+        // GestureDetector(
+        //   onTap: () => FocusScope.of(context).unfocus(),
+        //   child: background,
+        // ),
         Padding(
           padding: MediaQuery.viewInsetsOf(context),
           child: body,
@@ -186,7 +190,10 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen, TExtra 
   Widget background(BuildContext context) {
     return ColoredBox(
       color: Theme.of(context).colorScheme.surface,
-      child: const SizedBox.expand(),
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: const SizedBox.expand(),
+      ),
     );
   }
 

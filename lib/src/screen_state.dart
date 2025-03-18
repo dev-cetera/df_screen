@@ -87,17 +87,12 @@ abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
   @nonVirtual
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      // TODO: DO I really need this? Test it!
-      top: false,
-      maintainBottomViewPadding: true,
-      child: c.pExtra != null
-          ? PodBuilder(
-              pod: c.pExtra!,
-              builder: (context, snapshot) => buildWidget(context),
-            )
-          : buildWidget(context),
-    );
+    return c.pExtra != null
+        ? PodBuilder(
+            pod: c.pExtra!,
+            builder: (context, snapshot) => buildWidget(context),
+          )
+        : buildWidget(context);
   }
 
   @visibleForOverriding
