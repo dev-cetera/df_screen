@@ -16,8 +16,8 @@ import 'package:df_type/df_type.dart' show letAsOrNull;
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart' show nonVirtual;
 
-import '/src/_hidden/_index.g.dart';
-import '/src/_index.g.dart';
+import '/src/_hidden/_hidden.g.dart';
+import '/src/_src.g.dart';
 import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░

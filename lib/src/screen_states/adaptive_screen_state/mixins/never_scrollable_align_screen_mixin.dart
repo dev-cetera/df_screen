@@ -10,7 +10,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:df_scalable/df_scalable.dart';
 import 'package:flutter/material.dart';
 
 import '../_adaptive_screen_state_interface.dart';
@@ -19,19 +18,23 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin RotateIconHorizontalMobileLayoutScreenMixin<
-  TScreen extends Screen,
-  TExtra extends Object?,
-  TController extends ScreenController<TExtra>
->
+base mixin NeverScrollableAlignScreenMixin<TScreen extends Screen, TExtra extends Object?,
+        TController extends ScreenController<TExtra>>
     on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
   @override
-  Widget horizontalMobileLayout(BuildContext context, Widget body) {
-    return Center(
-      child: Icon(
-        Icons.rotate_90_degrees_ccw,
-        size: 48.sc,
-        color: Theme.of(context).colorScheme.onSurface,
+  Widget align(BuildContext context, Widget body, EdgeInsets sideInsets) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SizedBox(
+        height: MediaQuery.sizeOf(context).height,
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: Padding(
+            padding: sideInsets,
+            child: body,
+          ),
+        ),
       ),
     );
   }

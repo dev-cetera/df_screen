@@ -14,7 +14,7 @@ import 'package:flutter/widgets.dart' show State, StatefulWidget;
 
 import 'package:df_screen_core/df_screen_core.dart';
 
-import '_index.g.dart';
+import '_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

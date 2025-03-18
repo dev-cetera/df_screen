@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 
 import '../_adaptive_screen_state_interface.dart';
 
-import '/src/_index.g.dart';
+import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -28,8 +28,8 @@ base mixin DefaultScrollableAlignScreenMixin<TScreen extends Screen, TExtra exte
       child: SizedBox(
         height: MediaQuery.sizeOf(context).height,
         child: SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           physics: const BouncingScrollPhysics(),
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Padding(
             padding: sideInsets,
             child: body,

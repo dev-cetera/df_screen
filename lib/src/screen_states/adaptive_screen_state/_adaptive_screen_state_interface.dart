@@ -14,7 +14,7 @@
 
 import 'package:flutter/material.dart';
 
-import '/src/_index.g.dart';
+import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

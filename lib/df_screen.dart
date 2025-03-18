@@ -13,7 +13,7 @@
 /// A package that provides a useful screen widget andcontroller for Flutter apps.
 library;
 
-export 'src/_index.g.dart';
+export 'src/_src.g.dart';
 
 // Supporting packages.
 export 'package:df_collection/df_collection.dart';

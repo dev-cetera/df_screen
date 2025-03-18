@@ -12,7 +12,7 @@
 
 import 'package:flutter/widgets.dart' show StatefulWidget;
 
-import '_index.g.dart';
+import '_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
