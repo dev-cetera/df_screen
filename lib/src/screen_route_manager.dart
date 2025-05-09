@@ -10,6 +10,9 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+// Dark.
+import 'dart:developer';
+
 // Flutter.
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart' show nonVirtual, protected;
@@ -74,7 +77,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
       return super.commonPageBuilder(context, state, errorPath);
     },
     redirect: (context, state) async {
-      debugPrint('[$ScreenRouteManger] Redirecting ${state.fullPath}');
+      log('Redirecting ${state.fullPath}', name: 'ScreenRouteManger');
       return null;
     },
     initialLocation: super.defaultConfiguration.path,
@@ -204,8 +207,7 @@ abstract base class _ScreenRouteManger {
     required ModelScreenConfiguration configuration,
     required bool loggedIn,
     required bool verified,
-  })
-  findScreen;
+  }) findScreen;
 
   //
   //
@@ -225,18 +227,15 @@ abstract base class _ScreenRouteManger {
   //
 
   final _pScreenBreadcrumbs = ProtectedPod<List<ModelScreenConfiguration>>([]);
-  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs =>
-      _pScreenBreadcrumbs;
+  ValueListenable<List<ModelScreenConfiguration>> get pScreenBreadcrumbs => _pScreenBreadcrumbs;
 
   //
   //
   //
 
-  ModelScreenConfiguration get defaultConfiguration =>
-      isLoggedIn()
-          ? defaultOnLoginScreenConfiguration ??
-              defaultOnLogoutScreenConfiguration
-          : defaultOnLogoutScreenConfiguration;
+  ModelScreenConfiguration get defaultConfiguration => isLoggedIn()
+      ? defaultOnLoginScreenConfiguration ?? defaultOnLogoutScreenConfiguration
+      : defaultOnLogoutScreenConfiguration;
 
   //
   //
@@ -250,11 +249,9 @@ abstract base class _ScreenRouteManger {
   //
 
   void go(ModelScreenConfiguration configuration) {
-    final queryParameters =
-        configuration.args
+    final queryParameters = configuration.args
             ?.map(
-              (k, v) =>
-                  MapEntry(k is String ? k : null, v is String ? v : null),
+              (k, v) => MapEntry(k is String ? k : null, v is String ? v : null),
             )
             .nonNulls
             .nullIfEmpty ??
@@ -340,12 +337,7 @@ abstract base class _ScreenRouteManger {
   void _addBreadcrumb(ModelScreenConfiguration configuration) {
     if (_pScreenBreadcrumbs.value.lastOrNull != configuration) {
       _pScreenBreadcrumbs.update((oldValue) {
-        final newValue =
-            (oldValue + [configuration]).reversed
-                .take(4)
-                .toList()
-                .reversed
-                .toList();
+        final newValue = (oldValue + [configuration]).reversed.take(4).toList().reversed.toList();
         return newValue;
       });
     }
@@ -388,15 +380,20 @@ abstract base class _ScreenRouteManger {
     } else {
       try {
         screen = (page as dynamic).child as Widget;
-      } catch (e) {
-        debugPrint('[$ScreenRouteManger] Error: "page" has no "child" widget');
+      } catch (e, stackTrace) {
+        log(
+          'Error: "page" has no "child" widget',
+          stackTrace: stackTrace,
+          name: 'ScreenRouteManger',
+        );
       }
     }
     if (screen is Screen) {
       return screen;
     } else {
-      debugPrint(
-        '[$ScreenRouteManger] Error: "screen" is not of type "Screen"',
+      log(
+        'Error: "screen" is not of type "Screen"',
+        name: 'ScreenRouteManger',
       );
     }
     return null;
