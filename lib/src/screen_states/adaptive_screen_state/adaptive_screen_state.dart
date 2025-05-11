@@ -74,7 +74,10 @@ abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends O
         final body1 = padding(body0);
         final body2 = align(
           context,
-          body1,
+          Padding(
+            padding: MediaQuery.of(context).padding,
+            child: body1,
+          ),
           sideInsets(
             EdgeInsets.only(
               left: letAsOrNull<PreferredSizeWidget>(
