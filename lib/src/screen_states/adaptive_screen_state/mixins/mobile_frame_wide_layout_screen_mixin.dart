@@ -25,7 +25,7 @@ base mixin MobileFrameWideLayoutScreenMixin<TScreen extends Screen, TExtra exten
   @override
   Widget wideLayout(BuildContext context, Widget body) {
     return Container(
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Theme.of(context).colorScheme.inverseSurface,
       child: Center(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -34,22 +34,9 @@ base mixin MobileFrameWideLayoutScreenMixin<TScreen extends Screen, TExtra exten
                 maxWidth: constraints.maxHeight / MIN_MOBILE_ASPECT_RATIO,
                 maxHeight: double.infinity,
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14.0),
-                  color: Colors.transparent,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.shadow,
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                ),
-                child: Surface(
-                  borderRadius: BorderRadius.circular(14.0),
-                  color: Colors.transparent,
-                  child: layout(context, body),
-                ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(14.0),
+                child: layout(context, body),
               ),
             );
           },
