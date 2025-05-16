@@ -10,9 +10,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-// Dark.
-import 'dart:developer';
-
 // Flutter.
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart' show nonVirtual, protected;
@@ -23,6 +20,7 @@ import 'package:flutter/material.dart' show MaterialPage;
 import 'package:df_collection/df_collection.dart';
 import 'package:df_screen_core/df_screen_core.dart';
 import 'package:df_pod/df_pod.dart';
+import 'package:df_log/df_log.dart';
 
 // GoRouter.
 import 'package:go_router/go_router.dart';
@@ -77,7 +75,7 @@ final class ScreenRouteManger extends _ScreenRouteManger {
       return super.commonPageBuilder(context, state, errorPath);
     },
     redirect: (context, state) async {
-      log('Redirecting ${state.fullPath}', name: 'ScreenRouteManger');
+      Glog.trace('Redirecting ${state.fullPath}');
       return null;
     },
     initialLocation: super.defaultConfiguration.path,
@@ -380,21 +378,14 @@ abstract base class _ScreenRouteManger {
     } else {
       try {
         screen = (page as dynamic).child as Widget;
-      } catch (e, stackTrace) {
-        log(
-          'Error: "page" has no "child" widget',
-          stackTrace: stackTrace,
-          name: 'ScreenRouteManger',
-        );
+      } catch (e) {
+        Glog.err(e);
       }
     }
     if (screen is Screen) {
       return screen;
     } else {
-      log(
-        'Error: "screen" is not of type "Screen"',
-        name: 'ScreenRouteManger',
-      );
+      Glog.err('"Screen" is not of type "Screen"');
     }
     return null;
   }
