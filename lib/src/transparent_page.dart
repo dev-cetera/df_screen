@@ -20,7 +20,7 @@ class TransparentPage<T> extends MaterialPage<T> {
   //
 
   TransparentPage({Widget? child})
-    : super(key: UniqueKey(), child: SizedBox(child: child));
+      : super(key: UniqueKey(), child: SizedBox(child: child));
 
   //
   //
@@ -52,7 +52,7 @@ class _TransparentRoute<T> extends PageRoute<T> {
   //
 
   _TransparentRoute({required this.builder, required RouteSettings settings})
-    : super(settings: settings, fullscreenDialog: false);
+      : super(settings: settings, fullscreenDialog: false);
 
   //
   //

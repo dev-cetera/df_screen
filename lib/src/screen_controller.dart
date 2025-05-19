@@ -31,7 +31,7 @@ base class ScreenController<TExtra extends Object?> {
   //
 
   ScreenController(this.superScreen, this.superState, [TExtra? extra])
-    : pExtra = extra != null ? RootPod(extra) : null;
+      : pExtra = extra != null ? RootPod(extra) : null;
 
   //
   //

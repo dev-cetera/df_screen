@@ -95,29 +95,29 @@ const MIN_MOBILE_ASPECT_RATIO = 4.0 / 3.0;
 
 /// The smallest of the following common aspect ratios for mobile phones (4.0 / 3.0)
 double get minMobileAspectRatio => {
-  // Samsungs
-  16.0 / 10.0,
-  // Pixels, Samsungs
-  16.0 / 9.0,
-  // Pixels, most iPhones before 2018
-  18.0 / 9.0,
-  // Pixels
-  18.5 / 9.0,
-  18.7 / 9.0,
-  19.0 / 10.0,
-  // Pixels
-  19.0 / 9.0,
-  // Pixels and most iPhones after 2018
-  19.5 / 9.0,
-  3.0 / 2.0,
-  // Old iPhones, and many tablets!
-  4.0 / 3.0,
-  5.0 / 3.0,
-  // Samsungs
-  2.10 / 1,
-  20.0 / 9.0,
-  193 / 90,
-}.reduce((a, b) => a <= b ? a : b);
+      // Samsungs
+      16.0 / 10.0,
+      // Pixels, Samsungs
+      16.0 / 9.0,
+      // Pixels, most iPhones before 2018
+      18.0 / 9.0,
+      // Pixels
+      18.5 / 9.0,
+      18.7 / 9.0,
+      19.0 / 10.0,
+      // Pixels
+      19.0 / 9.0,
+      // Pixels and most iPhones after 2018
+      19.5 / 9.0,
+      3.0 / 2.0,
+      // Old iPhones, and many tablets!
+      4.0 / 3.0,
+      5.0 / 3.0,
+      // Samsungs
+      2.10 / 1,
+      20.0 / 9.0,
+      193 / 90,
+    }.reduce((a, b) => a <= b ? a : b);
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

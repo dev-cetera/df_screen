@@ -19,8 +19,8 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin DefaultPaddingScreenMixin<TScreen extends Screen, TExtra extends Object?,
-        TController extends ScreenController<TExtra>>
+base mixin DefaultPaddingScreenMixin<TScreen extends Screen,
+        TExtra extends Object?, TController extends ScreenController<TExtra>>
     on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
   @override
   Widget padding(Widget child) {

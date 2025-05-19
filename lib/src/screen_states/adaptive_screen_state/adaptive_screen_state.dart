@@ -22,8 +22,8 @@ import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends Object?,
-        TController extends ScreenController<TExtra>>
+abstract base class AdaptiveScreenState<TScreen extends Screen,
+        TExtra extends Object?, TController extends ScreenController<TExtra>>
     extends AdaptiveScreenStateInterface<TScreen, TExtra, TController>
     with
         MobileFrameWideLayoutScreenMixin,
@@ -111,7 +111,8 @@ abstract base class AdaptiveScreenState<TScreen extends Screen, TExtra extends O
               children: [
                 topSide is PreferredSizeWidget
                     ? ConstrainedBox(
-                        constraints: BoxConstraints.loose(topSide.preferredSize),
+                        constraints:
+                            BoxConstraints.loose(topSide.preferredSize),
                         child: topSide,
                       )
                     : topSide,

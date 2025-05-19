@@ -97,13 +97,11 @@ class _State extends State<ViewInsetsBuilder> with WidgetsBindingObserver {
 
   void _updateViewInsets() {
     final viewInsets = View.of(context).viewInsets;
-    final reachedMax =
-        viewInsets.top > _viewInsets.top ||
+    final reachedMax = viewInsets.top > _viewInsets.top ||
         viewInsets.bottom > _viewInsets.bottom ||
         viewInsets.left > _viewInsets.left ||
         viewInsets.right > _viewInsets.right;
-    final reachedMin =
-        viewInsets.top == 0 &&
+    final reachedMin = viewInsets.top == 0 &&
         viewInsets.bottom == 0 &&
         viewInsets.left == 0 &&
         viewInsets.right == 0;
