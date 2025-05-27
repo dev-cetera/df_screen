@@ -77,8 +77,7 @@ abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (widget.createController(widget, this)..initController())
-        as TController;
+    return (widget.createController(widget, this)..initController()) as TController;
   }
 
   /// Stores all activecontrollers.
