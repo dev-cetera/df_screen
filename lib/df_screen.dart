@@ -20,6 +20,7 @@ export 'package:df_collection/df_collection.dart';
 export 'package:df_config/df_config.dart';
 export 'package:df_di/df_di.dart';
 export 'package:df_generate_dart_models_core/df_generate_dart_models_core.dart';
+export 'package:df_router/df_router.dart';
 export 'package:df_scalable/df_scalable.dart';
 export 'package:df_screen_core/df_screen_core.dart';
 export 'package:df_type/df_type.dart';

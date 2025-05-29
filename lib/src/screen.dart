@@ -11,24 +11,28 @@
 //.title~
 
 import 'package:flutter/widgets.dart' show StatefulWidget;
+import 'package:df_router/df_router.dart';
 
 import '_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class Screen<TExtra extends Object?> extends StatefulWidget {
+abstract base class Screen<TExtra extends Object?> extends StatefulWidget
+    with RouteWidgetMixin<TExtra> {
   //
   //
   //
 
-  final TExtra? extra;
+  @override
+  final RouteState<TExtra>? routeState;
+
   final Duration? controllerTimeout;
 
   //
   //
   //
 
-  const Screen({super.key, this.extra, this.controllerTimeout = Duration.zero});
+  const Screen({super.key, this.routeState, this.controllerTimeout = Duration.zero});
 
   //
   //
