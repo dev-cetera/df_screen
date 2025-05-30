@@ -33,8 +33,7 @@ final class ExampleScreenController extends ScreenController {
   ExampleScreenController(super.screen, super.state);
 }
 
-final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen,
-    Object?, ExampleScreenController> {
+final class ExampleScreenState extends AdaptiveScreenState<ExampleScreen, ExampleScreenController> {
   @override
   Widget wideBody(BuildContext context) {
     return Container(

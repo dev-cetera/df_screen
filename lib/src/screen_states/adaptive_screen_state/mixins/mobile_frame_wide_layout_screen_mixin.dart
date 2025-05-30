@@ -19,9 +19,8 @@ import '/src/_hidden/_hidden.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin MobileFrameWideLayoutScreenMixin<TScreen extends Screen,
-        TExtra extends Object?, TController extends ScreenController<TExtra>>
-    on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
+base mixin MobileFrameWideLayoutScreenMixin<TScreen extends Screen, TController extends ScreenController>
+    on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget wideLayout(BuildContext context, Widget body) {
     return Container(

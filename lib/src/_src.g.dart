@@ -7,7 +7,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-export './screen_page.dart';
 export './screen_bread_crumb_bar.dart';
 export './screen_states/adaptive_screen_state/mixins/default_padding_screen_mixin.dart';
 export './screen_states/adaptive_screen_state/mixins/default_scrollable_align_screen_mixin.dart';

@@ -12,7 +12,6 @@
 
 // ignore_for_file: invalid_use_of_visible_for_overriding_member
 
-import 'package:df_pod/df_pod.dart';
 import 'package:flutter/material.dart';
 
 import 'package:df_debouncer/df_debouncer.dart';
@@ -22,8 +21,8 @@ import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
-    TController extends ScreenController<TExtra>> extends State<TScreen> {
+abstract base class ScreenState<TScreen extends Screen, TController extends ScreenController>
+    extends State<TScreen> {
   //
   //
   //
@@ -35,6 +34,7 @@ abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
 
   @override
   void initState() {
+    print('INIT STATE: ${widget.runtimeType}');
     this._initController();
     super.initState();
   }
@@ -87,12 +87,7 @@ abstract base class ScreenState<TScreen extends Screen, TExtra extends Object?,
   @nonVirtual
   @override
   Widget build(BuildContext context) {
-    return c.pExtra != null
-        ? PodBuilder(
-            pod: c.pExtra!,
-            builder: (context, snapshot) => buildWidget(context),
-          )
-        : buildWidget(context);
+    return buildWidget(context);
   }
 
   @visibleForOverriding

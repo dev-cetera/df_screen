@@ -19,9 +19,8 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin RotateIconHorizontalMobileLayoutScreenMixin<TScreen extends Screen,
-        TExtra extends Object?, TController extends ScreenController<TExtra>>
-    on AdaptiveScreenStateInterface<TScreen, TExtra, TController> {
+base mixin RotateIconHorizontalMobileLayoutScreenMixin<TScreen extends Screen, TController extends ScreenController>
+    on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget horizontalMobileLayout(BuildContext context, Widget body) {
     return ColoredBox(

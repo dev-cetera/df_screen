@@ -10,28 +10,25 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:df_pod/df_pod.dart';
 import 'package:flutter/foundation.dart';
 
 import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base class ScreenController<TExtra extends Object?> {
+base class ScreenController {
   //
   //
   //
 
   final Screen? superScreen;
   final ScreenState? superState;
-  final RootPod<TExtra>? pExtra;
 
   //
   //
   //
 
-  ScreenController(this.superScreen, this.superState, [TExtra? extra])
-      : pExtra = extra != null ? RootPod(extra) : null;
+  ScreenController(this.superScreen, this.superState);
 
   //
   //
@@ -47,7 +44,5 @@ base class ScreenController<TExtra extends Object?> {
 
   @mustCallSuper
   @visibleForOverriding
-  void dispose() {
-    pExtra?.dispose();
-  }
+  void dispose() {}
 }
