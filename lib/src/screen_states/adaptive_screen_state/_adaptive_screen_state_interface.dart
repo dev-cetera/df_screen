@@ -18,8 +18,8 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenStateInterface<TScreen extends Screen, TController extends ScreenController>
-    extends ScreenState<TScreen, TController> {
+abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
+    TController extends ScreenController> extends ScreenState<TScreen, TController> {
   /// Activates for mobile device screen sizes. Override to customize the
   /// layout for these sizes. The [body] includes the widget returned by
   /// [mobileBody].
@@ -101,7 +101,7 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen, TContro
   Widget align(BuildContext context, Widget body, EdgeInsets sideInsets);
 
   /// Override to specify the padding for the body.
-  Widget padding(Widget child);
+  Widget padding(BuildContext context, Widget child);
 
   /// Override to further define how the main [body], [background] and
   /// [foreground] are presented
@@ -189,10 +189,7 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen, TContro
   Widget background(BuildContext context) {
     return ColoredBox(
       color: Theme.of(context).colorScheme.surface,
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: const SizedBox.expand(),
-      ),
+      child: const SizedBox.expand(),
     );
   }
 

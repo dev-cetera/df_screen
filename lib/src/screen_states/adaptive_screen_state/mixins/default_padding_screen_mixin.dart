@@ -22,7 +22,7 @@ import '/src/_src.g.dart';
 base mixin DefaultPaddingScreenMixin<TScreen extends Screen, TController extends ScreenController>
     on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
-  Widget padding(Widget child) {
+  Widget padding(BuildContext context, Widget child) {
     return Padding(
       padding: EdgeInsets.only(
         top: 28.sc,

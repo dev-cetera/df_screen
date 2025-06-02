@@ -15,12 +15,12 @@ import 'package:flutter/material.dart';
 import '../_adaptive_screen_state_interface.dart';
 
 import '/src/_src.g.dart';
-import '/src/_hidden/_hidden.g.dart';
+import '../../../_utils/_utils.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin MobileFrameWideLayoutScreenMixin<TScreen extends Screen, TController extends ScreenController>
-    on AdaptiveScreenStateInterface<TScreen, TController> {
+base mixin MobileFrameWideLayoutScreenMixin<TScreen extends Screen,
+    TController extends ScreenController> on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget wideLayout(BuildContext context, Widget body) {
     return Container(

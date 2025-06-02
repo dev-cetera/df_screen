@@ -16,7 +16,7 @@ import 'package:df_type/df_type.dart' show letAsOrNull;
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart' show nonVirtual;
 
-import '/src/_hidden/_hidden.g.dart';
+import '../../_utils/_utils.g.dart';
 import '/src/_src.g.dart';
 import '_adaptive_screen_state_interface.dart';
 
@@ -36,6 +36,33 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
   @nonVirtual
   @override
   Widget buildWidget(BuildContext context) {
+    // return Column(
+    //   children: [
+    //     topSide(context, 0.0),
+    //     Expanded(
+    //       child: body(context),
+    //     ),
+    //     bottomSide(context, 0.0)
+    //   ],
+    // );
+    // return AdaptiveLayoutBuilder(
+    //   bodyBuilder: body,
+    //   mobileLayoutBuilder: mobileLayout,
+    //   horizontalMobileLayoutBuilder: horizontalMobileLayout,
+    //   narrowLayoutBuilder: narrowLayout,
+    //   wideLayoutBuilder: wideLayout,
+    //   mobileBodyBuilder: mobileBody,
+    //   horizontalMobileBodyBuilder: horizontalMobileBody,
+    //   narrowBodyBuilder: narrowBody,
+    //   wideBodyBuilder: wideBody,
+    //   topSideBuilder: topSide,
+    //   bottomSideBuilder: bottomSide,
+    //   leftSideBuilder: leftSide,
+    //   rightSideBuilder: rightSide,
+    //   backgroundBuilder: background,
+    //   foregroundBuilder: foreground,
+    //   paddingBuilder: padding,
+    // );
     final screenSize = MediaQuery.of(context).size;
     final calculator = ScreenCalculator(screenSize.width, screenSize.height);
     final appLayout = AppLayout.fromScreenCalculator(calculator);
@@ -71,7 +98,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
         final bottomSide = this.bottomSide(context, params.viewInsets.bottom);
         final leftSide = this.leftSide(context, params.viewInsets.left);
         final rightSide = this.rightSide(context, params.viewInsets.right);
-        final body1 = padding(body0);
+        final body1 = padding(context, body0);
         final body2 = align(
           context,
           Padding(

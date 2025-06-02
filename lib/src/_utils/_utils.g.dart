@@ -8,7 +8,6 @@
 //.title~
 
 export './view_insets_builder.dart';
-export './image_painter.dart';
 export './current_platform.dart';
 export './screen_calculator.dart';
 export './surface.dart';

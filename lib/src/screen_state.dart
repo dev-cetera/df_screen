@@ -34,7 +34,6 @@ abstract base class ScreenState<TScreen extends Screen, TController extends Scre
 
   @override
   void initState() {
-    print('INIT STATE: ${widget.runtimeType}');
     this._initController();
     super.initState();
   }

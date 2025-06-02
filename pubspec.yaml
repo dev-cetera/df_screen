@@ -12,7 +12,7 @@
 
 name: df_screen
 description: A package that provides a useful screen widget and controller for Flutter apps.
-version: 0.7.2
+version: 0.8.0
 repository: https://github.com/dev-cetera/df_screen
 funding:
   - https://www.buymeacoffee.com/dev_cetera
@@ -39,14 +39,13 @@ dependencies:
   df_debouncer: ^0.4.6
   df_di: ^0.10.22
   df_generate_dart_models_core: ^0.9.8
-  df_log: ^0.3.3
-  df_pod: ^0.16.9
+  df_log: ^0.3.5
+  df_pod: ^0.16.10
   df_scalable: ^0.8.1
   df_screen_core: ^0.5.1
   df_type: ^0.10.3
-  df_router:
-    path: ../df_router
-  device_info_plus: ^11.3.3
+  df_router: ^0.4.1
+  device_info_plus: ^11.4.0
   meta: ^1.16.0
 
 ## -----------------------------------------------------------------------------
