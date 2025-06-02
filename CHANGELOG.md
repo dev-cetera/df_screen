@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.8.0]
+
+- Released @ 3/2025 (UTC)
+- breaking: New changes
+
 ## [0.7.2]
 
 - Released @ 3/2025 (UTC)
