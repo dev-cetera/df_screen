@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import '../_adaptive_screen_state_interface.dart';
 
 import '/src/_src.g.dart';
-import '../../../_utils/_utils.g.dart';
+import '/src/_utils/_utils.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

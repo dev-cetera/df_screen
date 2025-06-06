@@ -63,6 +63,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
     //   foregroundBuilder: foreground,
     //   paddingBuilder: padding,
     // );
+
     final screenSize = MediaQuery.of(context).size;
     final calculator = ScreenCalculator(screenSize.width, screenSize.height);
     final appLayout = AppLayout.fromScreenCalculator(calculator);
@@ -167,14 +168,16 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
                     ],
                   ),
                 ),
-                bottomSide is PreferredSizeWidget
-                    ? ConstrainedBox(
-                        constraints: BoxConstraints.loose(
-                          bottomSide.preferredSize,
-                        ),
-                        child: bottomSide,
-                      )
-                    : bottomSide,
+                Container(
+                  child: bottomSide is PreferredSizeWidget
+                      ? ConstrainedBox(
+                          constraints: BoxConstraints.loose(
+                            bottomSide.preferredSize,
+                          ),
+                          child: bottomSide,
+                        )
+                      : bottomSide,
+                ),
               ],
             ),
           ],
@@ -186,11 +189,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
           background(context),
           foreground(context),
         );
-        final body5 = ColoredBox(
-          color: Theme.of(context).colorScheme.surface,
-          child: body4,
-        );
-        return body5;
+        return body4;
       },
     );
   }

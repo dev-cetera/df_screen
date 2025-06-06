@@ -19,18 +19,15 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin RotateIconHorizontalMobileLayoutScreenMixin<TScreen extends Screen, TController extends ScreenController>
-    on AdaptiveScreenStateInterface<TScreen, TController> {
+base mixin RotateIconHorizontalMobileLayoutScreenMixin<TScreen extends Screen,
+    TController extends ScreenController> on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget horizontalMobileLayout(BuildContext context, Widget body) {
-    return ColoredBox(
-      color: Theme.of(context).colorScheme.tertiary,
-      child: Center(
-        child: Icon(
-          Icons.rotate_90_degrees_ccw,
-          size: 48.sc,
-          color: Theme.of(context).colorScheme.onTertiary,
-        ),
+    return Center(
+      child: Icon(
+        Icons.rotate_90_degrees_ccw,
+        size: 48.sc,
+        color: Theme.of(context).colorScheme.primary,
       ),
     );
   }
