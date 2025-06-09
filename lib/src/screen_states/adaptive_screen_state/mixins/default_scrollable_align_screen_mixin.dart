@@ -18,8 +18,11 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin DefaultScrollableAlignScreenMixin<TScreen extends Screen,
-    TController extends ScreenController> on AdaptiveScreenStateInterface<TScreen, TController> {
+base mixin DefaultScrollableAlignScreenMixin<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
+    on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget align(BuildContext context, Widget body, EdgeInsets sideInsets) {
     return Align(
@@ -29,10 +32,7 @@ base mixin DefaultScrollableAlignScreenMixin<TScreen extends Screen,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          child: Padding(
-            padding: sideInsets,
-            child: body,
-          ),
+          child: Padding(padding: sideInsets, child: body),
         ),
       ),
     );

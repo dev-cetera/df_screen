@@ -18,8 +18,11 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
-    TController extends ScreenController> extends ScreenState<TScreen, TController> {
+abstract base class AdaptiveScreenStateInterface<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
+    extends ScreenState<TScreen, TController> {
   /// Activates for mobile device screen sizes. Override to customize the
   /// layout for these sizes. The [body] includes the widget returned by
   /// [mobileBody].
@@ -164,10 +167,7 @@ abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
         //   onTap: () => FocusScope.of(context).unfocus(),
         //   child: background,
         // ),
-        Padding(
-          padding: MediaQuery.viewInsetsOf(context),
-          child: body,
-        ),
+        Padding(padding: MediaQuery.viewInsetsOf(context), child: body),
         foreground,
       ],
     );

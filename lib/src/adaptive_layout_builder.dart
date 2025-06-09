@@ -38,7 +38,8 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
   final Widget Function(BuildContext, Widget, EdgeInsets)? alignBuilder;
 
   /// Presentation of body, background, and foreground
-  final Widget Function(BuildContext, Widget, Widget, Widget)? presentationBuilder;
+  final Widget Function(BuildContext, Widget, Widget, Widget)?
+  presentationBuilder;
 
   /// Side insets calculation
   final EdgeInsets Function(BuildContext, EdgeInsets)? sideInsetsBuilder;
@@ -79,31 +80,63 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
         body = paddingBuilder?.call(context, body) ?? body;
 
         // Build side widgets
-        final topSide = topSideBuilder?.call(context, MediaQuery.of(context).viewInsets.top) ??
+        final topSide =
+            topSideBuilder?.call(
+              context,
+              MediaQuery.of(context).viewInsets.top,
+            ) ??
             const SizedBox.shrink();
         final bottomSide =
-            bottomSideBuilder?.call(context, MediaQuery.of(context).viewInsets.bottom) ??
-                const SizedBox.shrink();
-        final leftSide = leftSideBuilder?.call(context, MediaQuery.of(context).viewInsets.left) ??
+            bottomSideBuilder?.call(
+              context,
+              MediaQuery.of(context).viewInsets.bottom,
+            ) ??
+            const SizedBox.shrink();
+        final leftSide =
+            leftSideBuilder?.call(
+              context,
+              MediaQuery.of(context).viewInsets.left,
+            ) ??
             const SizedBox.shrink();
         final rightSide =
-            rightSideBuilder?.call(context, MediaQuery.of(context).viewInsets.right) ??
-                const SizedBox.shrink();
+            rightSideBuilder?.call(
+              context,
+              MediaQuery.of(context).viewInsets.right,
+            ) ??
+            const SizedBox.shrink();
 
         // Calculate side insets
-        final sideInsets = sideInsetsBuilder?.call(
+        final sideInsets =
+            sideInsetsBuilder?.call(
               context,
               EdgeInsets.only(
-                left: letAsOrNull<PreferredSizeWidget>(leftSide)?.preferredSize.width ?? 0.0,
-                right: letAsOrNull<PreferredSizeWidget>(rightSide)?.preferredSize.width ?? 0.0,
-                top: letAsOrNull<PreferredSizeWidget>(topSide)?.preferredSize.height ?? 0.0,
-                bottom: letAsOrNull<PreferredSizeWidget>(bottomSide)?.preferredSize.height ?? 0.0,
+                left:
+                    letAsOrNull<PreferredSizeWidget>(
+                      leftSide,
+                    )?.preferredSize.width ??
+                    0.0,
+                right:
+                    letAsOrNull<PreferredSizeWidget>(
+                      rightSide,
+                    )?.preferredSize.width ??
+                    0.0,
+                top:
+                    letAsOrNull<PreferredSizeWidget>(
+                      topSide,
+                    )?.preferredSize.height ??
+                    0.0,
+                bottom:
+                    letAsOrNull<PreferredSizeWidget>(
+                      bottomSide,
+                    )?.preferredSize.height ??
+                    0.0,
               ),
             ) ??
             EdgeInsets.zero;
 
         // Align body with side insets
-        body = alignBuilder?.call(context, body, sideInsets) ??
+        body =
+            alignBuilder?.call(context, body, sideInsets) ??
             _defaultAlign(context, body, sideInsets);
 
         // Combine body with side widgets
@@ -119,7 +152,9 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
               children: [
                 topSide is PreferredSizeWidget
                     ? ConstrainedBox(
-                        constraints: BoxConstraints.loose(topSide.preferredSize),
+                        constraints: BoxConstraints.loose(
+                          topSide.preferredSize,
+                        ),
                         child: topSide,
                       )
                     : topSide,
@@ -131,14 +166,18 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
                     children: [
                       leftSide is PreferredSizeWidget
                           ? ConstrainedBox(
-                              constraints: BoxConstraints.loose(leftSide.preferredSize),
+                              constraints: BoxConstraints.loose(
+                                leftSide.preferredSize,
+                              ),
                               child: leftSide,
                             )
                           : leftSide,
                       const Spacer(),
                       rightSide is PreferredSizeWidget
                           ? ConstrainedBox(
-                              constraints: BoxConstraints.loose(rightSide.preferredSize),
+                              constraints: BoxConstraints.loose(
+                                rightSide.preferredSize,
+                              ),
                               child: rightSide,
                             )
                           : rightSide,
@@ -147,7 +186,9 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
                 ),
                 bottomSide is PreferredSizeWidget
                     ? ConstrainedBox(
-                        constraints: BoxConstraints.loose(bottomSide.preferredSize),
+                        constraints: BoxConstraints.loose(
+                          bottomSide.preferredSize,
+                        ),
                         child: bottomSide,
                       )
                     : bottomSide,
@@ -157,7 +198,8 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
         );
 
         // Apply presentation
-        body = presentationBuilder?.call(
+        body =
+            presentationBuilder?.call(
               context,
               body,
               backgroundBuilder?.call(context) ?? _defaultBackground(context),
@@ -238,10 +280,7 @@ Widget _defaultPresentation(
     fit: StackFit.expand,
     children: [
       background,
-      Padding(
-        padding: MediaQuery.viewInsetsOf(context),
-        child: body,
-      ),
+      Padding(padding: MediaQuery.viewInsetsOf(context), child: body),
       foreground,
     ],
   );

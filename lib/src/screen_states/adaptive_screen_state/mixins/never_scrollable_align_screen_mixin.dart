@@ -18,7 +18,10 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin NeverScrollableAlignScreenMixin<TScreen extends Screen, TController extends ScreenController>
+base mixin NeverScrollableAlignScreenMixin<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
     on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget align(BuildContext context, Widget body, EdgeInsets sideInsets) {
@@ -29,10 +32,7 @@ base mixin NeverScrollableAlignScreenMixin<TScreen extends Screen, TController e
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          child: Padding(
-            padding: sideInsets,
-            child: body,
-          ),
+          child: Padding(padding: sideInsets, child: body),
         ),
       ),
     );

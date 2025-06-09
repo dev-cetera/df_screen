@@ -32,7 +32,11 @@ abstract base class Screen<TExtra extends Object?> extends StatefulWidget
   //
   //
 
-  const Screen({super.key, this.routeState, this.controllerTimeout = Duration.zero});
+  const Screen({
+    super.key,
+    this.routeState,
+    this.controllerTimeout = Duration.zero,
+  });
 
   //
   //

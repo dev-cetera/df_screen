@@ -21,7 +21,10 @@ import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenState<TScreen extends Screen, TController extends ScreenController>
+abstract base class ScreenState<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
     extends State<TScreen> {
   //
   //
@@ -76,7 +79,8 @@ abstract base class ScreenState<TScreen extends Screen, TController extends Scre
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (widget.createController(widget, this)..initController()) as TController;
+    return (widget.createController(widget, this)..initController())
+        as TController;
   }
 
   /// Stores all activecontrollers.
