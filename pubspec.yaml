@@ -37,7 +37,7 @@ dependencies:
   df_collection: ^0.9.1
   df_config: ^0.7.1
   df_debouncer: ^0.4.9
-  df_di: ^0.12.0
+  df_di: ^0.12.2
   df_generate_dart_models_core: ^0.9.9
   df_log: ^0.3.10
   df_pod: ^0.18.1
