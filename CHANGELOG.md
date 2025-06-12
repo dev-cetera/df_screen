@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.8.3]
+
+- Released @ 6/2025 (UTC)
+- chore: Update dependencies
+
 ## [0.8.2]
 
 - Released @ 6/2025 (UTC)
