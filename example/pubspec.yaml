@@ -1,8 +1,12 @@
 name: adaptive_screen_example
+homepage: https://dev-cetera.com/
+repository: https://github.com/robmllze/df_screen
+funding:
+  - https://www.buymeacoffee.com/dev_cetera
 publish_to: 'none'
 
 environment:
-  sdk: ^3.5.3
+  sdk: ">=3.5.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -18,4 +22,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
+

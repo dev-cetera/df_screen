@@ -3,24 +3,23 @@
 
 Dart & Flutter Packages by dev-cetera.com & contributors.
 
-[![Pub Package](https://img.shields.io/pub/v/df_screen.svg)](https://pub.dev/packages/df_screen)
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/dev-cetera/df_screen/main/LICENSE)
+[![pub](https://img.shields.io/pub/v/df_screen.svg)](https://pub.dev/packages/df_screen)
+[![tag](https://img.shields.io/badge/tag-v0.8.5-purple)](https://github.com/dev-cetera/df_screen/tree/v0.8.5)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/dev-cetera/df_screen/main/LICENSE)
 
 ---
+
+<!-- BEGIN _README_CONTENT -->
 
 ## Summary
 
 A package that provides a useful screen widget andcontroller for Flutter apps.
 
-For a full feature set, please refer to the [API reference](https://pub.dev/documentation/df_screen/).
+<!-- END _README_CONTENT -->
 
-## Usage Example
+---
 
-Unavailable. Please check in later.
-
-## Installation
-
-Use this package as a dependency by adding it to your `pubspec.yaml` file (see [here](https://pub.dev/packages/df_screen/install)).
+Please refer to the [API reference](https://pub.dev/documentation/df_screen/) for more information.
 
 ---
 
@@ -49,4 +48,5 @@ If you're enjoying this package and find it valuable, consider showing your appr
 
 ## License
 
-This project is released under the MIT License. See [LICENSE](https://raw.githubusercontent.com/dev-cetera/df_screen/main/LICENSE) for more information.
+This project is released under the [MIT License](https://raw.githubusercontent.com/dev-cetera/df_screen/main/LICENSE). See [LICENSE](https://raw.githubusercontent.com/dev-cetera/df_screen/main/LICENSE) for more information.
+
