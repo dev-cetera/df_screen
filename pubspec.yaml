@@ -16,7 +16,7 @@ repository: https://github.com/robmllze/df_screen
 funding:
   - https://www.buymeacoffee.com/dev_cetera
 description: A package that provides a useful screen widget and controller for Flutter apps.
-version: 0.8.7
+version: 0.8.8
 topics:
   - user-interface
   - widgets
