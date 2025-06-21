@@ -35,18 +35,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-  df_collection: ^0.9.3
-  df_config: ^0.7.3
-  df_debouncer: ^0.4.13
-  df_di: ^0.12.7
-  df_generate_dart_models_core: ^0.9.19
-  df_log: ^0.3.17
-  df_pod: ^0.18.4
-  df_scalable: ^0.9.3
-  df_screen_core: ^0.5.3
-  df_type: ^0.12.3
-  df_router: ^0.4.11
-  device_info_plus: ^11.4.0
+  df_collection: ^0.9.4
+  df_config: ^0.7.4
+  df_debouncer: ^0.4.14
+  df_di: ^0.13.0
+  df_generate_dart_models_core: ^0.9.20
+  df_log: ^0.3.18
+  df_pod: ^0.18.5
+  df_scalable: ^0.9.4
+  df_screen_core: ^0.5.4
+  df_type: ^0.12.7
+  df_router: ^0.4.12
+  device_info_plus: ^11.5.0
   meta: ^1.16.0
 
 ## -----------------------------------------------------------------------------
