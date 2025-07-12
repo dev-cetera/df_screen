@@ -1,9 +1,10 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by dev-cetera.com & contributors. The use of this
-// source code is governed by an MIT-style license described in the LICENSE
-// file located in this project's root directory.
+// Copyright © dev-cetera.com & contributors.
+//
+// The use of this source code is governed by an MIT-style license described in
+// the LICENSE file located in this project's root directory.
 //
 // See: https://opensource.org/license/mit
 //
@@ -50,11 +51,9 @@ class Surface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final $color =
-        decoration?.color ?? color ?? Theme.of(context).colorScheme.surface;
+    final $color = decoration?.color ?? color ?? Theme.of(context).colorScheme.surface;
     final $borderRadius = decoration?.borderRadius ?? borderRadius;
-    final $decoration =
-        decoration?.copyWith(color: $color, borderRadius: $borderRadius) ??
+    final $decoration = decoration?.copyWith(color: $color, borderRadius: $borderRadius) ??
         BoxDecoration(color: $color, borderRadius: $borderRadius);
     return ClipRRect(
       borderRadius: $borderRadius,

@@ -1,9 +1,10 @@
 //.title
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //
-// Dart/Flutter (DF) Packages by dev-cetera.com & contributors. The use of this
-// source code is governed by an MIT-style license described in the LICENSE
-// file located in this project's root directory.
+// Copyright © dev-cetera.com & contributors.
+//
+// The use of this source code is governed by an MIT-style license described in
+// the LICENSE file located in this project's root directory.
 //
 // See: https://opensource.org/license/mit
 //
@@ -22,10 +23,8 @@ import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<
-  TScreen extends Screen,
-  TController extends ScreenController
->
+abstract base class AdaptiveScreenState<TScreen extends Screen,
+        TController extends ScreenController>
     extends AdaptiveScreenStateInterface<TScreen, TController>
     with
         MobileFrameWideLayoutScreenMixin,
@@ -107,23 +106,19 @@ abstract base class AdaptiveScreenState<
           Padding(padding: MediaQuery.of(context).padding, child: body1),
           sideInsets(
             EdgeInsets.only(
-              left:
-                  letAsOrNull<PreferredSizeWidget>(
+              left: letAsOrNull<PreferredSizeWidget>(
                     leftSide,
                   )?.preferredSize.width ??
                   0.0,
-              right:
-                  letAsOrNull<PreferredSizeWidget>(
+              right: letAsOrNull<PreferredSizeWidget>(
                     rightSide,
                   )?.preferredSize.width ??
                   0.0,
-              top:
-                  letAsOrNull<PreferredSizeWidget>(
+              top: letAsOrNull<PreferredSizeWidget>(
                     topSide,
                   )?.preferredSize.height ??
                   0.0,
-              bottom:
-                  letAsOrNull<PreferredSizeWidget>(
+              bottom: letAsOrNull<PreferredSizeWidget>(
                     bottomSide,
                   )?.preferredSize.height ??
                   0.0,
