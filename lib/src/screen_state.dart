@@ -22,8 +22,8 @@ import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenState<TScreen extends Screen, TController extends ScreenController>
-    extends State<TScreen> {
+abstract base class ScreenState<TScreen extends Screen,
+    TController extends ScreenController> extends State<TScreen> {
   //
   //
   //
@@ -35,7 +35,7 @@ abstract base class ScreenState<TScreen extends Screen, TController extends Scre
 
   @override
   void initState() {
-    this._initController();
+    _initController();
     super.initState();
   }
 
@@ -43,7 +43,7 @@ abstract base class ScreenState<TScreen extends Screen, TController extends Scre
     final key = widget.key;
     // If the key is null, just create a new currentcontroller.
     if (key == null) {
-      this.c = this._createController();
+      c = _createController();
     } else
     // If the key is not null, only create a newcontroller if one for the key
     //  does not already exist.
@@ -52,14 +52,14 @@ abstract base class ScreenState<TScreen extends Screen, TController extends Scre
       if (_controllerCache[key] == null) {
         final controllerTimeout = widget.controllerTimeout;
         _controllerCache[key] = _ControllerCache(
-          controller: this._createController(),
+          controller: _createController(),
           // If a timeout is specified, set up a debouncer to dispose of the
           //Controller once the screen is disposed and after the timeout.
           debouncer: controllerTimeout != null
               ? Debouncer(
                   delay: controllerTimeout,
                   onWaited: () {
-                    this.c.dispose();
+                    c.dispose();
                     _controllerCache.remove(widget.key);
                   },
                 )
@@ -71,13 +71,14 @@ abstract base class ScreenState<TScreen extends Screen, TController extends Scre
         _controllerCache[key]?.debouncer?.cancel();
       }
       // Assign the currentcontroller from the cache.
-      this.c = _controllerCache[key]?.controller as TController;
+      c = _controllerCache[key]?.controller as TController;
     }
   }
 
   /// Creates a new instance of [TController] from the current widget.
   TController _createController() {
-    return (widget.createController(widget, this)..initController()) as TController;
+    return (widget.createController(widget, this)..initController())
+        as TController;
   }
 
   /// Stores all activecontrollers.
