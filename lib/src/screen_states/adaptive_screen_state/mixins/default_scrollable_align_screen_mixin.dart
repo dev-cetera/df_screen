@@ -19,8 +19,11 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin DefaultScrollableAlignScreenMixin<TScreen extends Screen,
-    TController extends ScreenController> on AdaptiveScreenStateInterface<TScreen, TController> {
+base mixin DefaultScrollableAlignScreenMixin<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
+    on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget align(BuildContext context, Widget body, EdgeInsets sideInsets) {
     return Align(

@@ -20,7 +20,10 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin DefaultPaddingScreenMixin<TScreen extends Screen, TController extends ScreenController>
+base mixin DefaultPaddingScreenMixin<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
     on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget padding(BuildContext context, Widget child) {

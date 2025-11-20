@@ -22,8 +22,11 @@ import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenState<TScreen extends Screen,
-    TController extends ScreenController> extends State<TScreen> {
+abstract base class ScreenState<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
+    extends State<TScreen> {
   //
   //
   //
