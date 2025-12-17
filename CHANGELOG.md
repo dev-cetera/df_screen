@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.8.12]
+
+- Released @ 12/2025 (UTC)
+- Add sliver type functionality to sides
+
 ## [0.8.11]
 
 - Released @ 11/2025 (UTC)

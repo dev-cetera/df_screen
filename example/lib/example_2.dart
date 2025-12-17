@@ -65,9 +65,7 @@ final class ExampleScreenState
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          boxShadow: const [
-            BoxShadow(color: Colors.black26, blurRadius: 10.0),
-          ],
+          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 10.0)],
         ),
         child: const Center(
           child: Opacity(

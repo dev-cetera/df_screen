@@ -23,8 +23,10 @@ import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<TScreen extends Screen,
-        TController extends ScreenController>
+abstract base class AdaptiveScreenState<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
     extends AdaptiveScreenStateInterface<TScreen, TController>
     with
         MobileFrameWideLayoutScreenMixin,
@@ -61,10 +63,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
 
   @override
   Widget padding(BuildContext context, Widget child) {
-    return Padding(
-      padding: EdgeInsets.zero,
-      child: child,
-    );
+    return Padding(padding: EdgeInsets.zero, child: child);
   }
 
   @protected
@@ -149,8 +148,11 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
         }
 
         final mTop = wrapMeasure(wTop, _ScreenSide.TOP, topSideMode);
-        final mBottom =
-            wrapMeasure(wBottom, _ScreenSide.BOTTOM, bottomSideMode);
+        final mBottom = wrapMeasure(
+          wBottom,
+          _ScreenSide.BOTTOM,
+          bottomSideMode,
+        );
         final mLeft = wrapMeasure(wLeft, _ScreenSide.LEFT, leftSideMode);
         final mRight = wrapMeasure(wRight, _ScreenSide.RIGHT, rightSideMode);
 
@@ -166,24 +168,24 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
           pBottom = _bottomSize > 0
               ? _bottomSize
               : (wBottom is PreferredSizeWidget
-                  ? wBottom.preferredSize.height
-                  : 0.0);
+                    ? wBottom.preferredSize.height
+                    : 0.0);
         }
 
         if (leftSideMode == AdaptiveScreenSideMode.OVERLAY_WITH_PADDING) {
           pLeft = _leftSize > 0.0
               ? _leftSize
               : (wLeft is PreferredSizeWidget
-                  ? wLeft.preferredSize.width
-                  : 0.0);
+                    ? wLeft.preferredSize.width
+                    : 0.0);
         }
 
         if (rightSideMode == AdaptiveScreenSideMode.OVERLAY_WITH_PADDING) {
           pRight = _rightSize > 0.0
               ? _rightSize
               : (wRight is PreferredSizeWidget
-                  ? wRight.preferredSize.width
-                  : 0.0);
+                    ? wRight.preferredSize.width
+                    : 0.0);
         }
 
         final body1 = padding(context, body0);
@@ -200,7 +202,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
           ),
         );
 
-        Widget centerLayout = Row(
+        var centerLayout = Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (leftSideMode == AdaptiveScreenSideMode.STATIC) mLeft,
@@ -277,8 +279,10 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
                 if (isStack(leftSideMode)) {
                   var xPos = 0.0;
                   if (leftSideMode == AdaptiveScreenSideMode.SLIVER) {
-                    final maxScroll =
-                        math.max(0.0, _leftSize - minLeftSideSize);
+                    final maxScroll = math.max(
+                      0.0,
+                      _leftSize - minLeftSideSize,
+                    );
                     xPos = -scrollX.clamp(0.0, maxScroll);
                   }
                   animatedLayers.add(
@@ -289,8 +293,10 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
                 if (isStack(rightSideMode)) {
                   var rightPos = 0.0;
                   if (rightSideMode == AdaptiveScreenSideMode.SLIVER) {
-                    final maxScroll =
-                        math.max(0.0, _rightSize - minRightSideSize);
+                    final maxScroll = math.max(
+                      0.0,
+                      _rightSize - minRightSideSize,
+                    );
                     rightPos = -scrollX.clamp(0.0, maxScroll);
                   }
                   animatedLayers.add(
@@ -303,10 +309,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
                   );
                 }
 
-                return Stack(
-                  fit: StackFit.expand,
-                  children: animatedLayers,
-                );
+                return Stack(fit: StackFit.expand, children: animatedLayers);
               },
             ),
           );
@@ -315,10 +318,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
         return presentation(
           context,
           stackChildren.length > 1
-              ? Stack(
-                  fit: StackFit.expand,
-                  children: stackChildren,
-                )
+              ? Stack(fit: StackFit.expand, children: stackChildren)
               : stackChildren.first,
           background(context),
           foreground(context),
@@ -332,9 +332,4 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
 
 enum _ScreenSide { TOP, BOTTOM, LEFT, RIGHT }
 
-enum AdaptiveScreenSideMode {
-  STATIC,
-  OVERLAY_WITH_PADDING,
-  OVERLAY,
-  SLIVER,
-}
+enum AdaptiveScreenSideMode { STATIC, OVERLAY_WITH_PADDING, OVERLAY, SLIVER }
