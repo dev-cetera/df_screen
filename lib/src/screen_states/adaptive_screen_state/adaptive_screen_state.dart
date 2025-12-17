@@ -23,10 +23,8 @@ import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenState<
-  TScreen extends Screen,
-  TController extends ScreenController
->
+abstract base class AdaptiveScreenState<TScreen extends Screen,
+        TController extends ScreenController>
     extends AdaptiveScreenStateInterface<TScreen, TController>
     with
         MobileFrameWideLayoutScreenMixin,
@@ -168,24 +166,24 @@ abstract base class AdaptiveScreenState<
           pBottom = _bottomSize > 0
               ? _bottomSize
               : (wBottom is PreferredSizeWidget
-                    ? wBottom.preferredSize.height
-                    : 0.0);
+                  ? wBottom.preferredSize.height
+                  : 0.0);
         }
 
         if (leftSideMode == AdaptiveScreenSideMode.OVERLAY_WITH_PADDING) {
           pLeft = _leftSize > 0.0
               ? _leftSize
               : (wLeft is PreferredSizeWidget
-                    ? wLeft.preferredSize.width
-                    : 0.0);
+                  ? wLeft.preferredSize.width
+                  : 0.0);
         }
 
         if (rightSideMode == AdaptiveScreenSideMode.OVERLAY_WITH_PADDING) {
           pRight = _rightSize > 0.0
               ? _rightSize
               : (wRight is PreferredSizeWidget
-                    ? wRight.preferredSize.width
-                    : 0.0);
+                  ? wRight.preferredSize.width
+                  : 0.0);
         }
 
         final body1 = padding(context, body0);
@@ -219,7 +217,7 @@ abstract base class AdaptiveScreenState<
           ],
         );
 
-        final stackChildren = [centerLayout];
+        final stackChildren = <Widget>[centerLayout];
 
         bool isStack(AdaptiveScreenSideMode mode) =>
             mode == AdaptiveScreenSideMode.OVERLAY ||
