@@ -1,9 +1,11 @@
 name: adaptive_screen_example
 homepage: https://dev-cetera.com/
-repository: https://github.com/robmllze/df_screen
 funding:
-- https://www.patreon.com/c/t0mb3rr
-- https://github.com/sponsors/t0mb3rr
+- https://www.buymeacoffee.com/dev_cetera
+- https://www.patreon.com/c/robelator
+- https://github.com/sponsors/robelator
+- https://www.patreon.com/c/robelator
+- https://github.com/sponsors/robelator
 - https://www.buymeacoffee.com/dev_cetera
 
 publish_to: none

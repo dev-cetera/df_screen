@@ -19,10 +19,8 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class AdaptiveScreenStateInterface<
-  TScreen extends Screen,
-  TController extends ScreenController
->
+abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
+        TController extends ScreenController>
     extends ScreenState<TScreen, TController> {
   /// Activates for mobile device screen sizes. Override to customize the
   /// layout for these sizes. The [body] includes the widget returned by
@@ -233,4 +231,20 @@ abstract base class AdaptiveScreenStateInterface<
   Widget rightSide(BuildContext context, double rightInsets) {
     return const SizedBox.shrink();
   }
+
+  /// Configures how the top side behaves.
+  @pragma('vm:prefer-inline')
+  AdaptiveScreenSideMode get topSideMode => AdaptiveScreenSideMode.STATIC;
+
+  /// Configures how the bottom side behaves.
+  @pragma('vm:prefer-inline')
+  AdaptiveScreenSideMode get bottomSideMode => AdaptiveScreenSideMode.STATIC;
+
+  /// Configures how the left side behaves.
+  @pragma('vm:prefer-inline')
+  AdaptiveScreenSideMode get leftSideMode => AdaptiveScreenSideMode.STATIC;
+
+  /// Configures how the right side behaves.
+  @pragma('vm:prefer-inline')
+  AdaptiveScreenSideMode get rightSideMode => AdaptiveScreenSideMode.STATIC;
 }
