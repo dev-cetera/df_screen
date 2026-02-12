@@ -19,11 +19,8 @@ class AdaptiveScrollBuilder extends StatelessWidget {
   final ScrollController controller;
   final double expandedSize;
   final double collapsedSize;
-  final Widget Function(
-    BuildContext context,
-    double percentage,
-    Widget? child,
-  ) builder;
+  final Widget Function(BuildContext context, double percentage, Widget? child)
+  builder;
   final Widget? child;
 
   const AdaptiveScrollBuilder({

@@ -20,8 +20,10 @@ import '/src/_utils/_utils.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin MobileFrameWideLayoutScreenMixin<TScreen extends Screen,
-        TController extends ScreenController>
+base mixin MobileFrameWideLayoutScreenMixin<
+  TScreen extends Screen,
+  TController extends ScreenController
+>
     on AdaptiveScreenStateInterface<TScreen, TController> {
   @override
   Widget wideLayout(BuildContext context, Widget body) {

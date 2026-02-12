@@ -28,13 +28,14 @@ final class OverlayExampleController extends ScreenController {
   OverlayExampleController(super.screen, super.state);
 
   void onActionPressed() {
-    print("Action button tapped!");
+    print('Action button tapped!');
   }
 }
 
 /// 3. THE STATE (UI & Adaptive Layout)
-final class _OverlayExampleScreenState extends AdaptiveScreenState<
-    OverlayExampleScreen, OverlayExampleController> {
+final class _OverlayExampleScreenState
+    extends
+        AdaptiveScreenState<OverlayExampleScreen, OverlayExampleController> {
   // Use OVERLAY so the body content scrolls behind the header/footer
   @override
   AdaptiveScreenSideMode get topSideMode => AdaptiveScreenSideMode.OVERLAY;
@@ -64,17 +65,20 @@ final class _OverlayExampleScreenState extends AdaptiveScreenState<
               color: Colors.black.withAlpha(20),
               blurRadius: 10,
               offset: const Offset(0, 4),
-            )
+            ),
           ],
         ),
         child: SafeArea(
           bottom: false,
           child: ListTile(
             leading: const CircleAvatar(
-                backgroundColor: Colors.indigo,
-                child: Icon(Icons.person, color: Colors.white)),
-            title: const Text('Hello, Explorer',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+              backgroundColor: Colors.indigo,
+              child: Icon(Icons.person, color: Colors.white),
+            ),
+            title: const Text(
+              'Hello, Explorer',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             subtitle: const Text('Welcome back!'),
             trailing: IconButton(
               icon: const Icon(Icons.notifications_none),
@@ -93,7 +97,11 @@ final class _OverlayExampleScreenState extends AdaptiveScreenState<
       preferredSize: Size.fromHeight(minBottomSideSize + bottomInsets),
       child: Container(
         padding: EdgeInsets.only(
-            bottom: bottomInsets + 10, left: 20, right: 20, top: 10),
+          bottom: bottomInsets + 10,
+          left: 20,
+          right: 20,
+          top: 10,
+        ),
         child: Container(
           height: 60,
           decoration: BoxDecoration(
@@ -136,8 +144,9 @@ final class _OverlayExampleScreenState extends AdaptiveScreenState<
       itemBuilder: (context, index) {
         return Card(
           margin: const EdgeInsets.only(bottom: 12),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           child: Container(
             height: 100,
             padding: const EdgeInsets.all(16),
@@ -150,8 +159,11 @@ final class _OverlayExampleScreenState extends AdaptiveScreenState<
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(
-                      child: Text('#$index',
-                          style: const TextStyle(fontWeight: FontWeight.bold))),
+                    child: Text(
+                      '#$index',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 16),
                 const Expanded(
@@ -159,13 +171,17 @@ final class _OverlayExampleScreenState extends AdaptiveScreenState<
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Adaptive Overlay Card',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text('Scroll behind the floating bars...',
-                          style: TextStyle(color: Colors.grey)),
+                      Text(
+                        'Adaptive Overlay Card',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Scroll behind the floating bars...',
+                        style: TextStyle(color: Colors.grey),
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

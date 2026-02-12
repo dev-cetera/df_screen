@@ -39,9 +39,7 @@ class ScreenBreadCrumbBar extends StatelessWidget {
     final routeController = RouteController.of(context);
     final theme = Theme.of(context);
     return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.primary.withAlpha(32),
-      ),
+      decoration: BoxDecoration(color: theme.colorScheme.primary.withAlpha(32)),
       height: height ?? 32.sc,
       alignment: Alignment.centerLeft,
       child: Padding(
@@ -55,10 +53,10 @@ class ScreenBreadCrumbBar extends StatelessWidget {
               reverse: true,
               child: Row(
                 children: [
-                  ...routes
-                      .map((e) => e.uri.path)
-                      .nonNulls
-                      .mapIndexed((n, path) {
+                  ...routes.map((e) => e.uri.path).nonNulls.mapIndexed((
+                    n,
+                    path,
+                  ) {
                     final last = n == routes.length - 1;
                     return Material(
                       color: Colors.transparent,

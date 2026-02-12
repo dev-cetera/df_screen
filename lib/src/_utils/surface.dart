@@ -56,7 +56,7 @@ class Surface extends StatelessWidget {
     final borderRadius1 = decoration?.borderRadius ?? borderRadius;
     final decoration1 =
         decoration?.copyWith(color: color1, borderRadius: borderRadius1) ??
-            BoxDecoration(color: color1, borderRadius: borderRadius1);
+        BoxDecoration(color: color1, borderRadius: borderRadius1);
     return ClipRRect(
       borderRadius: borderRadius1,
       child: Container(
