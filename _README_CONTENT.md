@@ -1,3 +1,3 @@
 ## Summary
 
-A package that provides a useful screen widget andcontroller for Flutter apps.
+A package that provides a useful screen widget and controller for Flutter apps.

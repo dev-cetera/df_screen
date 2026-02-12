@@ -39,7 +39,7 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
 
   /// Presentation of body, background, and foreground
   final Widget Function(BuildContext, Widget, Widget, Widget)?
-  presentationBuilder;
+      presentationBuilder;
 
   /// Side insets calculation
   final EdgeInsets Function(BuildContext, EdgeInsets)? sideInsetsBuilder;
@@ -80,53 +80,44 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
         body = paddingBuilder?.call(context, body) ?? body;
 
         // Build side widgets
-        final topSide =
-            topSideBuilder?.call(
+        final topSide = topSideBuilder?.call(
               context,
               MediaQuery.of(context).viewInsets.top,
             ) ??
             const SizedBox.shrink();
-        final bottomSide =
-            bottomSideBuilder?.call(
+        final bottomSide = bottomSideBuilder?.call(
               context,
               MediaQuery.of(context).viewInsets.bottom,
             ) ??
             const SizedBox.shrink();
-        final leftSide =
-            leftSideBuilder?.call(
+        final leftSide = leftSideBuilder?.call(
               context,
               MediaQuery.of(context).viewInsets.left,
             ) ??
             const SizedBox.shrink();
-        final rightSide =
-            rightSideBuilder?.call(
+        final rightSide = rightSideBuilder?.call(
               context,
               MediaQuery.of(context).viewInsets.right,
             ) ??
             const SizedBox.shrink();
 
         // Calculate side insets
-        final sideInsets =
-            sideInsetsBuilder?.call(
+        final sideInsets = sideInsetsBuilder?.call(
               context,
               EdgeInsets.only(
-                left:
-                    letAsOrNull<PreferredSizeWidget>(
+                left: letAsOrNull<PreferredSizeWidget>(
                       leftSide,
                     )?.preferredSize.width ??
                     0.0,
-                right:
-                    letAsOrNull<PreferredSizeWidget>(
+                right: letAsOrNull<PreferredSizeWidget>(
                       rightSide,
                     )?.preferredSize.width ??
                     0.0,
-                top:
-                    letAsOrNull<PreferredSizeWidget>(
+                top: letAsOrNull<PreferredSizeWidget>(
                       topSide,
                     )?.preferredSize.height ??
                     0.0,
-                bottom:
-                    letAsOrNull<PreferredSizeWidget>(
+                bottom: letAsOrNull<PreferredSizeWidget>(
                       bottomSide,
                     )?.preferredSize.height ??
                     0.0,
@@ -135,8 +126,7 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
             EdgeInsets.zero;
 
         // Align body with side insets
-        body =
-            alignBuilder?.call(context, body, sideInsets) ??
+        body = alignBuilder?.call(context, body, sideInsets) ??
             _defaultAlign(context, body, sideInsets);
 
         // Combine body with side widgets
@@ -198,8 +188,7 @@ class AdaptiveLayoutBuilder extends StatelessWidget {
         );
 
         // Apply presentation
-        body =
-            presentationBuilder?.call(
+        body = presentationBuilder?.call(
               context,
               body,
               backgroundBuilder?.call(context) ?? _defaultBackground(context),

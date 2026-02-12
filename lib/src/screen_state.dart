@@ -22,11 +22,8 @@ import '../df_screen.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-abstract base class ScreenState<
-  TScreen extends Screen,
-  TController extends ScreenController
->
-    extends State<TScreen> {
+abstract base class ScreenState<TScreen extends Screen,
+    TController extends ScreenController> extends State<TScreen> {
   //
   //
   //
@@ -86,6 +83,14 @@ abstract base class ScreenState<
 
   /// Stores all activecontrollers.
   static final _controllerCache = <Key, _ControllerCache>{};
+
+  /// Removes the controller associated with this screen from the cache.
+  void removeControllerFromCache() {
+    final key = widget.key;
+    if (key != null) {
+      _controllerCache.remove(key);
+    }
+  }
 
   @protected
   @nonVirtual

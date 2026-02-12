@@ -51,19 +51,19 @@ class Surface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final $color =
+    final color1 =
         decoration?.color ?? color ?? Theme.of(context).colorScheme.surface;
-    final $borderRadius = decoration?.borderRadius ?? borderRadius;
-    final $decoration =
-        decoration?.copyWith(color: $color, borderRadius: $borderRadius) ??
-        BoxDecoration(color: $color, borderRadius: $borderRadius);
+    final borderRadius1 = decoration?.borderRadius ?? borderRadius;
+    final decoration1 =
+        decoration?.copyWith(color: color1, borderRadius: borderRadius1) ??
+            BoxDecoration(color: color1, borderRadius: borderRadius1);
     return ClipRRect(
-      borderRadius: $borderRadius,
+      borderRadius: borderRadius1,
       child: Container(
         width: width,
         height: height,
         constraints: constraints,
-        decoration: $decoration,
+        decoration: decoration1,
         padding: padding ?? EdgeInsets.zero,
         child: child,
       ),

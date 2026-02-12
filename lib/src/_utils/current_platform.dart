@@ -19,6 +19,8 @@ import 'package:device_info_plus/device_info_plus.dart' as device_info_plus;
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+const _MOBILE_MAX_WIDTH = 550.0;
+
 class CurrentPlatform {
   //
   //
@@ -108,9 +110,13 @@ class CurrentPlatform {
   static bool get isDesktop => isOsWindows || isOsMacOs || isOsLinux;
 
   static bool get isWindowSizeMobile {
-    final firstView = WidgetsBinding.instance.platformDispatcher.views.first;
+    final firstView =
+        WidgetsBinding.instance.platformDispatcher.views.firstOrNull;
+    if (firstView == null) {
+      throw StateError('No platform views available.');
+    }
     final data = MediaQueryData.fromView(firstView);
-    return data.size.shortestSide < 550.0;
+    return data.size.shortestSide < _MOBILE_MAX_WIDTH;
   }
 
   static bool get isWindowSizeTabletOrDesktop => !isWindowSizeMobile;
