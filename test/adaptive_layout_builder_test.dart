@@ -58,7 +58,8 @@ void main() {
       expect(find.byKey(const Key('fg')), findsOneWidget);
     });
 
-    testWidgets('layout-specific body builders override the default bodyBuilder',
+    testWidgets(
+        'layout-specific body builders override the default bodyBuilder',
         (tester) async {
       await tester.pumpWidget(
         MaterialApp(

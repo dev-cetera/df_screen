@@ -33,9 +33,8 @@ final class OverlayExampleController extends ScreenController {
 }
 
 /// 3. THE STATE (UI & Adaptive Layout)
-final class _OverlayExampleScreenState
-    extends
-        AdaptiveScreenState<OverlayExampleScreen, OverlayExampleController> {
+final class _OverlayExampleScreenState extends AdaptiveScreenState<
+    OverlayExampleScreen, OverlayExampleController> {
   // Use OVERLAY so the body content scrolls behind the header/footer
   @override
   AdaptiveScreenSideMode get topSideMode => AdaptiveScreenSideMode.OVERLAY;

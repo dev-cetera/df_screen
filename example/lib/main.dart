@@ -24,14 +24,26 @@ class _Index extends StatelessWidget {
 
   static final examples = <_Example>[
     _Example('01 — Minimal screen', (_) => const ex01.MinimalScreen()),
-    _Example('02 — Scrollable header (legacy)', (_) => const ex02.ExampleScreen()),
-    _Example('03 — Overlay layout (legacy)', (_) => const ex03.OverlayExampleScreen()),
-    _Example('04 — DefaultAdaptiveScreenState', (_) => const ex04.OpinionatedScreen()),
+    _Example(
+      '02 — Scrollable header (legacy)',
+      (_) => const ex02.ExampleScreen(),
+    ),
+    _Example(
+      '03 — Overlay layout (legacy)',
+      (_) => const ex03.OverlayExampleScreen(),
+    ),
+    _Example(
+      '04 — DefaultAdaptiveScreenState',
+      (_) => const ex04.OpinionatedScreen(),
+    ),
     _Example('05 — Custom breakpoints', (_) => const ex05.TunedScreen()),
-    _Example('06 — Controller cache + state', (_) => const ex06.CounterScreen(
-          key: ValueKey('counter'),
-          controllerTimeout: Duration(minutes: 5),
-        ),),
+    _Example(
+      '06 — Controller cache + state',
+      (_) => const ex06.CounterScreen(
+        key: ValueKey('counter'),
+        controllerTimeout: Duration(minutes: 5),
+      ),
+    ),
     _Example('07 — Async controller init', (_) => const ex07.AsyncInitScreen()),
     _Example('08 — df_router integration', (_) => const ex08.MyApp()),
     _Example('09 — Side modes showcase', (_) => const ex09.SideModeShowcase()),

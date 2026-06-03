@@ -51,7 +51,8 @@ void main() {
       expect(TestController.disposeCount, 1);
     });
 
-    testWidgets('does NOT reuse the controller when the cache entry was '
+    testWidgets(
+        'does NOT reuse the controller when the cache entry was '
         'already disposed', (tester) async {
       const key = ValueKey('zero-timeout-reuse');
       await tester.pumpWidget(wrapApp(const TestScreen(key: key)));
@@ -70,7 +71,8 @@ void main() {
   });
 
   group('Keyed controllers with positive controllerTimeout', () {
-    testWidgets('keeps the controller alive across re-entries within the '
+    testWidgets(
+        'keeps the controller alive across re-entries within the '
         'timeout', (tester) async {
       const key = ValueKey('warm-cache');
       const widget = TestScreen(

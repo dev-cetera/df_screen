@@ -153,6 +153,7 @@ class CurrentPlatform {
     BuildContext context, {
     LayoutBreakpoints? breakpoints,
   }) {
-    return isOsMobile && isWindowSizeMobileFor(context, breakpoints: breakpoints);
+    return isOsMobile &&
+        isWindowSizeMobileFor(context, breakpoints: breakpoints);
   }
 }

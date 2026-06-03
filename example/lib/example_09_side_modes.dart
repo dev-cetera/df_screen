@@ -59,7 +59,8 @@ base class _DemoScreen extends Screen {
   State createState() => _DemoScreenState();
 }
 
-base class _DemoScreenState extends AdaptiveScreenState<_DemoScreen, ScreenController> {
+base class _DemoScreenState
+    extends AdaptiveScreenState<_DemoScreen, ScreenController> {
   @override
   AdaptiveScreenSideMode get topSideMode => widget.mode;
 

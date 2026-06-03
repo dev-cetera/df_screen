@@ -81,10 +81,15 @@ base class _CounterScreenState
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Count: ${c.count}',
-              style: Theme.of(context).textTheme.headlineMedium,),
+          Text(
+            'Count: ${c.count}',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           const SizedBox(height: 16),
-          ElevatedButton(onPressed: c.increment, child: const Text('Increment')),
+          ElevatedButton(
+            onPressed: c.increment,
+            child: const Text('Increment'),
+          ),
         ],
       ),
     );

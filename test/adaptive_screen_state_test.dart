@@ -36,8 +36,7 @@ void main() {
       expect(find.byKey(const Key('topSide')), findsOneWidget);
     });
 
-    testWidgets('renders all four STATIC sides simultaneously',
-        (tester) async {
+    testWidgets('renders all four STATIC sides simultaneously', (tester) async {
       await pumpAtSize(
         tester,
         const AdaptiveTestScreen(
@@ -64,8 +63,7 @@ void main() {
       expect(find.byKey(const Key('topSide')), findsOneWidget);
     });
 
-    testWidgets('OVERLAY_WITH_PADDING top side reserves space',
-        (tester) async {
+    testWidgets('OVERLAY_WITH_PADDING top side reserves space', (tester) async {
       await pumpAtSize(
         tester,
         const AdaptiveTestScreen(
@@ -76,8 +74,7 @@ void main() {
       expect(find.byKey(const Key('topSide')), findsOneWidget);
     });
 
-    testWidgets('SLIVER top side is rendered and positioned',
-        (tester) async {
+    testWidgets('SLIVER top side is rendered and positioned', (tester) async {
       await pumpAtSize(
         tester,
         const AdaptiveTestScreen(
@@ -117,8 +114,7 @@ void main() {
   });
 
   group('Custom breakpoints', () {
-    testWidgets('per-screen breakpoints affect classification',
-        (tester) async {
+    testWidgets('per-screen breakpoints affect classification', (tester) async {
       // 400x600 default → on a non-mobile host this is WIDE because the
       // aspect bias is 1.5 ≤ 4/3 ... actually 1.5 > 4/3 so NARROW.
       // Use a permissive minMobileAspectRatio of 0.5 to force NARROW even
@@ -138,8 +134,8 @@ void main() {
     testWidgets('exposes a bodyScrollController that lives across rebuilds',
         (tester) async {
       await pumpAtSize(tester, const AdaptiveTestScreen());
-      final state =
-          tester.state<AdaptiveTestScreenState>(find.byType(AdaptiveTestScreen));
+      final state = tester
+          .state<AdaptiveTestScreenState>(find.byType(AdaptiveTestScreen));
       final first = state.bodyScrollController;
 
       // Trigger a rebuild.
@@ -147,11 +143,10 @@ void main() {
       expect(state.bodyScrollController, same(first));
     });
 
-    testWidgets('disposes the bodyScrollController on unmount',
-        (tester) async {
+    testWidgets('disposes the bodyScrollController on unmount', (tester) async {
       await pumpAtSize(tester, const AdaptiveTestScreen());
-      final state =
-          tester.state<AdaptiveTestScreenState>(find.byType(AdaptiveTestScreen));
+      final state = tester
+          .state<AdaptiveTestScreenState>(find.byType(AdaptiveTestScreen));
       final controller = state.bodyScrollController;
 
       await tester.pumpWidget(wrapApp(const SizedBox()));
@@ -183,8 +178,8 @@ final class _OpinionatedScreen extends Screen {
   _OpinionatedScreenState createState() => _OpinionatedScreenState();
 }
 
-base class _OpinionatedScreenState extends DefaultAdaptiveScreenState<
-    _OpinionatedScreen, ScreenController> {
+base class _OpinionatedScreenState
+    extends DefaultAdaptiveScreenState<_OpinionatedScreen, ScreenController> {
   @override
   Widget body(BuildContext context) {
     return const Text(

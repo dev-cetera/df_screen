@@ -13,7 +13,8 @@
 
 import 'dart:ui' show Size;
 
-import 'package:flutter/widgets.dart' show BuildContext, MediaQuery, WidgetsBinding;
+import 'package:flutter/widgets.dart'
+    show BuildContext, MediaQuery, WidgetsBinding;
 
 import '_utils/_utils.g.dart';
 import 'layout_breakpoints.dart';

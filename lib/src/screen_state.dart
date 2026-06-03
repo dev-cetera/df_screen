@@ -98,8 +98,7 @@ abstract base class ScreenState<TScreen extends Screen,
   /// async init is kicked off here (unawaited) and exposed via
   /// [ScreenController.ready] for code that needs to gate on completion.
   TController _createController() {
-    final controller =
-        widget.createController(widget, this) as TController;
+    final controller = widget.createController(widget, this) as TController;
     // ignore: unawaited_futures
     controller.runInit();
     return controller;

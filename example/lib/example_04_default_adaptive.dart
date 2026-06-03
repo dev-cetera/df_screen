@@ -22,7 +22,8 @@ base class OpinionatedScreen extends Screen {
   State createState() => _State();
 }
 
-base class _State extends DefaultAdaptiveScreenState<OpinionatedScreen, ScreenController> {
+base class _State
+    extends DefaultAdaptiveScreenState<OpinionatedScreen, ScreenController> {
   // Replace the default 28.sc / 112.sc padding without forking the mixin.
   @override
   EdgeInsets get defaultPaddingInsets => const EdgeInsets.symmetric(
@@ -41,7 +42,8 @@ base class _State extends DefaultAdaptiveScreenState<OpinionatedScreen, ScreenCo
           child: ListTile(
             leading: CircleAvatar(child: Text('$i')),
             title: Text('Opinionated item $i'),
-            subtitle: const Text('Scrolls inside the default scrollable mixin.'),
+            subtitle:
+                const Text('Scrolls inside the default scrollable mixin.'),
           ),
         );
       },

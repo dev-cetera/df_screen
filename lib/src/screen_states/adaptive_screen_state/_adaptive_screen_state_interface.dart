@@ -23,7 +23,8 @@ import '/src/_src.g.dart';
 /// default — typical screens only override [body] (and maybe [topSide],
 /// [layout], [align], [padding] as needed).
 abstract base class AdaptiveScreenStateInterface<TScreen extends Screen,
-    TController extends ScreenController> extends ScreenState<TScreen, TController> {
+        TController extends ScreenController>
+    extends ScreenState<TScreen, TController> {
   /// Activates for mobile device screen sizes. Override to customize the
   /// layout for these sizes. The [body] includes the widget returned by
   /// [mobileBody].

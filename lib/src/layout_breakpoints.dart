@@ -73,6 +73,5 @@ class LayoutBreakpoints {
           other.minMobileAspectRatio == minMobileAspectRatio;
 
   @override
-  int get hashCode =>
-      Object.hash(mobileMaxShortestSide, minMobileAspectRatio);
+  int get hashCode => Object.hash(mobileMaxShortestSide, minMobileAspectRatio);
 }

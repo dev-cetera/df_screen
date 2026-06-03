@@ -37,7 +37,8 @@ base class MinimalController extends ScreenController {
   }
 }
 
-base class _MinimalScreenState extends ScreenState<MinimalScreen, MinimalController> {
+base class _MinimalScreenState
+    extends ScreenState<MinimalScreen, MinimalController> {
   @override
   Widget buildWidget(BuildContext context) {
     return Scaffold(

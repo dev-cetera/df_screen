@@ -40,8 +40,7 @@ void main() {
       expect(c.initCalls, 1, reason: 'second runInit should be a no-op');
     });
 
-    test('ready surfaces an exception thrown inside initController',
-        () async {
+    test('ready surfaces an exception thrown inside initController', () async {
       final c = _ThrowingController();
       await c.runInit();
       expect(c.isReady, isTrue, reason: 'ready completes even on error');
