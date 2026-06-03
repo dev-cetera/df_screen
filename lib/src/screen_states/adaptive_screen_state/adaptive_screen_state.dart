@@ -15,7 +15,7 @@
 
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart' show nonVirtual;
+import 'package:meta/meta.dart' show nonVirtual, visibleForOverriding;
 
 import '../../_utils/_utils.g.dart';
 import '/src/_src.g.dart';
@@ -23,14 +23,26 @@ import '_adaptive_screen_state_interface.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+/// Bare adaptive screen state.
+///
+/// Provides sensible defaults for every hook in
+/// [AdaptiveScreenStateInterface] so subclasses only have to implement
+/// [body]. The build pipeline (layout selection, side measurement,
+/// overlay/sliver stacking, scroll-driven sliver positioning) lives here.
+///
+/// Wants more opinionated defaults — scrollable body, mobile frame on wide
+/// layouts, rotate-phone icon on horizontal mobile, automatic padding? Use
+/// [DefaultAdaptiveScreenState] instead, or mix in the individual mixins:
+///
+/// - [DefaultScrollableAlignScreenMixin]
+/// - [NeverScrollableAlignScreenMixin]
+/// - [DefaultNoScrollableAlignScreenMixin]
+/// - [DefaultPaddingScreenMixin]
+/// - [MobileFrameWideLayoutScreenMixin]
+/// - [RotateIconHorizontalMobileLayoutScreenMixin]
 abstract base class AdaptiveScreenState<TScreen extends Screen,
         TController extends ScreenController>
-    extends AdaptiveScreenStateInterface<TScreen, TController>
-    with
-        MobileFrameWideLayoutScreenMixin,
-        DefaultScrollableAlignScreenMixin,
-        DefaultPaddingScreenMixin,
-        RotateIconHorizontalMobileLayoutScreenMixin {
+    extends AdaptiveScreenStateInterface<TScreen, TController> {
   var _topSize = 0.0;
   var _bottomSize = 0.0;
   var _leftSize = 0.0;
@@ -42,10 +54,16 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
 
   late final ScrollController bodyScrollController;
 
+  /// Override to plug in a different scroll controller (e.g. a
+  /// [PageController]). The base implementation builds a fresh
+  /// [ScrollController].
+  @visibleForOverriding
+  ScrollController createBodyScrollController() => ScrollController();
+
   @override
   void initState() {
     super.initState();
-    bodyScrollController = ScrollController();
+    bodyScrollController = createBodyScrollController();
   }
 
   @override
@@ -54,23 +72,15 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
     super.dispose();
   }
 
-  double get minTopSideSize => kToolbarHeight;
-  double get minBottomSideSize => 0.0;
-  double get minLeftSideSize => 0.0;
-  double get minRightSideSize => 0.0;
-
-  @override
-  Widget padding(BuildContext context, Widget child) {
-    return Padding(padding: EdgeInsets.zero, child: child);
-  }
-
   @protected
   @nonVirtual
   @override
   Widget buildWidget(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final calculator = ScreenCalculator(screenSize.width, screenSize.height);
-    final appLayout = AppLayout.fromScreenCalculator(calculator);
+    final screenSize = MediaQuery.sizeOf(context);
+    final resolver = layoutResolver;
+    final resolved = resolver?.call(context, screenSize);
+    final appLayout = resolved ??
+        AppLayout.fromSize(screenSize, breakpoints: layoutBreakpoints);
 
     switch (appLayout) {
       case AppLayout.MOBILE:
@@ -81,10 +91,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
       case AppLayout.MOBILE_HORIZONTAL:
         return horizontalMobileLayout(
           context,
-          _wrapBody0(
-            context,
-            horizontalMobileBody(context),
-          ),
+          _wrapBody0(context, horizontalMobileBody(context)),
         );
       case AppLayout.NARROW:
         return narrowLayout(
@@ -132,7 +139,7 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
         break;
     }
 
-    if (changed) setState(() {});
+    if (changed && mounted) setState(() {});
   }
 
   Widget _wrapBody0(BuildContext context, Widget body0) {
@@ -254,7 +261,13 @@ abstract base class AdaptiveScreenState<TScreen extends Screen,
                     } else {
                       scrollX = bodyScrollController.offset;
                     }
-                  } catch (_) {}
+                  } catch (e, stack) {
+                    // Position can briefly disagree with hasClients during
+                    // controller attach/detach. Log so we don't silently lose
+                    // the failure.
+                    debugPrint('AdaptiveScreenState scroll read failed: $e');
+                    debugPrintStack(stackTrace: stack);
+                  }
                 }
 
                 final animatedLayers = <Widget>[];

@@ -20,20 +20,26 @@ import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin DefaultPaddingScreenMixin<
-  TScreen extends Screen,
-  TController extends ScreenController
->
+/// Wraps the body in a [Padding] block sized by [defaultPaddingInsets].
+///
+/// Override [defaultPaddingInsets] (or [padding] directly) to retune the
+/// safe-area inset that wraps your screen body without forking the mixin.
+base mixin DefaultPaddingScreenMixin<TScreen extends Screen,
+        TController extends ScreenController>
     on AdaptiveScreenStateInterface<TScreen, TController> {
-  @override
-  Widget padding(BuildContext context, Widget child) {
-    return Padding(
-      padding: EdgeInsets.only(
+  /// The insets applied by this mixin. Defaults to 28.sc on top/left/right
+  /// and 112.sc on bottom (room for a tab bar / nav).
+  EdgeInsets get defaultPaddingInsets => EdgeInsets.only(
         top: 28.sc,
         left: 28.sc,
         right: 28.sc,
         bottom: 112.sc,
-      ),
+      );
+
+  @override
+  Widget padding(BuildContext context, Widget child) {
+    return Padding(
+      padding: defaultPaddingInsets,
       child: child,
     );
   }

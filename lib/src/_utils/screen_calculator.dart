@@ -11,12 +11,14 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
+import 'dart:ui' show Size;
+
+import '/src/layout_breakpoints.dart';
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
 /// Calculates the size, orientation and aspect ratio of a screen.
 class ScreenCalculator {
-  //
-  //
-  //
-
   /// The longest side of the screen.
   double get longest => _longest;
   late double _longest;
@@ -55,15 +57,24 @@ class ScreenCalculator {
   bool get isNeitherHorizontalNorVertical => _isNeitherHorizontalNorVertical;
   late bool _isNeitherHorizontalNorVertical;
 
-  /// Whether the aspect ratio of the screen is that of a mobile phone.
+  /// Breakpoints used by [isAspectRatioMobile]. Defaults to
+  /// [LayoutBreakpoints.global] at the time the calculator was constructed.
+  final LayoutBreakpoints breakpoints;
+
+  /// Whether the aspect ratio of the screen is that of a mobile phone, using
+  /// [breakpoints.minMobileAspectRatio] as the threshold.
   bool get isAspectRatioMobile =>
-      sizeVerticalBias.aspectRatio > MIN_MOBILE_ASPECT_RATIO;
+      sizeVerticalBias.aspectRatio > breakpoints.minMobileAspectRatio;
 
   //
   //
   //
 
-  ScreenCalculator(double maxWidth, double maxHeight) {
+  ScreenCalculator(
+    double maxWidth,
+    double maxHeight, {
+    LayoutBreakpoints? breakpoints,
+  }) : breakpoints = breakpoints ?? LayoutBreakpoints.global {
     _longest = maxWidth >= maxHeight ? maxWidth : maxHeight;
     _shortest = maxWidth <= maxHeight ? maxWidth : maxHeight;
     _size = ScreenSize(maxWidth, maxHeight);
@@ -73,6 +84,10 @@ class ScreenCalculator {
     _isVertical = _size.aspectRatio < 1.0;
     _isNeitherHorizontalNorVertical = _size.aspectRatio == 1.0;
   }
+
+  /// Convenience: builds a calculator from a [Size].
+  ScreenCalculator.fromSize(Size size, {LayoutBreakpoints? breakpoints})
+      : this(size.width, size.height, breakpoints: breakpoints);
 }
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -91,34 +106,37 @@ class ScreenSize {
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-/// The smallest of the following common aspect ratios for mobile phones (4.0 / 3.0)
+/// The smallest of the common aspect ratios for mobile phones (4.0 / 3.0).
+/// Retained for backward compatibility; new code should read
+/// [LayoutBreakpoints.global.minMobileAspectRatio] so it picks up
+/// user-configured overrides.
 const MIN_MOBILE_ASPECT_RATIO = 4.0 / 3.0;
 
-/// The smallest of the following common aspect ratios for mobile phones (4.0 / 3.0)
+/// The smallest of the following common aspect ratios for mobile phones.
 double get minMobileAspectRatio => {
-  // Samsungs
-  16.0 / 10.0,
-  // Pixels, Samsungs
-  16.0 / 9.0,
-  // Pixels, most iPhones before 2018
-  18.0 / 9.0,
-  // Pixels
-  18.5 / 9.0,
-  18.7 / 9.0,
-  19.0 / 10.0,
-  // Pixels
-  19.0 / 9.0,
-  // Pixels and most iPhones after 2018
-  19.5 / 9.0,
-  3.0 / 2.0,
-  // Old iPhones, and many tablets!
-  4.0 / 3.0,
-  5.0 / 3.0,
-  // Samsungs
-  2.10 / 1,
-  20.0 / 9.0,
-  193 / 90,
-}.reduce((a, b) => a <= b ? a : b);
+      // Samsungs
+      16.0 / 10.0,
+      // Pixels, Samsungs
+      16.0 / 9.0,
+      // Pixels, most iPhones before 2018
+      18.0 / 9.0,
+      // Pixels
+      18.5 / 9.0,
+      18.7 / 9.0,
+      19.0 / 10.0,
+      // Pixels
+      19.0 / 9.0,
+      // Pixels and most iPhones after 2018
+      19.5 / 9.0,
+      3.0 / 2.0,
+      // Old iPhones, and many tablets!
+      4.0 / 3.0,
+      5.0 / 3.0,
+      // Samsungs
+      2.10 / 1,
+      20.0 / 9.0,
+      193 / 90,
+    }.reduce((a, b) => a <= b ? a : b);
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 

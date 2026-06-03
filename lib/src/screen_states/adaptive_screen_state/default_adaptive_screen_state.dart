@@ -11,29 +11,28 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-import 'package:flutter/material.dart';
-
-import '../_adaptive_screen_state_interface.dart';
-
 import '/src/_src.g.dart';
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-base mixin DefaultScrollableAlignScreenMixin<TScreen extends Screen,
+/// Opinionated [AdaptiveScreenState] with the four default mixins applied:
+///
+/// - [MobileFrameWideLayoutScreenMixin] frames the screen inside a mobile-
+///   shaped area on wide layouts.
+/// - [DefaultScrollableAlignScreenMixin] wraps the body in a bouncing
+///   [SingleChildScrollView] that dismisses the keyboard on drag.
+/// - [DefaultPaddingScreenMixin] applies the package's default 28.sc / 112.sc
+///   safe-area padding.
+/// - [RotateIconHorizontalMobileLayoutScreenMixin] replaces horizontal-mobile
+///   layouts with a rotate-phone icon.
+///
+/// Override individual hooks to customize further, or use [AdaptiveScreenState]
+/// directly for full control with no opinionated defaults.
+abstract base class DefaultAdaptiveScreenState<TScreen extends Screen,
         TController extends ScreenController>
-    on AdaptiveScreenStateInterface<TScreen, TController> {
-  @override
-  Widget align(BuildContext context, Widget body, EdgeInsets sideInsets) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: SizedBox(
-        height: MediaQuery.sizeOf(context).height,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          child: Padding(padding: sideInsets, child: body),
-        ),
-      ),
-    );
-  }
-}
+    extends AdaptiveScreenState<TScreen, TController>
+    with
+        MobileFrameWideLayoutScreenMixin,
+        DefaultScrollableAlignScreenMixin,
+        DefaultPaddingScreenMixin,
+        RotateIconHorizontalMobileLayoutScreenMixin {}

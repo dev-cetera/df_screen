@@ -13,13 +13,14 @@
 
 import 'package:flutter/foundation.dart';
 
-import 'package:flutter/widgets.dart' show MediaQueryData, WidgetsBinding;
+import 'package:flutter/widgets.dart'
+    show BuildContext, MediaQuery, MediaQueryData, WidgetsBinding;
 
 import 'package:device_info_plus/device_info_plus.dart' as device_info_plus;
 
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+import '/src/layout_breakpoints.dart';
 
-const _MOBILE_MAX_WIDTH = 550.0;
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 class CurrentPlatform {
   //
@@ -105,10 +106,21 @@ class CurrentPlatform {
   static final isOsLinux = defaultTargetPlatform == TargetPlatform.linux;
   static final isOsApple = isOsIos || isOsMacOs;
   static final isOsDeskop = isOsWindows || isOsMacOs || isOsLinux;
+
+  /// Uses the platform's *primary view* to decide whether the window is
+  /// mobile-sized. Static — prefer [isWindowSizeMobileFor] in widget code so
+  /// nested apps (mini-app frames, embeddings) get an accurate answer.
   static bool get isTablet => isOsMobile && isWindowSizeTabletOrDesktop;
+
+  /// Uses the platform's *primary view* to decide whether the window is
+  /// mobile-sized. Static — prefer [isWindowSizeMobileFor] when a
+  /// [BuildContext] is available.
   static bool get isMobile => isOsMobile && isWindowSizeMobile;
+
   static bool get isDesktop => isOsWindows || isOsMacOs || isOsLinux;
 
+  /// True when the platform's primary view's shortest side is below
+  /// [LayoutBreakpoints.global.mobileMaxShortestSide].
   static bool get isWindowSizeMobile {
     final firstView =
         WidgetsBinding.instance.platformDispatcher.views.firstOrNull;
@@ -116,8 +128,31 @@ class CurrentPlatform {
       throw StateError('No platform views available.');
     }
     final data = MediaQueryData.fromView(firstView);
-    return data.size.shortestSide < _MOBILE_MAX_WIDTH;
+    return data.size.shortestSide <
+        LayoutBreakpoints.global.mobileMaxShortestSide;
   }
 
   static bool get isWindowSizeTabletOrDesktop => !isWindowSizeMobile;
+
+  /// Context-aware variant of [isWindowSizeMobile]. Reads the nearest
+  /// [MediaQuery] so embedded apps with a constrained size are classified
+  /// correctly.
+  ///
+  /// Pass [breakpoints] to override the process-wide default for this call.
+  static bool isWindowSizeMobileFor(
+    BuildContext context, {
+    LayoutBreakpoints? breakpoints,
+  }) {
+    final size = MediaQuery.sizeOf(context);
+    final bp = breakpoints ?? LayoutBreakpoints.global;
+    return size.shortestSide < bp.mobileMaxShortestSide;
+  }
+
+  /// Context-aware variant of [isMobile].
+  static bool isMobileFor(
+    BuildContext context, {
+    LayoutBreakpoints? breakpoints,
+  }) {
+    return isOsMobile && isWindowSizeMobileFor(context, breakpoints: breakpoints);
+  }
 }

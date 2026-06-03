@@ -28,7 +28,7 @@ final class OverlayExampleController extends ScreenController {
   OverlayExampleController(super.screen, super.state);
 
   void onActionPressed() {
-    print('Action button tapped!');
+    debugPrint('Action button tapped!');
   }
 }
 

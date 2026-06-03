@@ -11,10 +11,15 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 //.title~
 
-/// A package that provides a useful screen widget andcontroller for Flutter apps.
+/// A package that provides a useful screen widget and controller for Flutter apps.
 library;
 
 export 'src/_src.g.dart';
+
+// Layout helpers (ScreenCalculator, ScreenSize, CurrentPlatform,
+// ViewInsetsBuilder, Surface). These were historically under src/_utils
+// for internal use but are part of the public API.
+export 'src/_utils/_utils.g.dart';
 
 // Supporting packages.
 export 'package:df_collection/df_collection.dart';

@@ -24,13 +24,7 @@ import '../df_screen.dart';
 
 abstract base class ScreenState<TScreen extends Screen,
     TController extends ScreenController> extends State<TScreen> {
-  //
-  //
-  //
-
-  // ---------------------------------------------------------------------------
-
-  /// The current ontroller associated with this screen.
+  /// The current controller associated with this screen.
   late final TController c;
 
   @override
@@ -41,54 +35,108 @@ abstract base class ScreenState<TScreen extends Screen,
 
   void _initController() {
     final key = widget.key;
-    // If the key is null, just create a new currentcontroller.
     if (key == null) {
+      // No key → no caching. Always create a fresh controller.
       c = _createController();
-    } else
-    // If the key is not null, only create a newcontroller if one for the key
-    //  does not already exist.
-    {
-      // If nocontroller already exist in the cache, set one up.
-      if (_controllerCache[key] == null) {
+      return;
+    }
+
+    final existing = _controllerCache[key];
+    if (existing == null) {
+      // First time we see this key → create + cache.
+      final controllerTimeout = widget.controllerTimeout;
+      c = _createController();
+      _controllerCache[key] = _ControllerCache(
+        controller: c,
+        // If a timeout is specified, set up a debouncer to dispose of the
+        // controller after the screen is disposed and the timeout elapses.
+        // A null timeout means "keep alive indefinitely".
+        debouncer: controllerTimeout != null
+            ? Debouncer(
+                delay: controllerTimeout,
+                onWaited: () {
+                  final entry = _controllerCache.remove(key);
+                  entry?.controller.dispose();
+                },
+              )
+            : null,
+        // Keep the latest TController type so we can guard the cast on reuse.
+        typeCheck: (other) => other is TController,
+      );
+    } else {
+      // Re-entering a cached controller. Cancel the pending dispose, rebind
+      // the controller to the *current* widget/state, then expose it as `c`.
+      existing.debouncer?.cancel();
+      if (!existing.typeCheck(existing.controller)) {
+        // Key collision with a different controller type. Replace the entry
+        // with a fresh controller rather than blowing up at the `as` below.
+        existing.controller.dispose();
         final controllerTimeout = widget.controllerTimeout;
+        c = _createController();
         _controllerCache[key] = _ControllerCache(
-          controller: _createController(),
-          // If a timeout is specified, set up a debouncer to dispose of the
-          //Controller once the screen is disposed and after the timeout.
+          controller: c,
           debouncer: controllerTimeout != null
               ? Debouncer(
                   delay: controllerTimeout,
                   onWaited: () {
-                    c.dispose();
-                    _controllerCache.remove(widget.key);
+                    final entry = _controllerCache.remove(key);
+                    entry?.controller.dispose();
                   },
                 )
               : null,
+          typeCheck: (other) => other is TController,
         );
-      } else {
-        // Reset the debouncer so that thecontroller will again only time out
-        // after the screen is disposed and after the timeout.
-        _controllerCache[key]?.debouncer?.cancel();
+        return;
       }
-      // Assign the currentcontroller from the cache.
-      c = _controllerCache[key]?.controller as TController;
+      existing.controller.superScreen = widget;
+      existing.controller.superState = this;
+      c = existing.controller as TController;
     }
   }
 
-  /// Creates a new instance of [TController] from the current widget.
+  /// Creates a new instance of [TController] from the current widget. The
+  /// async init is kicked off here (unawaited) and exposed via
+  /// [ScreenController.ready] for code that needs to gate on completion.
   TController _createController() {
-    return (widget.createController(widget, this)..initController())
-        as TController;
+    final controller =
+        widget.createController(widget, this) as TController;
+    // ignore: unawaited_futures
+    controller.runInit();
+    return controller;
   }
 
-  /// Stores all activecontrollers.
+  /// Stores all active controllers, keyed by widget key.
   static final _controllerCache = <Key, _ControllerCache>{};
 
-  /// Removes the controller associated with this screen from the cache.
+  /// Removes the controller associated with this screen from the cache and
+  /// disposes it. Use this when you explicitly want to discard a cached
+  /// controller (e.g. on logout) without waiting for [controllerTimeout].
   void removeControllerFromCache() {
     final key = widget.key;
-    if (key != null) {
-      _controllerCache.remove(key);
+    if (key == null) return;
+    final entry = _controllerCache.remove(key);
+    entry?.debouncer?.cancel();
+    entry?.controller.dispose();
+  }
+
+  /// Disposes and removes **every** controller currently held in the
+  /// process-wide cache. Useful for sign-out flows or test teardown.
+  static void clearAllControllers() {
+    final entries = _controllerCache.values.toList(growable: false);
+    _controllerCache.clear();
+    for (final entry in entries) {
+      entry.debouncer?.cancel();
+      entry.controller.dispose();
+    }
+  }
+
+  /// Triggers a rebuild of this screen. Provided for controllers (which
+  /// don't have direct access to [State.setState]) and other external
+  /// callers. No-ops when the state is no longer mounted.
+  void rebuildScreen() {
+    if (mounted) {
+      // ignore: invalid_use_of_protected_member
+      setState(() {});
     }
   }
 
@@ -104,12 +152,18 @@ abstract base class ScreenState<TScreen extends Screen,
 
   @mustCallSuper
   @override
-  void dispose() async {
-    // Call the debouncer to trigger the disposal of thecontroller after the
-    // timeout.
+  void dispose() {
     final key = widget.key;
     if (key != null) {
-      _controllerCache[key]?.debouncer?.call();
+      final entry = _controllerCache[key];
+      final debouncer = entry?.debouncer;
+      if (debouncer != null) {
+        // Schedule disposal after the configured timeout.
+        debouncer.call();
+      }
+      // If debouncer is null (controllerTimeout was null), the controller is
+      // kept indefinitely. Use [removeControllerFromCache] or
+      // [clearAllControllers] to release it.
     }
     super.dispose();
   }
@@ -118,16 +172,13 @@ abstract base class ScreenState<TScreen extends Screen,
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 class _ControllerCache {
-  //
-  //
-  //
-
   final ScreenController controller;
   final Debouncer? debouncer;
+  final bool Function(ScreenController) typeCheck;
 
-  //
-  //
-  //
-
-  const _ControllerCache({required this.controller, required this.debouncer});
+  const _ControllerCache({
+    required this.controller,
+    required this.debouncer,
+    required this.typeCheck,
+  });
 }

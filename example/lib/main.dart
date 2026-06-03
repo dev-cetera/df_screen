@@ -1,101 +1,70 @@
-import 'package:df_screen/df_screen.dart';
+// Chooser app — pick an example, see it run.
+//
+// Each example_*.dart in this directory has its own `main()` for direct
+// experimentation. This file just bundles them behind a list UI.
 
 import 'package:flutter/material.dart';
 
+import 'example_01_minimal.dart' as ex01;
+import 'example_04_default_adaptive.dart' as ex04;
+import 'example_05_custom_breakpoints.dart' as ex05;
+import 'example_06_controller_state.dart' as ex06;
+import 'example_07_async_init.dart' as ex07;
+import 'example_08_router_integration.dart' as ex08;
+import 'example_09_side_modes.dart' as ex09;
+import 'example_2.dart' as ex02;
+import 'example_3.dart' as ex03;
+
 void main() {
-  runApp(const MyApp());
+  runApp(const _Index());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _Index extends StatelessWidget {
+  const _Index();
+
+  static final examples = <_Example>[
+    _Example('01 — Minimal screen', (_) => const ex01.MinimalScreen()),
+    _Example('02 — Scrollable header (legacy)', (_) => const ex02.ExampleScreen()),
+    _Example('03 — Overlay layout (legacy)', (_) => const ex03.OverlayExampleScreen()),
+    _Example('04 — DefaultAdaptiveScreenState', (_) => const ex04.OpinionatedScreen()),
+    _Example('05 — Custom breakpoints', (_) => const ex05.TunedScreen()),
+    _Example('06 — Controller cache + state', (_) => const ex06.CounterScreen(
+          key: ValueKey('counter'),
+          controllerTimeout: Duration(minutes: 5),
+        ),),
+    _Example('07 — Async controller init', (_) => const ex07.AsyncInitScreen()),
+    _Example('08 — df_router integration', (_) => const ex08.MyApp()),
+    _Example('09 — Side modes showcase', (_) => const ex09.SideModeShowcase()),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Adaptive Screen', home: ExampleScreen());
-  }
-}
-
-base class ExampleScreen extends Screen {
-  const ExampleScreen({super.key});
-
-  @override
-  State createState() => ExampleScreenState();
-
-  @override
-  ScreenController createController(Screen screen, ScreenState state) {
-    return ExampleScreenController(screen, state);
-  }
-}
-
-// A controller is like a controller and should hold the business logic
-// that is exclusive to the screen.
-final class ExampleScreenController extends ScreenController {
-  ExampleScreenController(super.screen, super.state);
-}
-
-final class ExampleScreenState
-    extends AdaptiveScreenState<ExampleScreen, ExampleScreenController> {
-  @override
-  Widget wideBody(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      color: Colors.grey,
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Text('WIDE BODY!!!')],
+    return MaterialApp(
+      title: 'df_screen examples',
+      home: Scaffold(
+        appBar: AppBar(title: const Text('df_screen examples')),
+        body: ListView.builder(
+          itemCount: examples.length,
+          itemBuilder: (context, i) {
+            final e = examples[i];
+            return ListTile(
+              title: Text(e.title),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(builder: e.build),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
+}
 
-  @override
-  Widget body(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      color: Colors.grey,
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Text('NARROW BODY!!!')],
-      ),
-    );
-  }
-
-  @override
-  EdgeInsets sideInsets(EdgeInsets preferredInsets) {
-    // Remove the top insets.
-    return preferredInsets.copyWith(top: 0.0);
-  }
-
-  @override
-  PreferredSizeWidget leftSide(BuildContext context, double leftInsets) {
-    return PreferredSize(
-      preferredSize: Size(leftInsets + 80, double.infinity),
-      child: Container(color: Colors.orange.withAlpha(128)),
-    );
-  }
-
-  @override
-  PreferredSizeWidget rightSide(BuildContext context, double rightInsets) {
-    return PreferredSize(
-      preferredSize: Size(rightInsets + 80, double.infinity),
-      child: Container(color: Colors.green.withAlpha(128)),
-    );
-  }
-
-  @override
-  PreferredSizeWidget topSide(BuildContext context, double topInsets) {
-    return PreferredSize(
-      preferredSize: Size(double.infinity, topInsets + 80),
-      child: Container(color: Colors.yellow.withAlpha(128)),
-    );
-  }
-
-  @override
-  PreferredSizeWidget bottomSide(BuildContext context, double bottomInsets) {
-    return PreferredSize(
-      preferredSize: Size(double.infinity, bottomInsets + 80),
-      child: Container(color: Colors.blue.withAlpha(128)),
-    );
-  }
+class _Example {
+  const _Example(this.title, this.build);
+  final String title;
+  final WidgetBuilder build;
 }

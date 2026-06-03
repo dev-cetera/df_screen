@@ -46,25 +46,25 @@ class ScreenBreadCrumbBar extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 12.sc),
         child: PodBuilder(
           pod: routeController.pNavigationState,
-          builder: (context, screenBreadcrumbsSnapshot) {
-            final routes = routeController.pNavigationState.getValue().routes;
+          builder: (context, snapshot) {
+            final navState = routeController.pNavigationState.getValue();
+            final routes = navState.routes;
+            final currentIndex = navState.index;
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               reverse: true,
               child: Row(
                 children: [
-                  ...routes.map((e) => e.uri.path).nonNulls.mapIndexed((
-                    n,
-                    path,
-                  ) {
+                  ...routes.mapIndexed((n, route) {
+                    final path = route.uri.path;
                     final last = n == routes.length - 1;
+                    final isCurrent = n == currentIndex;
                     return Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        onTap: !last
-                            // ignore: invalid_use_of_protected_member
-                            ? () => routeController.go(n + 1)
-                            : null,
+                        onTap: isCurrent
+                            ? null
+                            : () => routeController.step(n - currentIndex),
                         child: Text(
                           path,
                           style: theme.textTheme.bodySmall?.copyWith(
