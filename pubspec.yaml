@@ -19,7 +19,7 @@ funding:
   - https://www.patreon.com/c/robelator
   - https://github.com/sponsors/robelator
 description: A package that provides a useful screen widget and controller for Flutter apps.
-version: 0.9.1
+version: 0.9.0
 topics:
   - user-interface
   - widgets

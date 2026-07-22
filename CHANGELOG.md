@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.9.1]
+## [0.9.0]
 
 - Released @ 6/2026 (UTC)
 - Update: bumps `df_generate_dart_models_core` to `^0.11.0`
