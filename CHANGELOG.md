@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.9.1]
+
+- chore: bump `df_generate_dart_models_core` to `^0.11.1`, which adopts `df_string ^0.4.0` (case-conversion digit-boundary change). No behavioural change to df_screen itself.
+
 ## [0.9.0]
 
 - Released @ 6/2026 (UTC)
